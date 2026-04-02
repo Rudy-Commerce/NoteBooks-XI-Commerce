@@ -8,347 +8,380 @@
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="installer-header">
-    <div class="logo">
-      <div class="logo-mark">⚙</div>
-      <span class="logo-name">Ada Installer</span>
-    </div>
-    <div class="subtitle">One-time setup wizard</div>
-  </header>
+  <!-- ── Particle layers (behind everything) ─────────────────────────── -->
+  <div id="particles-background"></div>
+  <div id="particles-foreground"></div>
 
-  <!-- Progress dots (one per STEPS entry in script.js) -->
-  <nav class="progress-bar" aria-label="Progress">
-    <div class="prog-dot current" title="Welcome"></div>
-    <div class="prog-line"></div>
-    <div class="prog-dot" title="Names"></div>
-    <div class="prog-line"></div>
-    <div class="prog-dot" title="Applying"></div>
-    <div class="prog-line"></div>
-    <div class="prog-dot" title="Workflows"></div>
-    <div class="prog-line"></div>
-    <div class="prog-dot" title="Vercel Guide"></div>
-    <div class="prog-line"></div>
-    <div class="prog-dot" title="Vercel URL"></div>
-    <div class="prog-line"></div>
-    <div class="prog-dot" title="Patching"></div>
-    <div class="prog-line"></div>
-    <div class="prog-dot" title="Success"></div>
-    <div class="prog-line"></div>
-    <div class="prog-dot" title="Cleanup"></div>
-  </nav>
+  <!-- ── All installer UI sits above particles ───────────────────────── -->
+  <div class="installer-wrap">
 
-  <!-- ═══════════════════════════════════════════════════════════════
-       STEP 1 · Welcome
-  ═══════════════════════════════════════════════════════════════════ -->
-  <section id="step-welcome" class="step active">
-    <div class="card">
-      <div class="card-header">
-        <div class="step-label">Step 1 of 7</div>
-        <h2>Welcome to the Installer</h2>
-        <p>This wizard will configure your forked repository and deploy your app. It only takes a few minutes.</p>
+    <header class="installer-header">
+      <div class="logo">
+        <div class="logo-mark">⚙</div>
+        <span class="logo-name">Ada Installer</span>
       </div>
-      <div class="card-body">
+      <div class="subtitle">One-time setup wizard</div>
+    </header>
 
-        <!-- Repo detection result -->
-        <div id="detect-ok" class="detect-pill ok" style="display:none">
-          <span class="pill-icon">✔</span>
-          <div class="pill-body">
-            <strong>Repository detected</strong>
-            Repo: <code id="detected-repo"></code>&nbsp;&nbsp;·&nbsp;&nbsp;Host: <code id="detected-host"></code>
+    <nav class="progress-bar" aria-label="Progress">
+      <div class="prog-dot current" title="Welcome"></div>
+      <div class="prog-line"></div>
+      <div class="prog-dot" title="Names"></div>
+      <div class="prog-line"></div>
+      <div class="prog-dot" title="Applying"></div>
+      <div class="prog-line"></div>
+      <div class="prog-dot" title="Workflows"></div>
+      <div class="prog-line"></div>
+      <div class="prog-dot" title="Vercel Guide"></div>
+      <div class="prog-line"></div>
+      <div class="prog-dot" title="Vercel URL"></div>
+      <div class="prog-line"></div>
+      <div class="prog-dot" title="Patching"></div>
+      <div class="prog-line"></div>
+      <div class="prog-dot" title="Success"></div>
+      <div class="prog-line"></div>
+      <div class="prog-dot" title="Cleanup"></div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════
+         STEP 1 · Welcome
+    ════════════════════════════════════════════════════ -->
+    <section id="step-welcome" class="step active">
+      <div class="card">
+        <div class="card-header">
+          <div class="step-label">Step 1 of 7</div>
+          <h2>Welcome to the Installer</h2>
+          <p>This wizard will configure your forked repository and deploy your app. It only takes a few minutes.</p>
+        </div>
+        <div class="card-body">
+
+          <div id="detect-ok" class="detect-pill ok" style="display:none">
+            <span class="pill-icon">✔</span>
+            <div class="pill-body">
+              <strong>Repository detected</strong>
+              Repo: <code id="detected-repo"></code>&nbsp;&nbsp;·&nbsp;&nbsp;Host: <code id="detected-host"></code>
+            </div>
           </div>
-        </div>
-        <div id="detect-fail" class="detect-pill fail" style="display:none">
-          <span class="pill-icon">✖</span>
-          <div class="pill-body">
-            <strong>Could not detect repository.</strong>
-            Make sure you're opening this page from your GitHub Pages URL
-            (e.g., <code>username.github.io/repo-name/.installer/</code>).
-          </div>
-        </div>
-
-        <!-- PAT input -->
-        <div class="field">
-          <label for="pat-input">GitHub Personal Access Token</label>
-          <input id="pat-input" type="password" placeholder="github_pat_…  or  ghp_…" autocomplete="off" />
-          <div class="hint">
-            Needs <strong>Contents</strong> (read &amp; write) &amp; <strong>Actions</strong> (read) scope.<br>
-            <a href="https://github.com/settings/tokens" target="_blank" rel="noopener">Create a token →</a>
-          </div>
-        </div>
-
-        <div id="welcome-err" class="err-msg"></div>
-        <div class="btn-row">
-          <button id="welcome-btn" class="btn btn-primary" onclick="onWelcomeContinue()">
-            Begin Installation →
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════════════
-       STEP 2 · App Names
-  ═══════════════════════════════════════════════════════════════════ -->
-  <section id="step-names" class="step">
-    <div class="card">
-      <div class="card-header">
-        <div class="step-label">Step 2 of 7</div>
-        <h2>Name Your App</h2>
-        <p>These names will be applied to the page title, the toolbar heading, and the PWA manifest.</p>
-      </div>
-      <div class="card-body">
-        <div class="field">
-          <label for="full-name">Full Name</label>
-          <input id="full-name" type="text" placeholder="e.g. Class XI Notes" maxlength="60" />
-          <div class="hint">Used in the browser tab, welcome screen, and the toolbar heading.</div>
-        </div>
-        <div class="field">
-          <label for="short-name">Short Name</label>
-          <input id="short-name" type="text" placeholder="e.g. Notes XI" maxlength="12" />
-          <div class="hint">Shown on the home screen icon when installed as a PWA. Max 12 chars.</div>
-        </div>
-        <div id="names-err" class="err-msg"></div>
-        <div class="btn-row">
-          <button class="btn btn-primary" onclick="onNamesContinue()">Apply Names →</button>
-          <button class="btn btn-ghost" onclick="showStep('welcome')">← Back</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════════════
-       STEP 3 · Applying Changes
-  ═══════════════════════════════════════════════════════════════════ -->
-  <section id="step-applying" class="step">
-    <div class="card">
-      <div class="card-header">
-        <div class="step-label">Step 3 of 7</div>
-        <h2>Applying Changes</h2>
-        <p>Committing patches to your repository. Please don't close this tab.</p>
-      </div>
-      <div class="card-body">
-        <div id="apply-log" class="log-panel"></div>
-        <div class="btn-row">
-          <button id="apply-retry" class="btn btn-ghost" style="display:none" onclick="startApplying()">↺ Retry</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════════════
-       STEP 4 · Waiting for Workflows
-  ═══════════════════════════════════════════════════════════════════ -->
-  <section id="step-workflows" class="step">
-    <div class="card">
-      <div class="card-header">
-        <div class="step-label">Step 4 of 7</div>
-        <h2>Waiting for GitHub Actions</h2>
-        <p>Your commits triggered automated workflows. This usually takes under a minute.</p>
-      </div>
-      <div class="card-body">
-        <div id="wf-status">Starting…</div>
-        <div class="wf-track" id="wf-track">
-          <div id="wf-bar"></div>
-        </div>
-        <p style="font-size:12.5px; color:var(--clr-muted); margin-bottom:16px;">
-          You can also watch live progress in the
-          <strong>Actions</strong> tab of your repository on GitHub.
-        </p>
-        <div class="btn-row">
-          <button id="wf-continue" class="btn btn-primary" style="display:none" onclick="showStep('vercel-guide')">
-            Continue →
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════════════
-       STEP 5 · Vercel Setup Guide
-  ═══════════════════════════════════════════════════════════════════ -->
-  <section id="step-vercel-guide" class="step">
-    <div class="card">
-      <div class="card-header">
-        <div class="step-label">Step 5 of 7</div>
-        <h2>Vercel Deployment Setup</h2>
-        <p>Follow these steps to deploy the backend API. The installer will complete the final wiring once you're done.</p>
-      </div>
-      <div class="card-body">
-        <div class="guide-steps">
-
-          <div class="guide-step">
-            <div class="guide-step-num">1</div>
-            <div class="guide-step-body">
-              <strong>Create a Fine-Grained Personal Access Token</strong>
-              Go to <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener" style="color:var(--clr-accent2)">GitHub → Settings → Developer Settings → Fine-grained tokens → Generate new token</a>.
-              Set <strong>Expiration</strong> to <em>No expiration</em>. Under <em>Repository access</em> choose your repo, then grant:
-              <br><br>
-              • <code>Contents</code> — Read &amp; Write<br>
-              • <code>Actions</code> — Read &amp; Write
-              <br><br>
-              Copy the token — you will paste it as the <code>WM_PAT</code> environment variable in step 3 below.
+          <div id="detect-fail" class="detect-pill fail" style="display:none">
+            <span class="pill-icon">✖</span>
+            <div class="pill-body">
+              <strong>Could not detect repository.</strong>
+              Open this page from your GitHub Pages URL
+              (e.g. <code>username.github.io/repo-name/.installer/</code>).
             </div>
           </div>
 
-          <div class="guide-step">
-            <div class="guide-step-num">2</div>
-            <div class="guide-step-body">
-              <strong>Create a free Vercel Hobby account</strong>
-              Sign up at <a href="https://vercel.com/signup" target="_blank" rel="noopener" style="color:var(--clr-accent2)">vercel.com/signup</a> and connect your GitHub account.
+          <div class="field">
+            <label for="pat-input">GitHub Personal Access Token</label>
+            <input id="pat-input" type="password" placeholder="github_pat_…  or  ghp_…" autocomplete="off" />
+            <div class="hint">
+              Needs <strong>Contents</strong> (read &amp; write) &amp; <strong>Actions</strong> (read) scope.<br>
+              <a href="https://github.com/settings/tokens" target="_blank" rel="noopener">Create a token →</a>
             </div>
           </div>
 
-          <div class="guide-step">
-            <div class="guide-step-num">3</div>
-            <div class="guide-step-body">
-              <strong>Import your repository and create a new project</strong>
-              On your Vercel dashboard, click <em>Add New → Project</em>, then select your repository.
-              <br><br>
-              <span class="pill-warn">⚠ The project name becomes your public URL: <code>project-name.vercel.app</code></span>
-              <br><br>
-              Before deploying, add these <strong>Environment Variables</strong>:
-              <table class="env-table">
-                <thead><tr><th>Name</th><th>Value</th></tr></thead>
-                <tbody>
-                  <tr><td>WM_PAT</td><td>The Fine-Grained token from step 1</td></tr>
-                  <tr><td>WM_SATOKEN</td><td>The 6-char code you choose below — your super-admin login</td></tr>
-                </tbody>
-              </table>
+          <div id="welcome-err" class="err-msg"></div>
+          <div class="btn-row">
+            <button id="welcome-btn" class="btn btn-primary" onclick="onWelcomeContinue()">Begin Installation →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         STEP 2 · App Names
+    ════════════════════════════════════════════════════ -->
+    <section id="step-names" class="step">
+      <div class="card">
+        <div class="card-header">
+          <div class="step-label">Step 2 of 7</div>
+          <h2>Name Your App</h2>
+          <p>These names will be applied to the page title, the toolbar heading, and the PWA manifest.</p>
+        </div>
+        <div class="card-body">
+          <div class="field">
+            <label for="full-name">Full Name</label>
+            <input id="full-name" type="text" placeholder="e.g. Class XI Notes" maxlength="60" />
+            <div class="hint">Used in the browser tab, welcome screen, and the toolbar heading.</div>
+          </div>
+          <div class="field">
+            <label for="short-name">Short Name</label>
+            <input id="short-name" type="text" placeholder="e.g. Notes XI" maxlength="12" />
+            <div class="hint">Shown on the home screen icon when installed as a PWA. Max 12 chars.</div>
+          </div>
+          <div id="names-err" class="err-msg"></div>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="onNamesContinue()">Apply Names →</button>
+            <button class="btn btn-ghost" onclick="showStep('welcome')">← Back</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         STEP 3 · Applying Changes
+    ════════════════════════════════════════════════════ -->
+    <section id="step-applying" class="step">
+      <div class="card">
+        <div class="card-header">
+          <div class="step-label">Step 3 of 7</div>
+          <h2>Applying Changes</h2>
+          <p>Committing patches to your repository. Please don't close this tab.</p>
+        </div>
+        <div class="card-body">
+          <div id="apply-log" class="log-panel"></div>
+          <div class="btn-row">
+            <button id="apply-retry" class="btn btn-ghost" style="display:none" onclick="startApplying()">↺ Retry</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         STEP 4 · Waiting for Workflows
+    ════════════════════════════════════════════════════ -->
+    <section id="step-workflows" class="step">
+      <div class="card">
+        <div class="card-header">
+          <div class="step-label">Step 4 of 7</div>
+          <h2>Waiting for GitHub Actions</h2>
+          <p>Your commits triggered automated workflows. This usually takes under a minute.</p>
+        </div>
+        <div class="card-body">
+          <div id="wf-status">Starting…</div>
+          <div class="wf-track"><div id="wf-bar"></div></div>
+          <p style="font-size:12.5px; color:var(--clr-muted); margin-bottom:16px;">
+            You can also watch live progress in the <strong>Actions</strong> tab of your repository on GitHub.
+          </p>
+          <div class="btn-row">
+            <button id="wf-continue" class="btn btn-primary" style="display:none" onclick="showStep('vercel-guide')">Continue →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         STEP 5 · Vercel Setup Guide
+    ════════════════════════════════════════════════════ -->
+    <section id="step-vercel-guide" class="step">
+      <div class="card">
+        <div class="card-header">
+          <div class="step-label">Step 5 of 7</div>
+          <h2>Vercel Deployment Setup</h2>
+          <p>Follow these steps to deploy the backend API. The installer will complete the final wiring once you're done.</p>
+        </div>
+        <div class="card-body">
+          <div class="guide-steps">
+
+            <div class="guide-step">
+              <div class="guide-step-num">1</div>
+              <div class="guide-step-body">
+                <strong>Create a Fine-Grained Personal Access Token</strong>
+                Go to <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub → Settings → Developer Settings → Fine-grained tokens → Generate new token</a>.
+                Set <strong>Expiration</strong> to <em>No expiration</em>. Under <em>Repository access</em> choose your repo, then grant:<br><br>
+                • <code>Contents</code> — Read &amp; Write<br>
+                • <code>Actions</code> — Read &amp; Write<br><br>
+                Copy the token — you will paste it as <code>WM_PAT</code> in Vercel.
+              </div>
+            </div>
+
+            <div class="guide-step">
+              <div class="guide-step-num">2</div>
+              <div class="guide-step-body">
+                <strong>Create a free Vercel Hobby account</strong>
+                Sign up at <a href="https://vercel.com/signup" target="_blank" rel="noopener">vercel.com/signup</a> and connect your GitHub account.
+              </div>
+            </div>
+
+            <div class="guide-step">
+              <div class="guide-step-num">3</div>
+              <div class="guide-step-body">
+                <strong>Import your repository &amp; create a new project</strong>
+                On your Vercel dashboard click <em>Add New → Project</em>, then select your repository.<br><br>
+                <span class="pill-warn">⚠ The project name becomes your public URL: <code>project-name.vercel.app</code></span><br><br>
+                Before deploying, add these <strong>Environment Variables</strong>:
+                <table class="env-table">
+                  <thead><tr><th>Name</th><th>Value</th></tr></thead>
+                  <tbody>
+                    <tr><td>WM_PAT</td><td>The Fine-Grained token from step 1</td></tr>
+                    <tr><td>WM_SATOKEN</td><td>The 6-char code you choose below — your super-admin login</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="guide-step">
+              <div class="guide-step-num">4</div>
+              <div class="guide-step-body">
+                <strong>Click Deploy</strong> — Vercel will build and publish the project.
+                Keep the deployment URL handy for the next step.
+              </div>
+            </div>
+
+          </div><!-- end guide-steps -->
+
+          <div class="divider"></div>
+
+          <div class="field">
+            <label for="satoken-input">Choose a Super Admin Code</label>
+            <input id="satoken-input" type="text" maxlength="6"
+                   placeholder="e.g. A1B2C3"
+                   style="text-transform:uppercase; letter-spacing:.14em; font-weight:500"
+                   oninput="this.value=this.value.toUpperCase()" />
+            <div class="hint">
+              Exactly 6 characters — letters and digits only.<br>
+              You will add this as the <code>WM_SATOKEN</code> environment variable in Vercel.
+              It becomes your super-admin login code inside the app.
             </div>
           </div>
 
-          <div class="guide-step">
-            <div class="guide-step-num">4</div>
-            <div class="guide-step-body">
-              <strong>Click Deploy</strong> — Vercel will build and publish the project.
-              Keep the deployment URL handy for the next step.
+          <div id="vg-err" class="err-msg"></div>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="onVercelGuideContinue()">I've Deployed — Continue →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         STEP 6 · Vercel URL
+    ════════════════════════════════════════════════════ -->
+    <section id="step-vercel-url" class="step">
+      <div class="card">
+        <div class="card-header">
+          <div class="step-label">Step 6 of 7</div>
+          <h2>Enter Your Vercel URL</h2>
+          <p>Paste the full URL of your deployed Vercel project. The installer will verify it's reachable before saving it.</p>
+        </div>
+        <div class="card-body">
+
+          <!-- Shown after step 5: prominent WM_SATOKEN reminder -->
+          <div id="satoken-reminder" class="satoken-banner" style="display:none">
+            <div>
+              <div class="sb-label">Your WM_SATOKEN — make sure this is set in Vercel before continuing</div>
+              <div class="sb-value" id="satoken-reminder-value">——————</div>
+              <div class="sb-note">Add this as an environment variable named <code>WM_SATOKEN</code> in your Vercel project settings.</div>
             </div>
           </div>
 
-        </div><!-- end guide-steps -->
-
-        <div class="divider"></div>
-
-        <!-- Super Admin code input -->
-        <div class="field">
-          <label for="satoken-input">Choose a Super Admin Code</label>
-          <input id="satoken-input" type="text" maxlength="6"
-                 placeholder="e.g. A1B2C3"
-                 style="text-transform:uppercase; letter-spacing:.14em; font-weight:500"
-                 oninput="this.value=this.value.toUpperCase()" />
-          <div class="hint">
-            Exactly 6 characters — letters and digits only.<br>
-            You will add this as the <code>WM_SATOKEN</code> environment variable in Vercel.
-            It becomes your super-admin login code inside the app.
+          <div class="field">
+            <label for="vercel-url-input">Vercel Deployment URL</label>
+            <input id="vercel-url-input" type="url" placeholder="https://my-project.vercel.app" />
+            <div class="hint">Paste the URL Vercel gave you after deployment.</div>
+          </div>
+          <div id="vurl-err" class="err-msg"></div>
+          <div class="btn-row">
+            <button id="vurl-btn" class="btn btn-primary" onclick="onVercelUrlContinue()">Verify &amp; Finish →</button>
+            <button class="btn btn-ghost" onclick="showStep('vercel-guide')">← Back</button>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div id="vg-err" class="err-msg"></div>
-        <div class="btn-row">
-          <button class="btn btn-primary" onclick="onVercelGuideContinue()">I've Deployed — Continue →</button>
+    <!-- ═══════════════════════════════════════════════
+         STEP 7 · Patching Vercel URL
+    ════════════════════════════════════════════════════ -->
+    <section id="step-patching-vercel" class="step">
+      <div class="card">
+        <div class="card-header">
+          <div class="step-label">Step 7 of 7</div>
+          <h2>Finalising</h2>
+          <p>Writing the Vercel URL into your repository. Almost done!</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════════════
-       STEP 6 · Vercel URL
-  ═══════════════════════════════════════════════════════════════════ -->
-  <section id="step-vercel-url" class="step">
-    <div class="card">
-      <div class="card-header">
-        <div class="step-label">Step 6 of 7</div>
-        <h2>Enter Your Vercel URL</h2>
-        <p>Paste the full URL of your deployed Vercel project. The installer will verify it's reachable before saving it.</p>
-      </div>
-      <div class="card-body">
-        <!-- SATOKEN reminder — shown after step 5 is completed -->
-        <div id="satoken-reminder" class="satoken-banner" style="display:none">
-          <div>
-            <div class="sb-label">Your WM_SATOKEN — set this in Vercel before deploying</div>
-            <div class="sb-value" id="satoken-reminder-value">——————</div>
-            <div class="sb-note">Add this as an environment variable named <code>WM_SATOKEN</code> in your Vercel project settings.</div>
+        <div class="card-body">
+          <div id="pv-log" class="log-panel"></div>
+          <div class="btn-row">
+            <button id="pv-retry" class="btn btn-ghost" style="display:none" onclick="startPatchingVercel()">↺ Retry</button>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="field">
-          <label for="vercel-url-input">Vercel Deployment URL</label>
-          <input id="vercel-url-input" type="url" placeholder="https://my-project.vercel.app" />
-          <div class="hint">Paste the URL Vercel gave you after deployment.</div>
-        </div>
-        <div id="vurl-err" class="err-msg"></div>
-        <div class="btn-row">
-          <button id="vurl-btn" class="btn btn-primary" onclick="onVercelUrlContinue()">Verify &amp; Finish →</button>
-          <button class="btn btn-ghost" onclick="showStep('vercel-guide')">← Back</button>
+    <!-- ═══════════════════════════════════════════════
+         STEP 8 · Success
+    ════════════════════════════════════════════════════ -->
+    <section id="step-success" class="step">
+      <div class="card">
+        <div class="success-body">
+          <div class="success-icon">🎉</div>
+          <h2>Installation Complete!</h2>
+          <p>
+            Your Ada app is fully configured. All repository files have been patched,
+            your Vercel backend is wired up, and your GitHub Pages site is ready to go.
+          </p>
+          <br>
+          <p style="font-size:12.5px; color:var(--clr-muted);">
+            Click <strong>Close</strong> to remove the installer from your repository.
+            This cannot be undone.
+          </p>
+          <br>
+          <div class="btn-row" style="justify-content:center">
+            <button class="btn btn-primary" onclick="startCleanup()">Close &amp; Remove Installer</button>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ═══════════════════════════════════════════════════════════════
-       STEP 7 · Patching Vercel URL
-  ═══════════════════════════════════════════════════════════════════ -->
-  <section id="step-patching-vercel" class="step">
-    <div class="card">
-      <div class="card-header">
-        <div class="step-label">Step 7 of 7</div>
-        <h2>Finalising</h2>
-        <p>Writing the Vercel URL into your repository. Almost done!</p>
-      </div>
-      <div class="card-body">
-        <div id="pv-log" class="log-panel"></div>
-        <div class="btn-row">
-          <button id="pv-retry" class="btn btn-ghost" style="display:none" onclick="startPatchingVercel()">↺ Retry</button>
+    <!-- ═══════════════════════════════════════════════
+         STEP 9 · Cleanup
+    ════════════════════════════════════════════════════ -->
+    <section id="step-cleanup" class="step">
+      <div class="card">
+        <div class="cleanup-body">
+          <div class="cleanup-spinner"></div>
+          <h2>Cleaning Up…</h2>
+          <div class="warn-note">⚠&nbsp; Do not close this tab. It will close automatically.</div>
+          <div id="cleanup-status">Preparing…</div>
+          <div id="cleanup-fallback">
+            <p>Tab could not be closed automatically.</p>
+            <p>You can safely close this tab now.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ═══════════════════════════════════════════════════════════════
-       STEP 8 · Success
-  ═══════════════════════════════════════════════════════════════════ -->
-  <section id="step-success" class="step">
-    <div class="card">
-      <div class="success-body">
-        <div class="success-icon">🎉</div>
-        <h2>Installation Complete!</h2>
-        <p>
-          Your ADANotes app is fully configured. All repository files have been patched,
-          your Vercel backend is wired up, and your GitHub Pages site is ready to go.
-        </p>
-        <br>
-        <p style="font-size:12.5px; color:var(--clr-muted);">
-          Click <strong>Close</strong> to remove the installer from your repository.
-          This cannot be undone.
-        </p>
-        <br>
-        <div class="btn-row" style="justify-content:center">
-          <button class="btn btn-primary" onclick="startCleanup()">Close &amp; Remove Installer</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════════════
-       STEP 9 · Cleanup
-  ═══════════════════════════════════════════════════════════════════ -->
-  <section id="step-cleanup" class="step">
-    <div class="card">
-      <div class="cleanup-body">
-        <div class="cleanup-spinner"></div>
-        <h2>Cleaning Up…</h2>
-        <div class="warn-note">⚠&nbsp; Do not close this tab. It will close automatically.</div>
-        <div id="cleanup-status">Preparing…</div>
-        <div id="cleanup-fallback">
-          <p>Tab could not be closed automatically.</p>
-          <p>You can safely close this tab now.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  </div><!-- /.installer-wrap -->
 
   <script src="installer.js"></script>
   <script src="script.js"></script>
+
+  <!-- ── Particleground library (inlined from Particleground v1.1.0) ─── -->
+  <script>
+  !function(a,b){"use strict";function c(a){a=a||{};for(var b=1;b<arguments.length;b++){var c=arguments[b];if(c)for(var d in c)c.hasOwnProperty(d)&&("object"==typeof c[d]?deepExtend(a[d],c[d]):a[d]=c[d])}return a}function d(d,g){function h(){if(y){r=b.createElement("canvas"),r.className="pg-canvas",r.style.display="block",d.insertBefore(r,d.firstChild),s=r.getContext("2d"),i();for(var c=Math.round(r.width*r.height/g.density),e=0;c>e;e++){var f=new n;f.setStackPos(e),z.push(f)}a.addEventListener("resize",function(){k()},!1),b.addEventListener("mousemove",function(a){A=a.pageX,B=a.pageY},!1),D&&!C&&a.addEventListener("deviceorientation",function(){F=Math.min(Math.max(-event.beta,-30),30),E=Math.min(Math.max(-event.gamma,-30),30)},!0),j(),q("onInit")}}function i(){r.width=d.offsetWidth,r.height=d.offsetHeight,s.fillStyle=g.dotColor,s.strokeStyle=g.lineColor,s.lineWidth=g.lineWidth}function j(){if(y){u=a.innerWidth,v=a.innerHeight,s.clearRect(0,0,r.width,r.height);for(var b=0;b<z.length;b++)z[b].updatePosition();for(var b=0;b<z.length;b++)z[b].draw();G||(t=requestAnimationFrame(j))}}function k(){i();for(var a=d.offsetWidth,b=d.offsetHeight,c=z.length-1;c>=0;c--)(z[c].position.x>a||z[c].position.y>b)&&z.splice(c,1);var e=Math.round(r.width*r.height/g.density);if(e>z.length)for(;e>z.length;){var f=new n;z.push(f)}else e<z.length&&z.splice(e);for(c=z.length-1;c>=0;c--)z[c].setStackPos(c)}function l(){G=!0}function m(){G=!1,j()}function n(){switch(this.stackPos,this.active=!0,this.layer=Math.ceil(3*Math.random()),this.parallaxOffsetX=0,this.parallaxOffsetY=0,this.position={x:Math.ceil(Math.random()*r.width),y:Math.ceil(Math.random()*r.height)},this.speed={},g.directionX){case"left":this.speed.x=+(-g.maxSpeedX+Math.random()*g.maxSpeedX-g.minSpeedX).toFixed(2);break;case"right":this.speed.x=+(Math.random()*g.maxSpeedX+g.minSpeedX).toFixed(2);break;default:this.speed.x=+(-g.maxSpeedX/2+Math.random()*g.maxSpeedX).toFixed(2),this.speed.x+=this.speed.x>0?g.minSpeedX:-g.minSpeedX}switch(g.directionY){case"up":this.speed.y=+(-g.maxSpeedY+Math.random()*g.maxSpeedY-g.minSpeedY).toFixed(2);break;case"down":this.speed.y=+(Math.random()*g.maxSpeedY+g.minSpeedY).toFixed(2);break;default:this.speed.y=+(-g.maxSpeedY/2+Math.random()*g.maxSpeedY).toFixed(2),this.speed.x+=this.speed.y>0?g.minSpeedY:-g.minSpeedY}}function o(a,b){return b?void(g[a]=b):g[a]}function p(){r.parentNode.removeChild(r),q("onDestroy"),f&&f(d).removeData("plugin_"+e)}function q(a){void 0!==g[a]&&g[a].call(d)}var r,s,t,u,v,w,x,y=!!b.createElement("canvas").getContext,z=[],A=0,B=0,C=!navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|BB10|mobi|tablet|opera mini|nexus 7)/i),D=!!a.DeviceOrientationEvent,E=0,F=0,G=!1;return g=c({},a[e].defaults,g),n.prototype.draw=function(){s.beginPath(),s.arc(this.position.x+this.parallaxOffsetX,this.position.y+this.parallaxOffsetY,g.particleRadius/2,0,2*Math.PI,!0),s.closePath(),s.fill(),s.beginPath();for(var a=z.length-1;a>this.stackPos;a--){var b=z[a],c=this.position.x-b.position.x,d=this.position.y-b.position.y,e=Math.sqrt(c*c+d*d).toFixed(2);e<g.proximity&&(s.moveTo(this.position.x+this.parallaxOffsetX,this.position.y+this.parallaxOffsetY),g.curvedLines?s.quadraticCurveTo(Math.max(b.position.x,b.position.x),Math.min(b.position.y,b.position.y),b.position.x+b.parallaxOffsetX,b.position.y+b.parallaxOffsetY):s.lineTo(b.position.x+b.parallaxOffsetX,b.position.y+b.parallaxOffsetY))}s.stroke(),s.closePath()},n.prototype.updatePosition=function(){if(g.parallax){if(D&&!C){var a=(u-0)/60;w=(E- -30)*a+0;var b=(v-0)/60;x=(F- -30)*b+0}else w=A,x=B;this.parallaxTargX=(w-u/2)/(g.parallaxMultiplier*this.layer),this.parallaxOffsetX+=(this.parallaxTargX-this.parallaxOffsetX)/10,this.parallaxTargY=(x-v/2)/(g.parallaxMultiplier*this.layer),this.parallaxOffsetY+=(this.parallaxTargY-this.parallaxOffsetY)/10}var c=d.offsetWidth,e=d.offsetHeight;switch(g.directionX){case"left":this.position.x+this.speed.x+this.parallaxOffsetX<0&&(this.position.x=c-this.parallaxOffsetX);break;case"right":this.position.x+this.speed.x+this.parallaxOffsetX>c&&(this.position.x=0-this.parallaxOffsetX);break;default:(this.position.x+this.speed.x+this.parallaxOffsetX>c||this.position.x+this.speed.x+this.parallaxOffsetX<0)&&(this.speed.x=-this.speed.x)}switch(g.directionY){case"up":this.position.y+this.speed.y+this.parallaxOffsetY<0&&(this.position.y=e-this.parallaxOffsetY);break;case"down":this.position.y+this.speed.y+this.parallaxOffsetY>e&&(this.position.y=0-this.parallaxOffsetY);break;default:(this.position.y+this.speed.y+this.parallaxOffsetY>e||this.position.y+this.speed.y+this.parallaxOffsetY<0)&&(this.speed.y=-this.speed.y)}this.position.x+=this.speed.x,this.position.y+=this.speed.y},n.prototype.setStackPos=function(a){this.stackPos=a},h(),{option:o,destroy:p,start:m,pause:l}}var e="particleground",f=a.jQuery;a[e]=function(a,b){return new d(a,b)},a[e].defaults={minSpeedX:.1,maxSpeedX:.7,minSpeedY:.1,maxSpeedY:.7,directionX:"center",directionY:"center",density:1e4,dotColor:"#666666",lineColor:"#666666",particleRadius:7,lineWidth:1,curvedLines:!1,proximity:100,parallax:!0,parallaxMultiplier:5,onInit:function(){},onDestroy:function(){}},f&&(f.fn[e]=function(a){if("string"==typeof arguments[0]){var b,c=arguments[0],g=Array.prototype.slice.call(arguments,1);return this.each(function(){f.data(this,"plugin_"+e)&&"function"==typeof f.data(this,"plugin_"+e)[c]&&(b=f.data(this,"plugin_"+e)[c].apply(this,g))}),void 0!==b?b:this}return"object"!=typeof a&&a?void 0:this.each(function(){f.data(this,"plugin_"+e)||f.data(this,"plugin_"+e,new d(this,a))})})}(window,document);
+  // requestAnimationFrame polyfill
+  !function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.requestAnimationFrame;++c)window.requestAnimationFrame=window[b[c]+"RequestAnimationFrame"],window.cancelAnimationFrame=window[b[c]+"CancelAnimationFrame"]||window[b[c]+"CancelRequestAnimationFrame"];window.requestAnimationFrame||(window.requestAnimationFrame=function(b){var c=(new Date).getTime(),d=Math.max(0,16-(c-a)),e=window.setTimeout(function(){b(c+d)},d);return a=c+d,e}),window.cancelAnimationFrame||(window.cancelAnimationFrame=function(a){clearTimeout(a)})}();
+
+  // ── Adaptive particle init: white on dark, subtle gray on light ────
+  (function () {
+    var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    // Foreground — fast, close, more visible
+    particleground(document.getElementById('particles-foreground'), {
+      dotColor   : dark ? 'rgba(255,255,255,1)'   : 'rgba(90,90,120,0.35)',
+      lineColor  : dark ? 'rgba(255,255,255,0.06)' : 'rgba(90,90,120,0.06)',
+      minSpeedX  : 0.3, maxSpeedX: 0.6,
+      minSpeedY  : 0.3, maxSpeedY: 0.6,
+      density    : 50000,
+      curvedLines: false,
+      proximity  : 250,
+      parallaxMultiplier: 10,
+      particleRadius: 4,
+    });
+
+    // Background — slow, far, barely visible
+    particleground(document.getElementById('particles-background'), {
+      dotColor   : dark ? 'rgba(255,255,255,0.5)'  : 'rgba(90,90,120,0.18)',
+      lineColor  : dark ? 'rgba(255,255,255,0.04)'  : 'rgba(90,90,120,0.03)',
+      minSpeedX  : 0.075, maxSpeedX: 0.15,
+      minSpeedY  : 0.075, maxSpeedY: 0.15,
+      density    : 30000,
+      curvedLines: false,
+      proximity  : 20,
+      parallaxMultiplier: 20,
+      particleRadius: 2,
+    });
+  })();
+  </script>
+
 </body>
 </html>
