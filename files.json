@@ -11,6 +11,32 @@
       "type": "file",
       "name": "README.md",
       "path": "README.md"
+    },
+    {
+      "type": "folder",
+      "name": "installer",
+      "children": [
+        {
+          "type": "file",
+          "name": "index.html",
+          "path": "installer/index.html"
+        },
+        {
+          "type": "file",
+          "name": "installer.js",
+          "path": "installer/installer.js"
+        },
+        {
+          "type": "file",
+          "name": "script.js",
+          "path": "installer/script.js"
+        },
+        {
+          "type": "file",
+          "name": "style.css",
+          "path": "installer/style.css"
+        }
+      ]
     }
   ]
 }
