@@ -1,4 +1,4 @@
-// installer.js — GitHub API layer for the Ada installer
+// installer.js — GitHub API layer for the ADANotes installer
 
 const GH_API = 'https://api.github.com';
 
@@ -18,7 +18,7 @@ function detectRepo() {
   const username = match[1];
   const segments = pathname.split('/').filter(Boolean);
   const firstSeg = segments[0] || '';
-  const repoName = (!firstSeg || firstSeg === 'installer')
+  const repoName = (!firstSeg || firstSeg === '.installer')
                  ? `${username}.github.io`
                  : firstSeg;
   return { username, repoName, repo: `${username}/${repoName}`, pagesHost: hostname };

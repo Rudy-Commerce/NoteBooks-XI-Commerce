@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installer — Ada</title>
+  <title>Ada Installer</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -63,7 +63,7 @@
           <div class="pill-body">
             <strong>Could not detect repository.</strong>
             Make sure you're opening this page from your GitHub Pages URL
-            (e.g., <code>username.github.io/repo-name/installer/</code>).
+            (e.g., <code>username.github.io/repo-name/.installer/</code>).
           </div>
         </div>
 
@@ -212,7 +212,7 @@
                 <thead><tr><th>Name</th><th>Value</th></tr></thead>
                 <tbody>
                   <tr><td>WM_PAT</td><td>The Fine-Grained token from step 1</td></tr>
-                  <tr><td>WM_SATOKEN</td><td>Your chosen 6-char code (enter below)</td></tr>
+                  <tr><td>WM_SATOKEN</td><td>The 6-char code you choose below — your super-admin login</td></tr>
                 </tbody>
               </table>
             </div>
@@ -232,12 +232,16 @@
 
         <!-- Super Admin code input -->
         <div class="field">
-          <label for="satoken-input">Your Super Admin Code (WM_SATOKEN)</label>
+          <label for="satoken-input">Choose a Super Admin Code</label>
           <input id="satoken-input" type="text" maxlength="6"
                  placeholder="e.g. A1B2C3"
-                 style="text-transform:uppercase; letter-spacing:.12em"
+                 style="text-transform:uppercase; letter-spacing:.14em; font-weight:500"
                  oninput="this.value=this.value.toUpperCase()" />
-          <div class="hint">Exactly 6 characters — letters and digits only. This is your super-admin login code.</div>
+          <div class="hint">
+            Exactly 6 characters — letters and digits only.<br>
+            You will add this as the <code>WM_SATOKEN</code> environment variable in Vercel.
+            It becomes your super-admin login code inside the app.
+          </div>
         </div>
 
         <div id="vg-err" class="err-msg"></div>
@@ -259,12 +263,19 @@
         <p>Paste the full URL of your deployed Vercel project. The installer will verify it's reachable before saving it.</p>
       </div>
       <div class="card-body">
+        <!-- SATOKEN reminder — shown after step 5 is completed -->
+        <div id="satoken-reminder" class="satoken-banner" style="display:none">
+          <div>
+            <div class="sb-label">Your WM_SATOKEN — set this in Vercel before deploying</div>
+            <div class="sb-value" id="satoken-reminder-value">——————</div>
+            <div class="sb-note">Add this as an environment variable named <code>WM_SATOKEN</code> in your Vercel project settings.</div>
+          </div>
+        </div>
+
         <div class="field">
           <label for="vercel-url-input">Vercel Deployment URL</label>
           <input id="vercel-url-input" type="url" placeholder="https://my-project.vercel.app" />
-          <div class="hint">
-            Your Super Admin code is: <code id="vurl-satoken-hint" style="color:var(--clr-code)">—</code>
-          </div>
+          <div class="hint">Paste the URL Vercel gave you after deployment.</div>
         </div>
         <div id="vurl-err" class="err-msg"></div>
         <div class="btn-row">
@@ -303,7 +314,7 @@
         <div class="success-icon">🎉</div>
         <h2>Installation Complete!</h2>
         <p>
-          Your app is fully configured. All repository files have been patched,
+          Your ADANotes app is fully configured. All repository files have been patched,
           your Vercel backend is wired up, and your GitHub Pages site is ready to go.
         </p>
         <br>

@@ -158,12 +158,12 @@ async function startApplying() {
     await ghPutFile(pat, repo, 'manifest.json', JSON.stringify(mJson, null, 2) + '\n', mFile.sha, `installer: PWA names → "${fn}" / "${sn}"`);
     ok('✓ manifest.json — name & short_name updated');
 
-    // ── installer/log.txt ─────────────────────────────────────────────────
-    log('Saving installer/log.txt…');
+    // ── .installer/log.txt ─────────────────────────────────────────────────
+    log('Saving .installer/log.txt…');
     const logTxt = `full_name=${fn}\nshort_name=${sn}\nrepo=${repo}\ninstalled_at=${new Date().toISOString()}\n`;
-    const existLog = await ghGetFile(pat, repo, 'installer/log.txt');
-    await ghPutFile(pat, repo, 'installer/log.txt', logTxt, existLog?.sha ?? null, 'installer: save log.txt');
-    ok('✓ installer/log.txt saved');
+    const existLog = await ghGetFile(pat, repo, '.installer/log.txt');
+    await ghPutFile(pat, repo, '.installer/log.txt', logTxt, existLog?.sha ?? null, 'installer: save log.txt');
+    ok('✓ .installer/log.txt saved');
 
     // ── conf.txt ───────────────────────────────────────────────────────────
     log('Saving conf.txt…');
@@ -231,13 +231,18 @@ function onVercelGuideContinue() {
   const raw = document.getElementById('satoken-input').value.trim().toUpperCase();
   clrErr('vg-err');
   if (!/^[A-Z0-9]{6}$/.test(raw)) {
-    setErr('vg-err', 'Super Admin code must be exactly 6 alphanumeric characters (A-Z, 0-9).');
+    setErr('vg-err', 'Super Admin code must be exactly 6 alphanumeric characters (A–9, 0–9).');
     return;
   }
   S.satoken = raw;
-  // Show chosen code in the Vercel URL step for reference
-  const el = document.getElementById('vurl-satoken-hint');
-  if (el) el.textContent = raw;
+
+  // Surface the code prominently on the Vercel URL step so the user
+  // has it visible when they open Vercel in a new tab to add env vars.
+  const hint = document.getElementById('satoken-reminder-value');
+  if (hint) hint.textContent = raw;
+  const banner = document.getElementById('satoken-reminder');
+  if (banner) banner.style.display = 'flex';
+
   showStep('vercel-url');
 }
 
@@ -300,8 +305,17 @@ async function startCleanup() {
   const fallbackEl = document.getElementById('cleanup-fallback');
 
   try {
-    statusEl.textContent = 'Listing installer files…';
-    const files = await ghListDir(S.pat, S.repo.repo, 'installer');
+    // Delete conf.txt at repo root first
+    statusEl.textContent = 'Removing conf.txt…';
+    const confFile = await ghGetFile(S.pat, S.repo.repo, 'conf.txt');
+    if (confFile) {
+      await ghDeleteFile(S.pat, S.repo.repo, 'conf.txt', confFile.sha, 'installer: cleanup — remove conf.txt');
+      await new Promise(res => setTimeout(res, 600));
+    }
+
+    // Delete all files inside .installer/
+    statusEl.textContent = 'Listing .installer files…';
+    const files = await ghListDir(S.pat, S.repo.repo, '.installer');
     const toDelete = files.filter(f => f.type === 'file');
 
     for (let i = 0; i < toDelete.length; i++) {
