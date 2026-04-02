@@ -158,12 +158,12 @@ async function startApplying() {
     await ghPutFile(pat, repo, 'manifest.json', JSON.stringify(mJson, null, 2) + '\n', mFile.sha, `installer: PWA names → "${fn}" / "${sn}"`);
     ok('✓ manifest.json — name & short_name updated');
 
-    // ── .installer/log.txt ─────────────────────────────────────────────────
-    log('Saving .installer/log.txt…');
+    // ── installer/log.txt ─────────────────────────────────────────────────
+    log('Saving installer/log.txt…');
     const logTxt = `full_name=${fn}\nshort_name=${sn}\nrepo=${repo}\ninstalled_at=${new Date().toISOString()}\n`;
-    const existLog = await ghGetFile(pat, repo, '.installer/log.txt');
-    await ghPutFile(pat, repo, '.installer/log.txt', logTxt, existLog?.sha ?? null, 'installer: save log.txt');
-    ok('✓ .installer/log.txt saved');
+    const existLog = await ghGetFile(pat, repo, 'installer/log.txt');
+    await ghPutFile(pat, repo, 'installer/log.txt', logTxt, existLog?.sha ?? null, 'installer: save log.txt');
+    ok('✓ installer/log.txt saved');
 
     // ── conf.txt ───────────────────────────────────────────────────────────
     log('Saving conf.txt…');
@@ -300,8 +300,8 @@ async function startCleanup() {
   const fallbackEl = document.getElementById('cleanup-fallback');
 
   try {
-    statusEl.textContent = 'Listing .installer files…';
-    const files = await ghListDir(S.pat, S.repo.repo, '.installer');
+    statusEl.textContent = 'Listing installer files…';
+    const files = await ghListDir(S.pat, S.repo.repo, 'installer');
     const toDelete = files.filter(f => f.type === 'file');
 
     for (let i = 0; i < toDelete.length; i++) {
