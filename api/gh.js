@@ -21,7 +21,7 @@
 //   { action: "deleteFile", path, sha, message }
 //     → { ok: true }
 
-const REPO = 'fsr-official/NoteBooks-XI';
+const REPO = 'pratyushchanda/ada';
 
 function authHeader(pat) {
   return pat.startsWith('github_pat_') ? `Bearer ${pat}` : `token ${pat}`;
