@@ -128,7 +128,7 @@ body {
 }
 
 /* ── Installer layout wrapper (sits above particles) ─────────────────────────── */
-install-wrap {
+.installer-wrap {
   position: relative;
   z-index: 1;
   display: flex;
@@ -139,18 +139,18 @@ install-wrap {
 }
 
 /* ── Header ─────────────────────────────────────────────────────────────────── */
-install-header {
+.installer-header {
   width: 100%;
   max-width: 520px;
   margin-bottom: 24px;
 }
-install-header .logo {
+.installer-header .logo {
   display: flex;
   align-items: center;
   gap: 9px;
   margin-bottom: 2px;
 }
-install-header .logo-mark {
+.installer-header .logo-mark {
   width: 30px; height: 30px;
   border-radius: 7px;
   background: var(--clr-accent);
@@ -159,12 +159,12 @@ install-header .logo-mark {
   font-size: 15px;
   flex-shrink: 0;
 }
-install-header .logo-name {
+.installer-header .logo-name {
   font-size: 16px;
   font-weight: 600;
   letter-spacing: -.2px;
 }
-install-header .subtitle {
+.installer-header .subtitle {
   font-size: 12.5px;
   color: var(--clr-muted);
   margin-left: 39px;

@@ -1,4 +1,4 @@
-// script.js — Step navigation & UI logic for the Ada installer
+// script.js — Step navigation & UI logic for the ADANotes installer
 
 // ── Shared state ───────────────────────────────────────────────────────────
 const S = {
@@ -158,12 +158,12 @@ async function startApplying() {
     await ghPutFile(pat, repo, 'manifest.json', JSON.stringify(mJson, null, 2) + '\n', mFile.sha, `installer: PWA names → "${fn}" / "${sn}"`);
     ok('✓ manifest.json — name & short_name updated');
 
-    // ── install/log.txt ─────────────────────────────────────────────────
-    log('Saving install/log.txt…');
+    // ── .installer/log.txt ─────────────────────────────────────────────────
+    log('Saving .installer/log.txt…');
     const logTxt = `full_name=${fn}\nshort_name=${sn}\nrepo=${repo}\ninstalled_at=${new Date().toISOString()}\n`;
-    const existLog = await ghGetFile(pat, repo, 'install/log.txt');
-    await ghPutFile(pat, repo, 'install/log.txt', logTxt, existLog?.sha ?? null, 'installer: save log.txt');
-    ok('✓ install/log.txt saved');
+    const existLog = await ghGetFile(pat, repo, '.installer/log.txt');
+    await ghPutFile(pat, repo, '.installer/log.txt', logTxt, existLog?.sha ?? null, 'installer: save log.txt');
+    ok('✓ .installer/log.txt saved');
 
     // ── conf.txt ───────────────────────────────────────────────────────────
     log('Saving conf.txt…');
@@ -300,7 +300,7 @@ async function startCleanup() {
   const fallbackEl = document.getElementById('cleanup-fallback');
 
   try {
-    statusEl.textContent = 'Listing install files…';
+    statusEl.textContent = 'Listing .installer files…';
     const files = await ghListDir(S.pat, S.repo.repo, 'install');
     const toDelete = files.filter(f => f.type === 'file');
 
