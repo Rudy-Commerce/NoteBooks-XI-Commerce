@@ -1,0 +1,4 @@
+full_name=sybau applet
+short_name=sybau
+repo=pratyushchanda/ada
+installed_at=2026-04-03T10:11:24.800Z
