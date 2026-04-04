@@ -582,8 +582,7 @@ code{
           <div class="warn-note">⚠&nbsp; Do not close this tab. It will close automatically.</div>
           <div id="cleanup-status">Preparing…</div>
           <div id="cleanup-fallback">
-            <p>Tab could not be closed automatically.</p>
-            <p>You can safely close this tab now.</p>
+            <p>Installation complete. You can now close this tab.</p>
           </div>
         </div>
       </div>
@@ -1077,10 +1076,11 @@ async function startCleanup() {
     // 4. Remove installer.html (this very file — must be last)
     await del('installer.html', 'installer.html');
 
-    statusEl.textContent = '✓ Done. Closing tab…';
-    await new Promise(res => setTimeout(res, 2200));
-    window.close();
-    await new Promise(res => setTimeout(res, 800));
+    statusEl.textContent = '✓ All done!';
+    await new Promise(res => setTimeout(res, 1200));
+    // window.close() only works on script-opened tabs — silently attempt it,
+    // then always show the manual-close fallback since direct navigation blocks it.
+    try { window.close(); } catch (_) {}
     fallbackEl.style.display = 'block';
 
   } catch (e) {
