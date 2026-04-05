@@ -2,9 +2,6 @@ import os
 import json
 
 EXCLUDED_ROOT_FILES = {
-    "LICENSE",
-    "README.md",
-    "installer.html",
     "files.json",
     "fmtree.py",
     "index.html",
