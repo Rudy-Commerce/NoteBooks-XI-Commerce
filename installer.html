@@ -10,10 +10,10 @@
   <style>
 /* ── Light tokens ─────────────────────────────────────────────────── */
 :root {
-  --bg           : #f0f2f5;
-  --bg-card      : #ffffff;
-  --bg-input     : #f3f4f6;
-  --border       : #e5e7eb;
+  --bg           : transparent;
+  --bg-card      : rgba(255,255,255,.72);
+  --bg-input     : rgba(255,255,255,.6);
+  --border       : rgba(99,102,241,.15);
   --border-focus : #6366f1;
   --clr-accent   : #6366f1;
   --clr-accent-l : #eef2ff;
@@ -21,7 +21,7 @@
   --clr-text     : #111827;
   --clr-sub      : #374151;
   --clr-muted    : #6b7280;
-  --clr-dim      : #d1d5db;
+  --clr-dim      : #c4b5fd;
   --clr-success  : #16a34a;
   --clr-success-l: #f0fdf4;
   --clr-success-b: #bbf7d0;
@@ -33,10 +33,10 @@
   --clr-warn-b   : #fde68a;
   --clr-code     : #4338ca;
   --clr-code-bg  : #eef2ff;
-  --shadow       : 0 1px 3px rgba(0,0,0,.07), 0 6px 20px rgba(0,0,0,.06);
-  --card-blur    : none;
-  --log-bg       : #f9fafb;
-  --step-bg      : #f3f4f6;
+  --shadow       : 0 2px 8px rgba(99,102,241,.08), 0 8px 32px rgba(99,102,241,.12);
+  --card-blur    : blur(16px) saturate(1.6);
+  --log-bg       : rgba(255,255,255,.5);
+  --step-bg      : rgba(255,255,255,.45);
   --ff-ui        : 'Inter', sans-serif;
   --ff-mono      : 'JetBrains Mono', monospace;
   --radius       : 14px;
@@ -87,7 +87,7 @@ body{
   -webkit-font-smoothing:antialiased;
   -webkit-user-select:none;
   user-select:none;
-  background:var(--bg);
+  background:transparent;
   overflow-x:hidden;
 }
 /* ── Particle layers ──────────────────────────────────────────────── */
@@ -99,12 +99,14 @@ body{
   transform:scale3d(.5,.5,1);
   z-index:0;
   pointer-events:none;
-  opacity:.3;
 }
-#particles-background { background:#f0f2f5; }
+#particles-background {
+  opacity:1;
+  background-image:linear-gradient(135deg,#ede9fe 0%,#dbeafe 55%,#ede9fe 100%);
+}
+#particles-foreground { opacity:.85; }
 @media (prefers-color-scheme:dark){
   #particles-background{
-    opacity:1;
     background-image:linear-gradient(45deg,#3f3251 2%,#002025 100%);
   }
   #particles-foreground{ opacity:1; }
@@ -1065,8 +1067,18 @@ async function startCleanup() {
 
   const overwrite = async (path, content, label) => {
     statusEl.textContent = `Updating ${label}…`;
-    const f = await ghGetFile(S.pat, S.repo.repo, path);
-    if (f) await ghPutFile(S.pat, S.repo.repo, path, content, f.sha, `installer: cleanup — update ${label}`);
+    // Retry once — a concurrent workflow commit can cause a SHA mismatch on the first attempt
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      const f = await ghGetFile(S.pat, S.repo.repo, path);
+      if (!f) return; // file doesn't exist, nothing to overwrite
+      try {
+        await ghPutFile(S.pat, S.repo.repo, path, content, f.sha, `installer: cleanup — update ${label}`);
+        break; // success
+      } catch (e) {
+        if (attempt === 3) throw e;
+        await new Promise(res => setTimeout(res, 2000)); // wait for any in-flight workflow commit
+      }
+    }
     await new Promise(res => setTimeout(res, 650));
   };
 
@@ -1121,16 +1133,16 @@ document.addEventListener('DOMContentLoaded', () => {
   (function(){
     var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     particleground(document.getElementById('particles-foreground'), {
-      dotColor  : dark ? 'rgba(255,255,255,1)'    : 'rgba(90,90,120,0.35)',
-      lineColor : dark ? 'rgba(255,255,255,0.06)' : 'rgba(90,90,120,0.06)',
+      dotColor  : dark ? 'rgba(255,255,255,1)'    : 'rgba(60,60,70,0.55)',
+      lineColor : dark ? 'rgba(255,255,255,0.06)' : 'rgba(60,60,70,0.07)',
       minSpeedX: 0.3, maxSpeedX: 0.6,
       minSpeedY: 0.3, maxSpeedY: 0.6,
       density: 50000, curvedLines: false,
-      proximity: 250, parallaxMultiplier: 10, particleRadius: 4,
+      proximity: 220, parallaxMultiplier: 10, particleRadius: 4,
     });
     particleground(document.getElementById('particles-background'), {
-      dotColor  : dark ? 'rgba(255,255,255,0.5)'  : 'rgba(90,90,120,0.18)',
-      lineColor : dark ? 'rgba(255,255,255,0.04)' : 'rgba(90,90,120,0.03)',
+      dotColor  : dark ? 'rgba(255,255,255,0.5)'  : 'rgba(60,60,70,0.25)',
+      lineColor : dark ? 'rgba(255,255,255,0.04)' : 'rgba(60,60,70,0.04)',
       minSpeedX: 0.075, maxSpeedX: 0.15,
       minSpeedY: 0.075, maxSpeedY: 0.15,
       density: 30000, curvedLines: false,
