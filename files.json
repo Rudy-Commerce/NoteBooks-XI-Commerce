@@ -6,6 +6,23 @@
       "type": "file",
       "name": "README.md",
       "path": "README.md"
+    },
+    {
+      "type": "folder",
+      "name": "hen",
+      "children": [
+        {
+          "type": "folder",
+          "name": "tai",
+          "children": [
+            {
+              "type": "file",
+              "name": "ea2109c6a56d4be4aa92fbeed6e89b20.jpeg",
+              "path": "hen/tai/ea2109c6a56d4be4aa92fbeed6e89b20.jpeg"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
