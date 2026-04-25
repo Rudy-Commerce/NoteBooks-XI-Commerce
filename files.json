@@ -6,6 +6,23 @@
       "type": "file",
       "name": "README.md",
       "path": "README.md"
+    },
+    {
+      "type": "folder",
+      "name": "fold",
+      "children": [
+        {
+          "type": "folder",
+          "name": "here",
+          "children": [
+            {
+              "type": "file",
+              "name": "e17ac24330cdbbafeb801c902b312508.jpeg",
+              "path": "fold/here/e17ac24330cdbbafeb801c902b312508.jpeg"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
