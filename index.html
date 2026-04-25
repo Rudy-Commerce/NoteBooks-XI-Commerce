@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Ada</title>
+  <title>sybau applet</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#1e1e1e">
@@ -26,7 +26,7 @@
   <!-- Mermaid — diagram / flowchart rendering (```mermaid blocks) -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
   <!-- Obsidian-syntax compatibility layer (replaces obsidian-md.js) -->
-  <script src="obsidian-markdown-it.js"></script>
+  <script src="/obsidian-markdown-it.js"></script>
   <script>
     /* Set up markdown-it + Obsidian plugin once, reuse for all previews */
     (function () {
@@ -1235,175 +1235,7 @@
       transition: opacity 0.2s;
     }
     #vercelPopupLater:hover { opacity: 0.9; }
-  
-  /* ── Lucide icon base ── */
-  .lc { display:inline-flex;align-items:center;justify-content:center; }
-  .spin { animation:t-spin 1s linear infinite; }
-  @keyframes t-spin { to { transform:rotate(360deg); } }
-
-  /* ── Toast ── */
-  #toastStack { position:fixed;bottom:24px;right:16px;z-index:99000;display:flex;flex-direction:column;gap:8px;pointer-events:none;max-width:340px; }
-  .toast { display:flex;align-items:center;gap:10px;padding:11px 14px;background:var(--item);border:1px solid var(--border);border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.15);font-size:13px;pointer-events:all;opacity:0;transform:translateX(16px);transition:opacity .22s ease,transform .22s ease;min-width:180px; }
-  .toast.show { opacity:1;transform:translateX(0); }
-  .toast-success { border-left:3px solid #43a047; }
-  .toast-error   { border-left:3px solid #e53935; }
-  .toast-info    { border-left:3px solid var(--accent); }
-  .toast-loading { border-left:3px solid var(--accent); }
-  .toast > span  { flex:1; }
-  .toast-x       { background:none;border:none;cursor:pointer;padding:2px;opacity:.4;color:var(--fg);display:flex;align-items:center; }
-  .toast-x:hover { opacity:1; }
-
-  /* ── Search overlay ── */
-  #searchOverlay { position:fixed;inset:0;z-index:45000;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);display:none;align-items:flex-start;justify-content:center;padding:64px 16px 16px; }
-  #searchOverlay.open { display:flex; }
-  #searchPanel { background:var(--item);border-radius:16px;width:100%;max-width:580px;max-height:72vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,.3);border:1px solid var(--border); }
-  #searchInputWrap { display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--border); }
-  #searchInput { flex:1;background:none;border:none;outline:none;font-size:16px;color:var(--fg);font-family:"Roboto",sans-serif; }
-  #searchInput::placeholder { opacity:.4; }
-  #searchResults { overflow-y:auto;flex:1; }
-  .sr-item { padding:11px 16px;cursor:pointer;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;transition:background .12s; }
-  .sr-item:hover,.sr-item.active { background:var(--hover); }
-  .sr-item:last-child { border-bottom:none; }
-  .sr-name { font-size:14px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap; }
-  .sr-path { font-size:11px;opacity:.45;margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap; }
-  .sr-empty { padding:32px 16px;text-align:center;opacity:.4;font-size:14px; }
-
-  /* ── Tag filter bar ── */
-  #tagFilterBar { display:none;flex-wrap:wrap;gap:6px;padding:8px 14px;background:var(--item);border-bottom:1px solid var(--border);align-items:center; }
-  #tagFilterBar.visible { display:flex; }
-  .tfb-label { font-size:12px;font-weight:600;opacity:.55;margin-right:2px;flex-shrink:0; }
-  .tag-pill { display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:var(--btn-bg);color:var(--accent);border:1px solid rgba(26,115,232,.2);border-radius:99px;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s; }
-  .tag-pill:hover { background:var(--btn-hover); }
-  .tag-pill.active { background:var(--accent);color:#fff;border-color:var(--accent); }
-  #clearTagFilter { font-size:11px;opacity:.5;cursor:pointer;padding:2px 6px;border-radius:6px;margin-left:auto;transition:background .15s; }
-  #clearTagFilter:hover { background:var(--hover);opacity:1; }
-  .ftag { font-size:10px;padding:1px 6px;background:var(--btn-bg);color:var(--accent);border-radius:99px; }
-
-  /* ── History side panel ── */
-  .history-panel { width:230px;border-left:1px solid var(--border);overflow-y:auto;flex-shrink:0;background:var(--bg);display:none;flex-direction:column; }
-  .history-panel.open { display:flex; }
-  .hp-header { padding:10px 12px;font-size:12px;font-weight:600;opacity:.55;border-bottom:1px solid var(--border);flex-shrink:0; }
-  .h-item { padding:10px 12px;cursor:pointer;border-bottom:1px solid var(--border);transition:background .12s; }
-  .h-item:hover { background:var(--hover); }
-  .h-item:last-child { border-bottom:none; }
-  .h-sha  { font-family:monospace;font-size:11px;opacity:.45;margin-bottom:3px; }
-  .h-msg  { font-size:12px;font-weight:500;line-height:1.35;overflow:hidden;text-overflow:ellipsis;white-space:nowrap; }
-  .h-date { font-size:11px;opacity:.4;margin-top:2px; }
-  .h-spin { padding:16px;text-align:center;opacity:.4;font-size:13px; }
-
-  /* ── PDF.js viewer ── */
-  .pdf-toolbar { display:flex;align-items:center;gap:6px;padding:7px 12px;background:#3c3c3c;color:#eee;font-size:13px;flex-shrink:0;flex-wrap:wrap; }
-  .pdf-btn { background:rgba(255,255,255,.15);border:none;color:#eee;width:28px;height:28px;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s; }
-  .pdf-btn:hover { background:rgba(255,255,255,.28); }
-  .pdf-btn:disabled { opacity:.3;cursor:default; }
-  .pdf-canvas-wrap { flex:1;overflow:auto;display:flex;justify-content:center;padding:16px;background:#525659; }
-
-  /* ── Editor overlay ── */
-  #editorOverlay { position:fixed;inset:0;z-index:60000;background:var(--bg);display:none;flex-direction:column; }
-  #editorOverlay.active { display:flex; }
-  #editorHeader { display:flex;align-items:center;gap:8px;padding:10px 16px;background:var(--item);border-bottom:1px solid var(--border);flex-shrink:0; }
-  #editorFilename { flex:1;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:7px 12px;font-size:14px;font-weight:500;color:var(--fg);font-family:"Roboto",sans-serif;outline:none; }
-  #editorFilename:focus { border-color:var(--accent); }
-  #editorHeader button { background:var(--btn-bg);color:var(--fg);border:none;padding:7px 14px;border-radius:9px;cursor:pointer;font-weight:500;font-size:13px;display:flex;align-items:center;gap:5px;transition:background .2s;flex-shrink:0;font-family:"Roboto",sans-serif; }
-  #editorHeader button:hover { background:var(--btn-hover); }
-  #editorSaveBtn { background:var(--accent)!important;color:#fff!important; }
-  #editorPermBadge { font-size:11px;opacity:.5;padding:4px 8px;border-radius:6px;background:var(--bg);border:1px solid var(--border);white-space:nowrap;flex-shrink:0; }
-  #editorTagRow { display:flex;align-items:center;padding:6px 20px;border-bottom:1px solid var(--border);background:var(--item);flex-shrink:0;gap:8px; }
-  #editorTagInput { flex:1;background:none;border:none;outline:none;font-size:13px;color:var(--fg);font-family:"Roboto",sans-serif; }
-  #editorTagInput::placeholder { opacity:.4; }
-  #editorMain { flex:1;display:flex;min-height:0; }
-  #editorPane { flex:1;border:none;border-right:1px solid var(--border);padding:20px 24px;font-family:'Cascadia Code','Fira Code','Consolas',monospace;font-size:14px;line-height:1.75;resize:none;outline:none;background:var(--bg);color:var(--fg);overflow-y:auto;tab-size:2; }
-  #editorPreviewPane { flex:1;overflow-y:auto;background:var(--item); }
-  #editorPreviewPane .markdown-content { padding:20px 24px; }
-
-  /* ── Share / Decrypt ── */
-  .share-link-box { background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-family:monospace;font-size:12px;word-break:break-all;margin:12px 0;color:var(--accent);max-height:80px;overflow:auto; }
-  .pass-input { width:100%;background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:11px 14px;font-size:15px;color:var(--fg);font-family:"Roboto",sans-serif;margin:14px 0;box-sizing:border-box;outline:none; }
-  .pass-input:focus { border-color:var(--accent); }
-
-  /* ── Shortcuts ── */
-  .shortcuts-grid { display:grid;grid-template-columns:auto 1fr;gap:7px 14px;margin-top:8px; }
-  .sc-key  { font-family:monospace;background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:3px 8px;font-size:12px;white-space:nowrap; }
-  .sc-desc { font-size:13px;opacity:.65;align-self:center; }
-
-  /* ── File action inline icons ── */
-  .file-actions { display:flex;gap:3px;opacity:0;transition:opacity .15s;flex-shrink:0; }
-  .file-item:hover .file-actions { opacity:1; }
-  .file-action { display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;cursor:pointer;color:var(--fg);opacity:.65;transition:background .15s,color .15s,opacity .15s; }
-  .file-action:hover { background:var(--accent);color:#fff;opacity:1; }
-  .file-action--delete:hover { background:#e53935!important; }
-  .file-action--star.starred svg { fill:var(--accent);stroke:var(--accent); }
-  .file-action-mob { display:none;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;font-size:18px;cursor:pointer;color:var(--fg);opacity:.55;transition:background .15s,opacity .15s;flex-shrink:0; }
-  .file-action-mob:hover,.file-action-mob:active { background:var(--hover);opacity:1; }
-  .file-meta { display:flex;flex-direction:column;min-width:0; }
-  .file-tags { display:flex;gap:3px;flex-wrap:wrap;margin-top:3px; }
-
-  /* ── tb-divider ── */
-  .tb-divider { width:1px;height:16px;background:var(--border);opacity:.5;margin:0 2px;flex-shrink:0; }
-
-  /* ── err block ── */
-  .err-block { color:#c62828;background:rgba(229,57,53,.06);border:1px solid rgba(229,57,53,.2);padding:12px;border-radius:8px;margin:12px;font-size:13px;line-height:1.5; }
-
-  /* ── Mobile file sheet ── */
-  #mobFileSheet { position:fixed;inset:0;z-index:60000;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);display:none;align-items:flex-end;justify-content:center; }
-  #mobFileSheet.open { display:flex; }
-  #mobSheetCard { background:var(--item);border-radius:20px 20px 0 0;width:100%;max-width:480px;padding:12px 0 28px;box-shadow:0 -4px 32px rgba(0,0,0,.2);transform:translateY(100%);transition:transform .3s cubic-bezier(.34,1.1,.64,1); }
-  #mobFileSheet.open #mobSheetCard { transform:translateY(0); }
-  #mobSheetHandle { width:36px;height:4px;background:var(--border);border-radius:99px;margin:0 auto 12px; }
-  #mobSheetTitle  { font-size:14px;font-weight:600;padding:0 20px 10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;opacity:.7; }
-  .mob-sh-btn  { display:flex;align-items:center;gap:14px;padding:16px 24px;font-size:16px;cursor:pointer;border:none;background:none;color:var(--fg);text-align:left;width:100%;transition:background .15s;font-family:"Roboto",sans-serif; }
-  .mob-sh-btn:hover,.mob-sh-btn:active { background:var(--hover); }
-  .mob-sh-btn.danger { color:#e53935; }
-  .mob-sh-sep { height:1px;background:var(--border);margin:4px 0; }
-
-  /* ── Mobile minimised stack ── */
-  #mobileMinStack { position:fixed;bottom:16px;right:12px;z-index:3500;display:none;flex-direction:column;align-items:flex-end; }
-  #mobHamBtn { width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 12px rgba(0,0,0,.3);font-family:"Roboto",sans-serif; }
-  #mobHamDropdown { display:none;flex-direction:column;gap:6px;margin-bottom:10px;align-items:flex-end; }
-  #mobHamDropdown.open { display:flex; }
-  .mob-min-btn { background:var(--item);color:var(--fg);border:1px solid var(--border);border-radius:20px;padding:8px 14px;font-size:13px;font-weight:500;cursor:pointer;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;box-shadow:0 3px 10px rgba(0,0,0,.15);display:flex;align-items:center;gap:8px;transition:background .15s;font-family:"Roboto",sans-serif; }
-  .mob-min-btn:hover { background:var(--hover); }
-
-  /* ── Mobile overflow menu ── */
-  #mobOverflowBtn { display:none;background:var(--btn-bg);color:var(--fg);border:none;padding:8px 12px;border-radius:var(--radius);cursor:pointer;box-shadow:var(--shadow);transition:background .2s;align-items:center;justify-content:center;flex-shrink:0; }
-  #mobOverflowMenu { position:fixed;top:56px;right:8px;z-index:6000;background:var(--item);border:1px solid var(--border);border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.18);display:none;flex-direction:column;min-width:190px;overflow:hidden; }
-  #mobOverflowMenu.open { display:flex; }
-  .mob-ov-item { display:flex;align-items:center;gap:12px;padding:14px 18px;font-size:15px;cursor:pointer;border:none;background:none;color:var(--fg);text-align:left;width:100%;transition:background .15s;font-family:"Roboto",sans-serif; }
-  .mob-ov-item:hover { background:var(--hover); }
-  .mob-ov-sep { height:1px;background:var(--border);margin:2px 0; }
-
-  /* ── Taskbar ── */
-  #taskbar { position:fixed;bottom:0;left:0;right:0;padding:4px 10px;background:var(--item);display:flex;gap:8px;border-top:1px solid var(--border);box-shadow:0 -2px 8px rgba(0,0,0,.1);z-index:1500;overflow-x:auto;flex-wrap:nowrap; }
-  .task-btn { display:flex;align-items:center;gap:6px;padding:4px 10px;background:var(--accent);border-radius:6px;color:#fff;font-size:12px;cursor:pointer;white-space:nowrap;flex-shrink:0;position:relative; }
-
-  /* ── Mobile preview ── */
-  .mobile-preview { position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:2001;display:none;justify-content:center;align-items:center; }
-  .mobile-preview .mp-card   { background:var(--item);width:95vw;height:90vh;border-radius:10px;display:flex;flex-direction:column;overflow:hidden; }
-  .mobile-preview .mp-header { display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--border);flex-shrink:0; }
-  .mobile-preview .mp-title  { font-weight:600;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap; }
-  .mobile-preview .mp-close  { cursor:pointer;font-size:22px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0; }
-  .mobile-preview .mp-body   { flex:1;overflow:auto;padding:16px;min-height:0; }
-
-  @media (max-width:768px) {
-    #editorPreviewPane { display:none; }
-    #editorPane { border-right:none; }
-    .history-panel { display:none!important; }
-    .file-actions { display:none!important; }
-    .file-action-mob { display:flex!important; }
-    .floating-window { width:100vw;height:100vh;top:0!important;left:0!important;border-radius:0; }
-  }
-</style>
-  <!-- PDF.js -->
-  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
-  <!-- Fuse.js -->
-  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
-  <!-- Lucide icons -->
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-  <script>
-    if (typeof pdfjsLib !== 'undefined')
-      pdfjsLib.GlobalWorkerOptions.workerSrc =
-        'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
-  </script>
+  </style>
 </head>
 <body>
   <div id="splash"><img src="favicon.png" alt="Loading..." /></div>
@@ -1412,7 +1244,7 @@
   <div id="guidanceOverlay" class="full-overlay">
     <div class="overlay-card">
       <div class="overlay-icon-lg">👋</div>
-      <div class="overlay-heading">Welcome to Ada</div>
+      <div class="overlay-heading">Welcome to sybau applet</div>
       <div class="overlay-subtext">A quick guide to get you started</div>
       <div class="guide-tabs">
         <button class="guide-tab" id="guideTabDesktop" onclick="switchGuideTab('desktop')">🖥️ Desktop</button>
@@ -1656,7 +1488,7 @@
 
   <div class="window">
     <div class="toolbar">
-      <h1>Ada</h1>
+      <h1>sybau applet</h1>
       <!-- Secondary buttons hidden on mobile into overflow menu -->
       <button class="mob-toolbar-overflow" onclick="refreshFiles()" title="Refresh">↻</button>
       <button class="mob-toolbar-overflow" onclick="goUp()" title="Go up">↑</button>
@@ -1687,52 +1519,10 @@
         <span class="moi-icon">⚙️</span> Admin Panel
       </button>
     </div>
-    
-  <!-- Mobile overflow dropdown (new) -->
-  <div id="mobOverflowMenu">
-    <button class="mob-ov-item" onclick="openSearch();closeMobOverflow()">
-      <i data-lucide="search"     style="width:18px;height:18px;"></i> Search
-    </button>
-    <button class="mob-ov-item" onclick="refreshFiles();closeMobOverflow()">
-      <i data-lucide="refresh-cw" style="width:18px;height:18px;"></i> Refresh
-    </button>
-    <button class="mob-ov-item" onclick="goUp();closeMobOverflow()">
-      <i data-lucide="arrow-up"   style="width:18px;height:18px;"></i> Go Up
-    </button>
-    <button class="mob-ov-item" onclick="showUploadScreen();closeMobOverflow()">
-      <i data-lucide="upload"     style="width:18px;height:18px;"></i> Upload File
-    </button>
-    <button class="mob-ov-item" onclick="toggleTagBar();closeMobOverflow()">
-      <i data-lucide="tag"        style="width:18px;height:18px;"></i> Tags &amp; Collections
-    </button>
-    <div class="mob-ov-sep"></div>
-    <button class="mob-ov-item" id="mobOvNewNote" style="display:none" onclick="openEditor(null,null);closeMobOverflow()">
-      <i data-lucide="plus"       style="width:18px;height:18px;"></i> New Note
-    </button>
-    <button class="mob-ov-item" onclick="openCommunity();closeMobOverflow()">
-      <i data-lucide="users"      style="width:18px;height:18px;"></i> Community
-    </button>
-    <button class="mob-ov-item" id="mobOvAdminBtn" style="display:none" onclick="showAdminPanel();closeMobOverflow()">
-      <i data-lucide="settings"   style="width:18px;height:18px;"></i> Admin Panel
-    </button>
-    <button class="mob-ov-item" onclick="showOverlay('shortcutsOverlay');closeMobOverflow()">
-      <i data-lucide="keyboard"   style="width:18px;height:18px;"></i> Shortcuts
-    </button>
-  </div>
-<div class="path-nav" id="pathNav">
+    <div class="path-nav" id="pathNav">
       <span class="path-segment" onclick="goToRoot()">☁️</span>
     </div>
-    
-  <!-- Tag filter bar (new) -->
-  <div id="tagFilterBar">
-    <span class="tfb-label">Filter:</span>
-    <span class="tag-pill active" id="tagAll"     onclick="setTagFilter(null)">All files</span>
-    <span class="tag-pill"        id="tagStarred" onclick="setTagFilter('__starred__')">⭐ Starred</span>
-    <span class="tag-pill"        id="tagRecent"  onclick="setTagFilter('__recent__')">🕐 Recent</span>
-    <span id="tagPillsContainer" style="display:contents"></span>
-    <span id="clearTagFilter" onclick="setTagFilter(null);toggleTagBar()">✕ Close</span>
-  </div>
-<div class="list-view" id="listView"></div>
+    <div class="list-view" id="listView"></div>
   </div>
 
   <div class="context-menu" id="contextMenu">
@@ -1754,740 +1544,460 @@
   </div>
   
   <div id="status"></div>
-  <!-- ═══ SEARCH OVERLAY ═══ -->
-  <div id="searchOverlay" onclick="searchBackdropClick(event)">
-    <div id="searchPanel">
-      <div id="searchInputWrap">
-        <i data-lucide="search" style="width:18px;height:18px;opacity:.4;flex-shrink:0;"></i>
-        <input id="searchInput" placeholder="Search files…" autocomplete="off"
-               oninput="onSearchInput()" onkeydown="onSearchKeydown(event)" />
-        <kbd style="font-size:11px;opacity:.35;padding:2px 6px;border:1px solid var(--border);border-radius:4px;cursor:pointer;flex-shrink:0;" onclick="closeSearch()">Esc</kbd>
-      </div>
-      <div id="searchResults"><div class="sr-empty">Type to search files…</div></div>
-    </div>
-  </div>
 
-  <!-- ═══ EDITOR OVERLAY ═══ -->
-  <div id="editorOverlay">
-    <div id="editorHeader">
-      <input id="editorFilename" placeholder="filename.md" />
-      <span id="editorPermBadge"></span>
-      <button onclick="closeEditor(false)">Cancel</button>
-      <button id="editorSaveBtn" onclick="saveNote()">
-        <i data-lucide="save" style="width:14px;height:14px;"></i> Save
-      </button>
-    </div>
-    <div id="editorTagRow">
-      <i data-lucide="tag" style="width:13px;height:13px;opacity:.4;flex-shrink:0;"></i>
-      <input id="editorTagInput" placeholder="tags: math, lecture, notes  (comma-separated)" />
-    </div>
-    <div id="editorMain">
-      <textarea id="editorPane" spellcheck="true" placeholder="Write your note in Markdown…"></textarea>
-      <div id="editorPreviewPane"><div class="markdown-content" id="editorPreviewContent" style="padding:20px 24px;"></div></div>
-    </div>
-  </div>
-
-  <!-- ═══ SHARE (encrypt) ═══ -->
-  <div id="shareOverlay" class="full-overlay">
-    <div class="overlay-card">
-      <button class="overlay-close" onclick="hideOverlay('shareOverlay')">×</button>
-      <div class="overlay-icon-lg">🔒</div>
-      <div class="overlay-heading">Encrypted Share Link</div>
-      <div class="overlay-subtext">Content is encrypted with AES-256-GCM in your browser. The key never reaches any server.</div>
-      <input class="pass-input" id="sharePassInput" type="password" placeholder="Set a passphrase for this link…"
-             onkeydown="if(event.key==='Enter') generateShareLink()" />
-      <button class="overlay-btn-primary" id="shareGenerateBtn" onclick="generateShareLink()">Generate encrypted link</button>
-      <div id="shareLinkWrap" style="display:none">
-        <div class="share-link-box" id="shareLinkBox"></div>
-        <button class="overlay-btn-secondary" onclick="copyShareLink()">Copy link</button>
-        <div style="font-size:12px;opacity:.5;text-align:center;margin-top:10px;line-height:1.5">Share the passphrase separately (e.g. via Signal).<br>The <code>#fragment</code> is never sent to any server.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══ DECRYPT (incoming share link) ═══ -->
-  <div id="decryptOverlay" class="full-overlay">
-    <div class="overlay-card">
-      <div class="overlay-icon-lg">🔑</div>
-      <div class="overlay-heading">Encrypted Note</div>
-      <div class="overlay-subtext">Enter the passphrase to decrypt and read this note.</div>
-      <input class="pass-input" id="decryptPassInput" type="password" placeholder="Enter passphrase…"
-             onkeydown="if(event.key==='Enter') decryptAndOpen()" />
-      <div id="decryptMsg" style="font-size:13px;text-align:center;color:#e53935;min-height:16px;margin-bottom:4px;"></div>
-      <button class="overlay-btn-primary" onclick="decryptAndOpen()">Open note</button>
-    </div>
-  </div>
-
-  <!-- ═══ KEYBOARD SHORTCUTS ═══ -->
-  <div id="shortcutsOverlay" class="full-overlay">
-    <div class="overlay-card">
-      <button class="overlay-close" onclick="hideOverlay('shortcutsOverlay')">×</button>
-      <div class="overlay-heading">Keyboard Shortcuts</div>
-      <div class="shortcuts-grid" style="margin-top:16px">
-        <span class="sc-key">⌘ K</span>   <span class="sc-desc">Open search</span>
-        <span class="sc-key">⌘ E</span>   <span class="sc-desc">New note (admin)</span>
-        <span class="sc-key">⌘ U</span>   <span class="sc-desc">Upload file</span>
-        <span class="sc-key">⌘ R</span>   <span class="sc-desc">Refresh file list</span>
-        <span class="sc-key">⌘ ↑</span>   <span class="sc-desc">Go up one folder</span>
-        <span class="sc-key">⌘ /</span>   <span class="sc-desc">Shortcuts panel</span>
-        <span class="sc-key">?</span>     <span class="sc-desc">Shortcuts panel</span>
-        <span class="sc-key">Esc</span>   <span class="sc-desc">Close overlay / search</span>
-        <span class="sc-key">↑ ↓</span>   <span class="sc-desc">Navigate search results</span>
-        <span class="sc-key">Enter</span> <span class="sc-desc">Open selected result</span>
-      </div>
-      <div style="margin-top:18px;font-size:12px;opacity:.45;text-align:center">⌘ = Ctrl on Windows / Linux</div>
-    </div>
-  </div>
-
-  <!-- ═══ MOBILE FILE SHEET ═══ -->
-  <div id="mobFileSheet" onclick="closeMobFileSheetBackdrop(event)">
-    <div id="mobSheetCard">
-      <div id="mobSheetHandle"></div>
-      <div id="mobSheetTitle"></div>
-      <button class="mob-sh-btn" id="mobSheetPreview"  onclick="mobSheetAction('preview')">
-        <i data-lucide="eye"      style="width:20px;height:20px;"></i> Preview
-      </button>
-      <button class="mob-sh-btn" id="mobSheetDownload" onclick="mobSheetAction('download')">
-        <i data-lucide="download" style="width:20px;height:20px;"></i> Download
-      </button>
-      <button class="mob-sh-btn" id="mobSheetEdit" style="display:none" onclick="mobSheetAction('edit')">
-        <i data-lucide="edit-3"   style="width:20px;height:20px;"></i> Edit
-      </button>
-      <div class="mob-sh-sep"></div>
-      <button class="mob-sh-btn danger" id="mobSheetDelete" style="display:none" onclick="mobSheetAction('delete')">
-        <i data-lucide="trash-2"  style="width:20px;height:20px;"></i> Delete
-      </button>
-      <button class="mob-sh-btn" onclick="_closeMobSheet()">
-        <i data-lucide="x"        style="width:20px;height:20px;opacity:.4;"></i> Cancel
-      </button>
-    </div>
-  </div>
-
-  <!-- Mobile minimised stack -->
-  <div id="mobileMinStack">
-    <div id="mobHamDropdown"></div>
-    <button id="mobHamBtn" onclick="toggleMobHam()" title="Minimised windows">☰</button>
-  </div>
-
-  <!-- Toast stack -->
-  <div id="toastStack"></div>
-
-  <!-- Taskbar context menu -->
-  <div id="taskbarCtxMenu" class="context-menu" style="display:none;"></div>
-
-</body>
 <script>
-'use strict';
-// ═══════════════════════════════════════════════════════════════
-// GLOBALS & STATE
-// ═══════════════════════════════════════════════════════════════
+const listView = document.getElementById("listView");
+const pathNav = document.getElementById("pathNav");
+const splash = document.getElementById("splash");
+const contextMenu = document.getElementById("contextMenu");
+const previewContainer = document.getElementById("previewContainer");
+const mobilePreview = document.getElementById("mobilePreview");
+const mobilePreviewContent = document.getElementById("mobilePreviewContent");
+const mobilePreviewTitle = document.getElementById("mobilePreviewTitle");
+const taskbar = document.getElementById("taskbar");
+const statusEl = document.getElementById("status");
+
+let currentNode = null;
+let pathHistory = [];
+let selected = null;
+let previewId = 0;
+const windows = {};
 const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+let updateDismissed = false;
 
-let currentNode   = null;   // current folder node from files.json
-let pathHistory   = [];     // breadcrumb stack
-let selected      = null;   // currently selected file/folder item
-let previewIdSeq  = 0;
-const windows     = {};     // id → DOM element
-const previewMeta = {};     // id → { path, filename, ext }
-const mobileMin   = {};     // id → { name }  (mobile-minimised windows)
+const EXCLUDED_ROOT_FILES = [
+  "fmtree.py", "files.json", "index.html", "favicon.png", "tree.py", "autocommit.ps1"
+];
 
-let currentTagFilter = null;
-const tagCache       = {};  // path → string[]   (lazily populated)
-
-let fuseIndex = null;
-let fuseItems = [];
-
-let lastKnownCommitSha = null;
-let updateDismissed    = false;
-let _shareWindowId     = null;   // which preview triggered the share dialog
-
-const EXCLUDED_ROOT = new Set([
-  'fmtree.py','tree.py','files.json','index.html',
-  'favicon.png','autocommit.ps1','service-worker.js',
-  'manifest.json','obsidian-markdown-it.js'
-]);
-
-// Lucide icon map: file extension → { name, color }
-const EXT_ICON = {
-  folder:   { n:'folder',       c:'#DAA520' },
-  md:       { n:'file-text',    c:'#1E88E5' },
-  markdown: { n:'file-text',    c:'#1E88E5' },
-  pdf:      { n:'file-text',    c:'#E53935' },
-  txt:      { n:'file',         c:'#757575' },
-  json:     { n:'braces',       c:'#FB8C00' },
-  js:       { n:'code',         c:'#FDD835' },
-  ts:       { n:'code',         c:'#42A5F5' },
-  html:     { n:'code',         c:'#FF8A65' },
-  css:      { n:'palette',      c:'#42A5F5' },
-  py:       { n:'terminal',     c:'#26A69A' },
-  jpg:      { n:'image',        c:'#66BB6A' },
-  jpeg:     { n:'image',        c:'#66BB6A' },
-  png:      { n:'image',        c:'#66BB6A' },
-  gif:      { n:'image',        c:'#66BB6A' },
-  svg:      { n:'image',        c:'#66BB6A' },
-  webp:     { n:'image',        c:'#66BB6A' },
-  mp3:      { n:'music',        c:'#7B1FA2' },
-  wav:      { n:'music',        c:'#7B1FA2' },
-  mp4:      { n:'video',        c:'#E91E63' },
-  webm:     { n:'video',        c:'#E91E63' },
-  zip:      { n:'archive',      c:'#5D4037' },
-  doc:      { n:'file-text',    c:'#1565C0' },
-  docx:     { n:'file-text',    c:'#1565C0' },
-  xls:      { n:'file',         c:'#2E7D32' },
-  xlsx:     { n:'file',         c:'#2E7D32' },
-  ppt:      { n:'file',         c:'#BF360C' },
-  pptx:     { n:'file',         c:'#BF360C' },
-  default:  { n:'file',         c:'#9E9E9E' },
+const FILE_ICONS = {
+  folder: "📁",
+  md: "📝",
+  markdown: "📝",
+  pdf: "📕",
+  txt: "📄",
+  json: "🔧",
+  js: "📜",
+  html: "🌐",
+  css: "🎨",
+  py: "🐍",
+  jpg: "🖼️",
+  jpeg: "🖼️",
+  png: "🖼️",
+  gif: "🖼️",
+  svg: "🖼️",
+  doc:  "📘", docx: "📘",
+  xls:  "📗", xlsx: "📗",
+  ppt:  "📙", pptx: "📙",
+  default: "📄"
 };
 
-function extIcon(file) {
-  const raw = file.type === 'folder'
-    ? 'folder'
-    : ((file.name || '').split('.').pop().toLowerCase() || 'default');
-  return EXT_ICON[raw] || EXT_ICON.default;
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js").then(() => {
+    console.log("Service Worker registered");
+  }).catch(err => {
+    console.error("SW registration failed:", err);
+  });
 }
 
-function iconHTML(file) {
-  const { n, c } = extIcon(file);
-  return `<i data-lucide="${n}" style="color:${c};width:20px;height:20px;"></i>`;
+let deferredPrompt = null;
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+});
+
+function dismissUpdateNotice() {
+  document.getElementById("updateNotice").style.display = "none";
+  updateDismissed = true;
 }
 
-function ri(el) {
-  if (typeof lucide !== 'undefined') lucide.createIcons(el ? { el } : undefined);
+function showStatus(message, isLoading = false) {
+  statusEl.innerHTML = isLoading ? `<span class="loader"></span>${message}` : message;
+  statusEl.classList.add("visible");
+  setTimeout(() => {
+    statusEl.classList.remove("visible");
+  }, 3000);
 }
 
-function escHTML(s) {
-  return String(s ?? '')
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
-// ═══════════════════════════════════════════════════════════════
-// TOAST SYSTEM
-// ═══════════════════════════════════════════════════════════════
-function showToast(msg, type = 'info', dur = 3200) {
-  const stack = document.getElementById('toastStack');
-  const t = document.createElement('div');
-  t.className = `toast toast-${type}`;
-  const iconMap = { success:'check-circle', error:'alert-circle', loading:'loader', info:'info' };
-  const spin    = type === 'loading' ? ' class="spin"' : '';
-  t.innerHTML = `
-    <i data-lucide="${iconMap[type]||'info'}"${spin} style="width:15px;height:15px;flex-shrink:0;"></i>
-    <span>${escHTML(msg)}</span>
-    <button class="toast-x" onclick="this.closest('.toast').remove()">
-      <i data-lucide="x" style="width:12px;height:12px;"></i>
-    </button>`;
-  stack.appendChild(t);
-  ri(t);
-  requestAnimationFrame(() => t.classList.add('show'));
-  if (type !== 'loading') {
-    setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 260); }, dur);
-  }
-  return t;
-}
-
-// ═══════════════════════════════════════════════════════════════
-// VERCEL PROXY HELPER
-// ═══════════════════════════════════════════════════════════════
-async function ghProxy(action, body = {}) {
+// Function to automatically fetch and generate the file tree
+async function generateFileTree() {
+  showStatus("Generating file tree...", true);
+  
   try {
-    const r = await fetch('/api/gh', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action, ...body })
-    });
-    const data = await r.json();
-    if (!r.ok) return { ok: false, error: data.error || `HTTP ${r.status}` };
-    return { ok: true, data };
-  } catch (e) {
-    return { ok: false, error: e.message };
-  }
-}
-
-// ═══════════════════════════════════════════════════════════════
-// SERVICE WORKER
-// ═══════════════════════════════════════════════════════════════
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('service-worker.js').catch(() => {});
-}
-
-// ═══════════════════════════════════════════════════════════════
-// FILE TREE — fetch & render
-// ═══════════════════════════════════════════════════════════════
-async function fetchTree() {
-  try {
-    const res = await fetch('files.json?' + Date.now());
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const tree = await res.json();
-
-    // grab latest commit for update-check baseline
-    try {
-      const cr = await ghProxy('latestCommit');
-      if (cr.ok) lastKnownCommitSha = cr.data.sha;
-    } catch (_) {}
-
-    currentNode  = tree;
-    pathHistory  = [];
-    buildSearchIndex(tree);
-    renderFolder(tree);
-    updatePathNav();
-    setTimeout(() => scheduleUpdateCheck(), 8000);
-  } catch (e) {
-    document.getElementById('listView').innerHTML =
-      `<div class="err-block">Failed to load files: ${escHTML(e.message)}</div>`;
-    showToast('Failed to load files', 'error');
-  } finally {
-    const splash = document.getElementById('splash');
-    splash.style.opacity = '0';
-    setTimeout(() => { splash.style.display = 'none'; }, 650);
+    // This would be a server-side operation in reality
+    // For this example, we'll just add a timestamp to show the concept
+    const timestamp = new Date().toISOString();
+    showStatus(`Tree generated at: ${timestamp}`);
+    
+    // In a real implementation, you would call your backend API to regenerate files.json
+    // For now, we'll just refresh what we have
+    await fetchTree();
+  } catch (error) {
+    showStatus("Failed to generate tree: " + error.message);
   }
 }
 
 function refreshFiles() {
-  showToast('Refreshing…', 'loading');
-  fetchTree().then(() => showToast('Refreshed', 'success', 2000));
+  fetchTree();
+  showStatus("Refreshing files list…");
 }
 
-// ── Render a folder node ──────────────────────────────────────
-function renderFolder(node) {
-  const listView = document.getElementById('listView');
-  listView.innerHTML = '';
-  selected = null;
+async function fetchTree() {
+  showStatus("Loading files...", true);
 
-  // Build child list, apply exclusions
-  let children = (node.children || []).filter(c => {
-    if (c.type === 'folder' && c.name === '.github')      return false;
-    if (c.type === 'folder' && c.name === 'waiting-list') return false;
-    if (pathHistory.length === 0 && c.type === 'file' && EXCLUDED_ROOT.has(c.name)) return false;
+  try {
+    const res = await fetch("files.json?" + new Date().getTime());
+    if (!res.ok) {
+      throw new Error(`Failed to fetch: ${res.status}`);
+    }
+
+    const tree = await res.json();
+    const raw = JSON.stringify(tree, Object.keys(tree).sort());
+
+    const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(raw));
+    lastHash = Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, '0')).join('');
+    initialLoadComplete = true;
+
+    try {
+      lastCommit = await fetchLatestCommit();
+    } catch (e) {
+      console.warn("Failed to fetch initial commit:", e);
+    }
+
+    currentNode = tree;
+    pathHistory = [];
+    renderFolder(tree);
+    updatePathNav();
+
+    const fontPromise = new Promise((resolve) => {
+  const testSpan = document.createElement("span");
+  testSpan.textContent = "A quick brown fox jumps";
+  testSpan.style.position = "absolute";
+  testSpan.style.visibility = "hidden";
+  testSpan.style.fontSize = "32px";
+  testSpan.style.fontFamily = "sans-serif";
+
+  document.body.appendChild(testSpan);
+  const baseWidth = testSpan.offsetWidth;
+
+  testSpan.style.fontFamily = '"Roboto", sans-serif';
+
+  requestAnimationFrame(() => {
+    const testWidth = testSpan.offsetWidth;
+    document.body.removeChild(testSpan);
+
+    if (testWidth !== baseWidth) {
+      console.log("Roboto is present.");
+    } else {
+      console.warn("Roboto not rendered. Falling back.");
+      showStatus("Roboto font not available. Falling back to system font.");
+    }
+
+    resolve(); // Always resolve — don't block the splash or file loading
+  });
+});
+
+
+    Promise.all([
+      fontPromise,
+      new Promise(res => setTimeout(res, 500))
+    ]).then(() => {
+      splash.style.opacity = 0;
+      setTimeout(() => {
+        splash.style.display = 'none';
+      }, 600);
+
+      if (!window.updateCheckStarted) {
+        window.updateCheckStarted = true;
+        setTimeout(() => setInterval(checkForUpdate, 20000), 5000);
+      }
+
+      showStatus("Files loaded successfully!");
+    }).catch(error => {
+      showStatus("Error loading files: " + error.message);
+      console.error("Error fetching tree:", error);
+    });
+
+  } catch (error) {
+    showStatus("Failed to generate tree: " + error.message);
+    console.error(error);
+    // Ensure splash is always dismissed even on fatal error
+    splash.style.opacity = 0;
+    setTimeout(() => { splash.style.display = 'none'; }, 600);
+  }
+}
+
+
+	
+
+function getFileIcon(file) {
+  if (file.type === "folder") return FILE_ICONS.folder;
+  
+  const ext = file.name.split('.').pop().toLowerCase();
+  return FILE_ICONS[ext] || FILE_ICONS.default;
+}
+
+function getFileTypeClass(file) {
+  if (file.type === "folder") return "folder";
+
+  const ext = file.name.split('.').pop().toLowerCase();
+
+  if (["jpg", "jpeg", "png", "gif", "svg", "webp"].includes(ext)) {
+    return "image";
+  }
+
+  return ext; // returns 'py', 'html', 'css', etc.
+}
+
+
+function renderFolder(node) {
+  listView.innerHTML = "";
+  selected = null;
+  
+  const children = (node.children || []).filter(item => {
+    // Exclude .github/ folder
+    if (item.type === "folder" && item.name === ".github") return false;
+    // Exclude internal waiting-list folder from public browser
+    if (pathHistory.length === 0 && item.type === "folder" && item.name === "waiting-list") return false;
+    // Fix #6: exclude system files only at root level (pathHistory empty = we are at root)
+    if (pathHistory.length === 0 && item.type === "file" && EXCLUDED_ROOT_FILES.includes(item.name)) return false;
     return true;
   });
-
-  // Apply tag / collection filter
-  children = applyFilter(children);
-
-  // Sort: folders first, then alphabetical (unless filter imposes its own order)
-  if (!currentTagFilter || currentTagFilter === '__starred__' || currentTagFilter === '__recent__') {
-    if (currentTagFilter !== '__recent__') {
-      children.sort((a, b) => {
-        if (a.type !== b.type) return a.type === 'folder' ? -1 : 1;
-        return a.name.localeCompare(b.name);
-      });
+  
+  // Sort folders first, then files alphabetically
+  children.sort((a, b) => {
+    if (a.type === b.type) {
+      return a.name.localeCompare(b.name);
     }
-  }
+    return a.type === "folder" ? -1 : 1;
+  });
 
-  if (!children.length) {
+  if (children.length === 0) {
     listView.innerHTML = `
       <div class="empty-state">
-        <i data-lucide="folder-open" style="width:52px;height:52px;opacity:.35;margin-bottom:14px;"></i>
-        <h3>Nothing here</h3>
-        <p>${currentTagFilter ? 'No files match this filter.' : 'This folder is empty.'}</p>
-      </div>`;
-    ri(listView); return;
+        <div class="icon">📂</div>
+        <h3>This folder is empty</h3>
+        <p>No files or folders to display</p>
+      </div>
+    `;
+    return;
   }
 
-  const starred = getStarred();
-
-  children.forEach((child, idx) => {
-    const isStarred = child.type === 'file' && starred.some(s => s.path === child.path);
-    const tags      = tagCache[child.path] || [];
-    const tagsHTML  = tags.length
-      ? `<div class="file-tags">${tags.map(t => `<span class="ftag">${escHTML(t)}</span>`).join('')}</div>`
-      : '';
-
-    const isMd     = child.type === 'file' && /\.(md|markdown)$/i.test(child.name || '');
-    const canEdit   = isAdmin() && hasPerm('modify') && isMd;
-    const canDelete = isAdmin() && hasPerm('delete') && child.type === 'file';
-
-    const item = document.createElement('div');
-    item.className   = 'file-item';
-    item._childData  = child;
-
+  for (let i = 0; i < children.length; i++) {
+    const child = children[i];
+    const item = document.createElement("div");
+    item.className = "file-item";
+    item.setAttribute("data-index", i);
+    // Fix #4 prep: store child reference so downloadFile can access it directly
+    item._childData = child;
+    
+    const fileIcon = getFileIcon(child);
+    const fileTypeClass = getFileTypeClass(child);
+    
     item.innerHTML = `
-      <div class="file-icon">${iconHTML(child)}</div>
-      <div class="file-name file-meta">
-        <div>${escHTML(child.name)}</div>${tagsHTML}
-      </div>
+      <div class="file-icon" data-type="${fileTypeClass}">${fileIcon}</div>
+      <div class="file-name">${child.name}</div>
       <div class="file-actions">
-        ${child.type === 'file' ? `
-          <div class="file-action file-action--star${isStarred?' starred':''}"
-               title="${isStarred?'Unstar':'Star'}" onclick="toggleStar(event,'${escHTML(child.path)}')">
-            <i data-lucide="star" style="width:15px;height:15px;${isStarred?'fill:var(--accent);stroke:var(--accent);':''}"></i>
-          </div>
-          <div class="file-action" title="Preview"  onclick="actionPreview(event,this)">
-            <i data-lucide="eye"      style="width:15px;height:15px;"></i>
-          </div>
-          <div class="file-action" title="Download" onclick="actionDownload(event,this)">
-            <i data-lucide="download" style="width:15px;height:15px;"></i>
-          </div>
-          ${canEdit ? `<div class="file-action" title="Edit" onclick="actionEdit(event,this)">
-            <i data-lucide="edit-3"   style="width:15px;height:15px;"></i>
-          </div>` : ''}
-          ${canDelete ? `<div class="file-action file-action--delete" title="Delete" onclick="actionDelete(event,this)">
-            <i data-lucide="trash-2"  style="width:15px;height:15px;"></i>
-          </div>` : ''}
+        ${child.type === "file" ? `
+          <div class="file-action" onclick="previewFile(event, ${i})">👁️</div>
+          <div class="file-action" onclick="downloadFile(event, ${i})">📥</div>
+          ${isAdmin() ? `<div class="file-action file-action--delete" onclick="deleteFile(event, ${i})" title="Delete file">🗑️</div>` : ''}
         ` : ''}
       </div>
-      ${child.type === 'file'
-        ? `<div class="file-action-mob" onclick="openMobSheet(event,this)">⋯</div>`
-        : ''}`;
+      ${child.type === "file" ? `<div class="file-action-mob" onclick="openMobFileSheet(event, ${i})">⋯</div>` : ''}
+    `;
 
-    // Single-click handler
-    item.addEventListener('click', e => {
-      if (e.target.closest('.file-action') || e.target.closest('.file-action-mob')) return;
-      selectItem(item, child);
-      if (child.type === 'folder') {
+    item.onclick = (e) => {
+      // Clear previous selection
+      document.querySelectorAll('.file-item.selected').forEach(el => 
+        el.classList.remove('selected')
+      );
+      
+      // Set new selection
+      item.classList.add('selected');
+      selected = child;
+      
+      // Handle single click to open
+      if (child.type === "folder") {
         pathHistory.push(currentNode);
         currentNode = child;
         renderFolder(child);
         updatePathNav();
       } else {
-        addToRecent(child);
-        isMobile
-          ? openMobilePreview(child.path, child.name)
-          : openPreview(child.path, child.name);
+        // For files, open preview immediately (single click behavior)
+        if (!e.target.closest('.file-action')) {
+          handlePreview();
+        }
       }
-    });
-
-    // Right-click context menu
-    item.addEventListener('contextmenu', e => {
+    };
+    
+    item.oncontextmenu = e => {
       e.preventDefault();
-      selectItem(item, child);
-      document.getElementById('ctxEdit').style.display  = (canEdit   ? '' : 'none');
-      document.getElementById('ctxDelete').style.display = (canDelete  ? '' : 'none');
-      document.getElementById('ctxShare').style.display  = (isMd       ? '' : 'none');
+      // Clear previous selection
+      document.querySelectorAll('.file-item.selected').forEach(el => 
+        el.classList.remove('selected')
+      );
+      
+      // Set new selection
+      item.classList.add('selected');
+      selected = child;
       showContextMenu(e.pageX, e.pageY);
-    });
+    };
 
     listView.appendChild(item);
-
-    // Lazy fetch tags for markdown files
-    if (isMd && tagCache[child.path] === undefined) {
-      tagCache[child.path] = [];
-      setTimeout(() => fetchTagsFor(child), 50 + idx * 30);
-    }
-  });
-
-  ri(listView);
-}
-
-function selectItem(el, child) {
-  document.querySelectorAll('.file-item.selected').forEach(x => x.classList.remove('selected'));
-  el.classList.add('selected');
-  selected = child;
-}
-
-// ── Inline action helpers (use closest .file-item to get _childData) ──
-function actionPreview(e, btn)  { e.stopPropagation(); const c = btn.closest('.file-item')._childData; addToRecent(c); isMobile ? openMobilePreview(c.path,c.name) : openPreview(c.path,c.name); }
-function actionDownload(e, btn) { e.stopPropagation(); const c = btn.closest('.file-item')._childData; triggerDownload(c.path, c.name); }
-function actionEdit(e, btn)     { e.stopPropagation(); const c = btn.closest('.file-item')._childData; openEditor(c.path, c.name); }
-function actionDelete(e, btn)   { e.stopPropagation(); const c = btn.closest('.file-item')._childData; promptDelete(c.path, c.name); }
-
-function openMobSheet(e, btn) {
-  e.stopPropagation();
-  const c = btn.closest('.file-item')._childData;
-  selectItem(btn.closest('.file-item'), c);
-  const isMd = /\.(md|markdown)$/i.test(c.name || '');
-  document.getElementById('mobSheetTitle').textContent   = c.name;
-  document.getElementById('mobSheetEdit').style.display  = (isAdmin() && hasPerm('modify') && isMd) ? '' : 'none';
-  document.getElementById('mobSheetDelete').style.display= (isAdmin() && hasPerm('delete'))          ? '' : 'none';
-  document.getElementById('mobFileSheet').classList.add('open');
-}
-
-function mobSheetAction(act) {
-  _closeMobSheet();
-  if (!selected) return;
-  if (act === 'preview')  { addToRecent(selected); openMobilePreview(selected.path, selected.name); }
-  if (act === 'download') { triggerDownload(selected.path, selected.name); }
-  if (act === 'edit')     { openEditor(selected.path, selected.name); }
-  if (act === 'delete')   { promptDelete(selected.path, selected.name); }
-}
-
-function _closeMobSheet()          { document.getElementById('mobFileSheet').classList.remove('open'); }
-function closeMobFileSheetBackdrop(e) { if (e.target === document.getElementById('mobFileSheet')) _closeMobSheet(); }
-
-// ── Context menu actions ──
-function handlePreview()       { if (selected) { addToRecent(selected); isMobile ? openMobilePreview(selected.path,selected.name) : openPreview(selected.path,selected.name); } closeCtxMenu(); }
-function handleDownload()      { if (selected) triggerDownload(selected.path, selected.name); closeCtxMenu(); }
-function handleEdit()          { if (selected) openEditor(selected.path, selected.name); closeCtxMenu(); }
-function handleShare()         { if (selected) openShareDialog(null, selected.path); closeCtxMenu(); }
-function handleContextDelete() { if (selected) promptDelete(selected.path, selected.name); closeCtxMenu(); }
-
-function showContextMenu(x, y) {
-  const m = document.getElementById('contextMenu');
-  m.style.top = y + 'px'; m.style.left = x + 'px'; m.style.display = 'flex';
-  ri(m);
-}
-function closeCtxMenu() { document.getElementById('contextMenu').style.display = 'none'; }
-
-document.addEventListener('click', e => {
-  if (!e.target.closest('.context-menu') && !e.target.closest('.file-item')) closeCtxMenu();
-  if (!e.target.closest('#mobOverflowBtn') && !e.target.closest('#mobOverflowMenu')) closeMobOverflow();
-});
-
-function triggerDownload(path, name) {
-  const a = document.createElement('a'); a.href = path; a.download = name; a.click();
-  showToast(`Downloading: ${name}`, 'info', 2000);
-}
-
-// ═══════════════════════════════════════════════════════════════
-// TAG FILTER BAR
-// ═══════════════════════════════════════════════════════════════
-async function fetchTagsFor(file) {
-  try {
-    const r = await fetch(file.path);
-    if (!r.ok) return;
-    const text = await r.text();
-    const fm   = parseFrontmatter(text);
-    let tags   = fm.tags || [];
-    if (typeof tags === 'string') tags = tags.split(',').map(t => t.trim()).filter(Boolean);
-    tagCache[file.path] = Array.isArray(tags) ? tags : [];
-    rebuildTagPills();
-  } catch (_) {}
-}
-
-function parseFrontmatter(text) {
-  const m = text.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-  if (!m) return {};
-  const fm = {};
-  m[1].split('\n').forEach(line => {
-    const kv = line.match(/^(\w+):\s*(.+)/);
-    if (!kv) return;
-    let val = kv[2].trim();
-    if (val.startsWith('[') && val.endsWith(']'))
-      val = val.slice(1,-1).split(',').map(s => s.trim().replace(/^['"]|['"]$/g,''));
-    fm[kv[1]] = val;
-  });
-  return fm;
-}
-
-function rebuildTagPills() {
-  const container = document.getElementById('tagPillsContainer');
-  if (!container) return;
-  const allTags = new Set();
-  Object.values(tagCache).forEach(tags => tags.forEach(t => allTags.add(t)));
-  container.innerHTML = [...allTags].sort().map(tag =>
-    `<span class="tag-pill${currentTagFilter===tag?' active':''}"
-           onclick="setTagFilter(${JSON.stringify(tag)})">${escHTML(tag)}</span>`
-  ).join('');
-}
-
-function setTagFilter(tag) {
-  currentTagFilter = tag;
-  document.getElementById('tagAll').classList.toggle('active',     !tag);
-  document.getElementById('tagStarred').classList.toggle('active', tag === '__starred__');
-  document.getElementById('tagRecent').classList.toggle('active',  tag === '__recent__');
-  rebuildTagPills();
-  renderFolder(currentNode);
-}
-
-function applyFilter(children) {
-  if (!currentTagFilter) return children;
-  if (currentTagFilter === '__starred__') {
-    const sp = getStarred().map(s => s.path);
-    return children.filter(c => c.type === 'file' && sp.includes(c.path));
-  }
-  if (currentTagFilter === '__recent__') {
-    const rp  = getRecent().map(r => r.path);
-    const out = children.filter(c => c.type === 'file' && rp.includes(c.path));
-    out.sort((a, b) => rp.indexOf(a.path) - rp.indexOf(b.path));
-    return out;
-  }
-  return children.filter(c => (tagCache[c.path] || []).includes(currentTagFilter));
-}
-
-function toggleTagBar() {
-  const bar = document.getElementById('tagFilterBar');
-  bar.classList.toggle('visible');
-  if (bar.classList.contains('visible')) rebuildTagPills();
-}
-
-// ═══════════════════════════════════════════════════════════════
-// STARRED & RECENT (localStorage)
-// ═══════════════════════════════════════════════════════════════
-function getStarred() { try { return JSON.parse(localStorage.getItem('wm_starred') || '[]'); } catch { return []; } }
-function saveStarred(a) { localStorage.setItem('wm_starred', JSON.stringify(a)); }
-function getRecent()  { try { return JSON.parse(localStorage.getItem('wm_recent')  || '[]'); } catch { return []; } }
-function saveRecent(a) { localStorage.setItem('wm_recent',  JSON.stringify(a.slice(0, 40))); }
-
-function toggleStar(e, path) {
-  e.stopPropagation();
-  const child = [...document.querySelectorAll('.file-item')].map(el => el._childData).find(c => c?.path === path);
-  if (!child) return;
-  let arr = getStarred();
-  const idx = arr.findIndex(s => s.path === path);
-  if (idx >= 0) { arr.splice(idx, 1); showToast('Removed from starred', 'info', 2000); }
-  else          { arr.unshift({ path: child.path, name: child.name, addedAt: new Date().toISOString() }); showToast('⭐ Starred!', 'success', 2000); }
-  saveStarred(arr);
-  renderFolder(currentNode);
-}
-
-function addToRecent(file) {
-  let arr = getRecent().filter(r => r.path !== file.path);
-  arr.unshift({ path: file.path, name: file.name, openedAt: new Date().toISOString() });
-  saveRecent(arr);
-}
-
-// ═══════════════════════════════════════════════════════════════
-// SEARCH (Fuse.js)
-// ═══════════════════════════════════════════════════════════════
-function buildSearchIndex(tree) {
-  fuseItems = [];
-  function walk(node, depth) {
-    if (depth > 12) return;
-    (node.children || []).forEach(c => {
-      if (c.type === 'file') {
-        fuseItems.push({
-          name: c.name,
-          path: c.path || c.name,
-          ext:  (c.name || '').split('.').pop().toLowerCase(),
-          _c:   c
-        });
-      } else walk(c, depth + 1);
-    });
-  }
-  walk(tree, 0);
-  fuseIndex = new Fuse(fuseItems, {
-    keys: ['name', 'path'],
-    threshold: 0.36,
-    includeMatches: true
-  });
-}
-
-let _srData = [], _srIdx = -1;
-
-function openSearch() {
-  document.getElementById('searchOverlay').classList.add('open');
-  const inp = document.getElementById('searchInput');
-  inp.value = '';
-  document.getElementById('searchResults').innerHTML = '<div class="sr-empty">Type to search files…</div>';
-  _srIdx = -1; _srData = [];
-  setTimeout(() => inp.focus(), 40);
-}
-
-function closeSearch() {
-  document.getElementById('searchOverlay').classList.remove('open');
-  document.getElementById('searchInput').value = '';
-  _srData = []; _srIdx = -1;
-}
-
-function searchBackdropClick(e) { if (e.target === document.getElementById('searchOverlay')) closeSearch(); }
-
-function onSearchInput() {
-  const q   = document.getElementById('searchInput').value.trim();
-  const res = document.getElementById('searchResults');
-  _srIdx = -1;
-  if (!q) { res.innerHTML = '<div class="sr-empty">Type to search files…</div>'; _srData = []; return; }
-  if (!fuseIndex) { res.innerHTML = '<div class="sr-empty">Index not ready yet.</div>'; return; }
-  _srData = fuseIndex.search(q).slice(0, 24);
-  if (!_srData.length) { res.innerHTML = `<div class="sr-empty">No results for "${escHTML(q)}"</div>`; return; }
-  res.innerHTML = _srData.map((r, i) => {
-    const { n, c } = EXT_ICON[r.item.ext] || EXT_ICON.default;
-    return `<div class="sr-item" data-i="${i}" onclick="openSrResult(${i})">
-      <div class="sr-icon"><i data-lucide="${n}" style="width:18px;height:18px;color:${c};"></i></div>
-      <div><div class="sr-name">${escHTML(r.item.name)}</div><div class="sr-path">${escHTML(r.item.path)}</div></div>
-    </div>`;
-  }).join('');
-  ri(res);
-}
-
-function onSearchKeydown(e) {
-  const items = document.querySelectorAll('.sr-item');
-  if (e.key === 'Escape') { closeSearch(); return; }
-  if (e.key === 'ArrowDown') {
-    e.preventDefault();
-    _srIdx = Math.min(_srIdx + 1, items.length - 1);
-    items.forEach((el, i) => el.classList.toggle('active', i === _srIdx));
-    items[_srIdx]?.scrollIntoView({ block:'nearest' });
-  } else if (e.key === 'ArrowUp') {
-    e.preventDefault();
-    _srIdx = Math.max(_srIdx - 1, 0);
-    items.forEach((el, i) => el.classList.toggle('active', i === _srIdx));
-    items[_srIdx]?.scrollIntoView({ block:'nearest' });
-  } else if (e.key === 'Enter' && _srIdx >= 0) {
-    openSrResult(_srIdx);
+    
+    // Add a small delay between each item animation
+    item.style.animationDelay = `${i * 30}ms`;
   }
 }
 
-function openSrResult(i) {
-  const r = _srData[i]; if (!r) return;
-  closeSearch();
-  const c = r.item._c;
-  addToRecent(c);
-  isMobile ? openMobilePreview(c.path, c.name) : openPreview(c.path, c.name);
+function startDrag(e, id) {
+  const el = windows[id];
+  if (!el) return;
+
+  const startX = e.clientX;
+  const startY = e.clientY;
+  const startLeft = parseInt(el.style.left, 10) || 0;
+  const startTop = parseInt(el.style.top, 10) || 0;
+
+  function onMouseMove(ev) {
+    el.style.left = startLeft + (ev.clientX - startX) + "px";
+    el.style.top = startTop + (ev.clientY - startY) + "px";
+  }
+
+  function onMouseUp() {
+    document.removeEventListener("mousemove", onMouseMove);
+    document.removeEventListener("mouseup", onMouseUp);
+  }
+
+  document.addEventListener("mousemove", onMouseMove);
+  document.addEventListener("mouseup", onMouseUp);
 }
 
-// ═══════════════════════════════════════════════════════════════
-// NAVIGATION
-// ═══════════════════════════════════════════════════════════════
 function updatePathNav() {
-  const segments = pathHistory.map((n, i) => ({ name: n.name, i }));
-  if (currentNode && pathHistory.length) segments.push({ name: currentNode.name, i: -1 });
+  const allSegments = []; // build full list first
 
-  const MAX = isMobile ? 2 : Infinity;
-  const trunc = segments.length > MAX;
-  const vis   = trunc ? segments.slice(-MAX) : segments;
+  // Build full path segment list
+  for (let i = 0; i < pathHistory.length; i++) {
+    allSegments.push({ name: pathHistory[i].name, action: `goToPath(${i})` });
+  }
+  if (currentNode && currentNode !== pathHistory[pathHistory.length - 1]) {
+    allSegments.push({ name: currentNode.name, action: null }); // current — not clickable
+  }
+
+  // On mobile truncate to last 2 segments with a … prefix
+  const maxVisible = isMobile ? 2 : Infinity;
+  const truncated = allSegments.length > maxVisible;
+  const visible = truncated ? allSegments.slice(-maxVisible) : allSegments;
 
   let html = `<span class="path-segment" onclick="goToRoot()">☁️</span>`;
-  if (trunc) html += `<span class="path-separator">/</span><span class="path-crumb-ellipsis">…</span>`;
-  vis.forEach(seg => {
+  if (truncated) {
+    html += `<span class="path-separator">/</span><span class="path-crumb-ellipsis">…</span>`;
+  }
+  visible.forEach(seg => {
     html += `<span class="path-separator">/</span>`;
-    html += seg.i >= 0
-      ? `<span class="path-segment" onclick="goToPathIdx(${seg.i})">${escHTML(seg.name)}</span>`
-      : `<span style="padding:0 4px">${escHTML(seg.name)}</span>`;
+    html += seg.action
+      ? `<span class="path-segment" onclick="${seg.action}">${seg.name}</span>`
+      : `<span class="path-segment">${seg.name}</span>`;
   });
-  document.getElementById('pathNav').innerHTML = html;
+
+  pathNav.innerHTML = html;
 }
 
-function goToRoot()        { fetchTree(); }
-function goUp()            { if (pathHistory.length) { currentNode = pathHistory.pop(); renderFolder(currentNode); updatePathNav(); } }
-function goToPathIdx(i)    { currentNode = pathHistory[i]; pathHistory = pathHistory.slice(0, i); renderFolder(currentNode); updatePathNav(); }
+function goToRoot() {
+  fetchTree(); // Refresh and go to root
+}
 
-// ═══════════════════════════════════════════════════════════════
-// DELETE
-// ═══════════════════════════════════════════════════════════════
-let _pendingDeletePath = null, _pendingDeleteName = null;
+function goToPath(index) {
+  currentNode = pathHistory[index];
+  pathHistory = pathHistory.slice(0, index);
+  renderFolder(currentNode);
+  updatePathNav();
+}
 
-function promptDelete(path, name) {
-  _pendingDeletePath = path; _pendingDeleteName = name;
+function goUp() {
+  if (pathHistory.length > 0) {
+    currentNode = pathHistory.pop();
+    renderFolder(currentNode);
+    updatePathNav();
+  }
+}
+
+function previewFile(e, index) {
+  e.stopPropagation();
+  const items = document.querySelectorAll('.file-item');
+  if (index >= 0 && index < items.length) {
+    // item.click() sets selected AND opens preview via its own onclick handler
+    items[index].click();
+  }
+}
+
+function downloadFile(e, index) {
+  e.stopPropagation();
+  const items = document.querySelectorAll('.file-item');
+  if (index >= 0 && index < items.length) {
+    // Fix #4: set selection directly using stored _childData — no click() to avoid opening a preview
+    document.querySelectorAll('.file-item.selected').forEach(el => el.classList.remove('selected'));
+    items[index].classList.add('selected');
+    selected = items[index]._childData;
+    handleDownload();
+  }
+}
+
+let _pendingDeletePath = null;
+let _pendingDeleteName = null;
+
+function deleteFile(e, index) {
+  e.stopPropagation();
+  if (!isAdmin()) return;
+  const items = document.querySelectorAll('.file-item');
+  if (index < 0 || index >= items.length) return;
+  const child = items[index]._childData;
+  _pendingDeletePath = child.path;
+  _pendingDeleteName = child.name;
+
   if (isMobile) {
-    document.getElementById('deleteMobileMsg').textContent = `"${name}" will be permanently removed.`;
-    showOverlay('deleteMobileOverlay');
+    document.getElementById('deleteMobileMsg').textContent =
+      `"${child.name}" will be permanently removed from the repository.`;
+    const o = document.getElementById('deleteMobileOverlay');
+    o.style.display = 'flex';
+    requestAnimationFrame(() => o.classList.add('active'));
   } else {
-    document.getElementById('deleteConfirmMsg').textContent = `"${name}" will be permanently removed. This cannot be undone.`;
+    document.getElementById('deleteConfirmMsg').textContent =
+      `"${child.name}" will be permanently removed from the repository. This cannot be undone.`;
     document.getElementById('deleteConfirm').style.display = 'flex';
   }
 }
 
 function cancelDeleteFile() {
-  _pendingDeletePath = _pendingDeleteName = null;
+  _pendingDeletePath = null;
+  _pendingDeleteName = null;
   document.getElementById('deleteConfirm').style.display = 'none';
-  hideOverlay('deleteMobileOverlay');
+  const o = document.getElementById('deleteMobileOverlay');
+  o.classList.remove('active');
+  setTimeout(() => { o.style.display = 'none'; }, 380);
 }
 
 async function confirmDeleteFile() {
-  if (!_pendingDeletePath) return;
-  const path = _pendingDeletePath, name = _pendingDeleteName;
+  if (!_pendingDeletePath || !_pendingDeleteName) return;
+  const path = _pendingDeletePath;
+  const name = _pendingDeleteName;
   cancelDeleteFile();
-  const t = showToast(`Deleting "${name}"…`, 'loading');
-  const gr = await ghProxy('getFile', { path });
-  if (!gr.ok || !gr.data.sha) { t.remove(); showToast('Could not locate file on GitHub', 'error'); return; }
-  const dr = await ghProxy('deleteFile', { path, sha: gr.data.sha, message: `Delete: ${path}` });
-  t.remove();
-  if (dr.ok) { showToast(`"${name}" deleted`, 'success'); fetchTree(); }
-  else        showToast(`Delete failed: ${dr.error}`, 'error');
+  showStatus(`Deleting "${name}"…`, true);
+  const getRes = await ghProxy('getFile', { path });
+  if (!getRes.ok || !getRes.data.sha) {
+    showStatus(`✗ Could not retrieve file info: ${getRes.error || 'file not found'}`);
+    return;
+  }
+  const delRes = await ghProxy('deleteFile', { path, sha: getRes.data.sha, message: `Delete: ${path}` });
+  if (delRes.ok) {
+    showStatus(`✓ "${name}" deleted.`);
+    fetchTree();
+  } else {
+    showStatus(`✗ Delete failed: ${delRes.error}`);
+  }
 }
 
-<<<<<<< HEAD
-// ═══════════════════════════════════════════════════════════════
-// UPDATE CHECK
-// ═══════════════════════════════════════════════════════════════
-function scheduleUpdateCheck() {
-  setInterval(async () => {
-    if (updateDismissed) return;
-    const r = await ghProxy('latestCommit');
-    if (r.ok && r.data.sha && lastKnownCommitSha && r.data.sha !== lastKnownCommitSha) {
-      document.getElementById('updateNotice').style.display = 'flex';
-=======
 function closeWindow(id) {
   const win = windows[id];
   if (win) {
@@ -2675,7 +2185,7 @@ async function fetchFileContent(path, filename, container) {
   // For private repos, Vercel serves all deployed files as public static assets at their
   // relative paths — no proxy needed. Only Office documents need /api/raw because the
   // Office Online viewer fetches from Microsoft's servers, not from the Vercel deployment.
-  const rawUrl = `https://ada-one-rho.vercel.app/api/raw?path=${encodeURIComponent(path)}`;
+  const rawUrl = `${window.location.origin}/api/raw?path=${encodeURIComponent(path)}`;
 
   try {
     if (/\.(png|jpe?g|gif|bmp|webp|svg)$/i.test(filename)) {
@@ -2722,23 +2232,16 @@ async function fetchFileContent(path, filename, container) {
       } catch (error) {
         container.innerHTML = `<div class="error">Error loading file: ${error.message}</div>`;
       }
->>>>>>> 792ab1da79b53933b131352125d0aa76ad02a13a
     }
-  }, 25000);
+  } catch (error) {
+    container.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+  }
 }
 
-function dismissUpdateNotice() {
-  updateDismissed = true;
-  document.getElementById('updateNotice').style.display = 'none';
+function escapeHTML(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
-<<<<<<< HEAD
-// ═══════════════════════════════════════════════════════════════
-// OVERLAY HELPERS
-// ═══════════════════════════════════════════════════════════════
-function showOverlay(id) { document.getElementById(id)?.classList.add('active'); }
-function hideOverlay(id) { document.getElementById(id)?.classList.remove('active'); }
-=======
 document.addEventListener("click", (e) => {
   const isItem = e.target.closest(".file-item");
   const isContext = e.target.closest(".context-menu");
@@ -2895,7 +2398,7 @@ let currentSession = null;
 // /api/gh returns only the SAToken to the browser — the PAT stays server-side always.
 async function loadWmConfig() {
   try {
-    const r = await fetch('https://ada-one-rho.vercel.app/api/gh', {
+    const r = await fetch('/api/gh', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ action: 'config' })
@@ -2986,11 +2489,7 @@ function dismissGuidance() {
   o.classList.remove('active');
   setTimeout(() => { o.style.display = 'none'; }, 380);
 }
->>>>>>> 792ab1da79b53933b131352125d0aa76ad02a13a
 
-// ═══════════════════════════════════════════════════════════════
-// GUIDANCE
-// ═══════════════════════════════════════════════════════════════
 function switchGuideTab(tab) {
   document.getElementById('guideDesktop').style.display = tab === 'desktop' ? '' : 'none';
   document.getElementById('guideMobile').style.display  = tab === 'mobile'  ? '' : 'none';
@@ -2998,1506 +2497,168 @@ function switchGuideTab(tab) {
   document.getElementById('guideTabMobile').classList.toggle('active',  tab === 'mobile');
 }
 
-function dismissGuidance() {
-  hideOverlay('guidanceOverlay');
-  localStorage.setItem('wm_guidance_seen', '1');
-}
-
-// ═══════════════════════════════════════════════════════════════
-// COMMUNITY
-// ═══════════════════════════════════════════════════════════════
-function openCommunity() { window.open('community/community.html', '_blank'); }
-
-// ═══════════════════════════════════════════════════════════════
-// VERCEL POPUP
-// ═══════════════════════════════════════════════════════════════
-function goToVercel() {
-  const url = localStorage.getItem('wm_vercel_url');
-  if (url) window.location.href = url;
-}
-function dismissVercelPopup() {
-  document.getElementById('vercelPopup').classList.remove('visible');
-  localStorage.setItem('wm_vercel_dismissed', '1');
-}
-
-// ═══════════════════════════════════════════════════════════════
-// MOBILE TOOLBAR OVERFLOW
-// ═══════════════════════════════════════════════════════════════
-function toggleMobOverflow() { document.getElementById('mobOverflowMenu').classList.toggle('open'); }
-function closeMobOverflow()  { document.getElementById('mobOverflowMenu').classList.remove('open'); }
-
-// ═══════════════════════════════════════════════════════════════
-// MOBILE MINIMISED WINDOW STACK
-// ═══════════════════════════════════════════════════════════════
-function toggleMobHam() { document.getElementById('mobHamDropdown').classList.toggle('open'); }
-
-document.addEventListener('click', e => {
-  if (!e.target.closest('#mobileMinStack')) document.getElementById('mobHamDropdown')?.classList.remove('open');
-});
-
-function renderMobMinStack() {
-  const stack = document.getElementById('mobileMinStack');
-  const drop  = document.getElementById('mobHamDropdown');
-  const entries = Object.entries(mobileMin);
-  if (!isMobile || !entries.length) { stack.style.display = 'none'; return; }
-  stack.style.display = 'flex';
-  document.getElementById('mobHamBtn').textContent = `☰ ${entries.length}`;
-  drop.innerHTML = entries.map(([id, info]) =>
-    `<button class="mob-min-btn" onclick="restoreWindowMobile('${id}')">
-      <i data-lucide="file-text" style="width:14px;height:14px;"></i> ${escHTML(info.name)}
-    </button>`
-  ).join('');
-  ri(drop);
-}
-
-function minimizeWindowMobile(id) {
-  const w = windows[id]; if (!w) return;
-  const name = w.querySelector('.title')?.textContent || 'File';
-  w.style.display = 'none';
-  mobileMin[id]   = { name };
-  renderMobMinStack();
-}
-
-function restoreWindowMobile(id) {
-  // minimise all open windows first
-  Object.entries(windows).forEach(([wid, w]) => {
-    if (w.style.display !== 'none') { w.style.display = 'none'; mobileMin[wid] = { name: w.querySelector('.title')?.textContent || 'File' }; }
-  });
-  const w = windows[id]; if (w) { w.style.display = 'flex'; delete mobileMin[id]; }
-  renderMobMinStack();
-}
-</script>
-
-<script>
-'use strict';
-// ═══════════════════════════════════════════════════════════════
-// MARKDOWN RENDERING
-// ═══════════════════════════════════════════════════════════════
-function markdownToHTML(text, filePath) {
-  window._currentNotePath = filePath || '';
-  return window.md.render(text);
-}
-
-function initMarkdownFeatures(wrapper) {
-  // syntax highlight
-  if (typeof hljs !== 'undefined') {
-    wrapper.querySelectorAll('pre code').forEach(el => {
-      if (!el.classList.contains('hljs')) hljs.highlightElement(el);
-    });
-  }
-  // KaTeX — inline $…$ and block $$…$$
-  if (typeof katex !== 'undefined') {
-    wrapper.querySelectorAll('.math-inline').forEach(el => {
-      try { katex.render(el.textContent, el, { throwOnError: false }); } catch (_) {}
-    });
-    wrapper.querySelectorAll('.math-block').forEach(el => {
-      try { katex.render(el.textContent, el, { throwOnError: false, displayMode: true }); } catch (_) {}
-    });
-  }
-  // Mermaid diagrams
-  if (typeof mermaid !== 'undefined') {
-    wrapper.querySelectorAll('.mermaid').forEach((el, i) => {
-      const src = el.textContent.trim();
-      el.removeAttribute('data-processed');
-      el.textContent = src;
-      mermaid.render('mermaid-' + Date.now() + '-' + i, src)
-        .then(({ svg }) => { el.innerHTML = svg; })
-        .catch(err => { el.textContent = 'Mermaid error: ' + err.message; });
-    });
-  }
-  // Lucide icons inside rendered markdown
-  ri(wrapper);
-}
-
-// ═══════════════════════════════════════════════════════════════
-// OPEN PREVIEW WINDOW
-// ═══════════════════════════════════════════════════════════════
-function openPreview(path, filename) {
-  const id  = 'pw-' + (++previewIdSeq);
-  const ext = ((filename || path).split('.').pop() || '').toLowerCase();
-  const isMd = ['md','markdown'].includes(ext);
-
-  previewMeta[id] = { path, filename, ext };
-
-  // ── Build title-bar extra buttons ──
-  let extras = '';
-  if (isMd || ext === 'txt') {
-    extras += `
-      <div class="tb-divider"></div>
-      <button title="Copy Markdown"   onclick="copyRaw('${id}')">
-        <i data-lucide="copy"      style="width:13px;height:13px;"></i>
-      </button>
-      <button title="Copy plain text" onclick="copyPlain('${id}')">
-        <i data-lucide="clipboard" style="width:13px;height:13px;"></i>
-      </button>`;
-  }
-  extras += `
-    <button title="Print" onclick="printPreview('${id}')">
-      <i data-lucide="printer"   style="width:13px;height:13px;"></i>
-    </button>`;
-  if (isMd) {
-    extras += `
-      <button title="Encrypted share link" onclick="openShareDialog('${id}')">
-        <i data-lucide="share-2"  style="width:13px;height:13px;"></i>
-      </button>
-      <button title="Version history"      onclick="toggleHistory('${id}')">
-        <i data-lucide="clock"    style="width:13px;height:13px;"></i>
-      </button>`;
-    if (isAdmin() && hasPerm('modify')) {
-      extras += `
-      <button title="Edit note" onclick="openEditor('${escHTML(path)}','${escHTML(filename)}')">
-        <i data-lucide="edit-3"   style="width:13px;height:13px;"></i>
-      </button>`;
-    }
-  }
-
-  // ── Window element ──
-  const win = document.createElement('div');
-  win.className  = 'floating-window';
-  win.dataset.id = id;
-
-  const offset = (previewIdSeq % 9) * 22;
-  if (isMobile) {
-    win.style.cssText = 'top:0;left:0;width:100vw;height:100vh;border-radius:0;';
-  } else {
-    win.style.top    = (80 + offset) + 'px';
-    win.style.left   = (80 + offset) + 'px';
-  }
-
-  win.innerHTML = `
-    <div class="title-bar" onmousedown="startDrag(event,'${id}')">
-      <div class="title">${escHTML(filename)}</div>
-      <div class="buttons">
-        ${extras}
-        <div class="tb-divider"></div>
-        <button title="Minimise"   onclick="${isMobile ? `minimizeWindowMobile('${id}')` : `minimizeWindow('${id}')`}">
-          <i data-lucide="minus"        style="width:14px;height:14px;"></i>
-        </button>
-        ${!isMobile ? `<button title="Fullscreen" onclick="toggleFullscreen('${id}')">
-          <i data-lucide="maximize-2"   style="width:14px;height:14px;"></i>
-        </button>` : ''}
-        <button title="Close"      onclick="closeWindow('${id}')">
-          <i data-lucide="x"            style="width:14px;height:14px;"></i>
-        </button>
-      </div>
-    </div>
-    <div class="preview-inner">
-      <div class="preview-body" id="${id}-body">
-        <div style="display:flex;justify-content:center;align-items:center;height:100%;opacity:.5;">
-          <i data-lucide="loader" class="spin" style="width:24px;height:24px;"></i>
-        </div>
-      </div>
-      <div class="history-panel" id="${id}-hist"></div>
-    </div>`;
-
-  document.getElementById('previewContainer').appendChild(win);
-  windows[id] = win;
-  ri(win);
-
-  // Load content
-  const body = document.getElementById(id + '-body');
-  renderFileContent(path, filename, ext, body);
-
-  if (!isMobile) {
-    // Auto-fullscreen rich documents
-    if (['md','markdown','pdf','html','htm','doc','docx','xls','xlsx','ppt','pptx'].includes(ext)) {
-      setTimeout(() => toggleFullscreen(id, true), 60);
-    }
-    updateTaskbar();
-  }
-}
-
-// ═══════════════════════════════════════════════════════════════
-// FILE CONTENT RENDERER
-// ═══════════════════════════════════════════════════════════════
-async function renderFileContent(path, filename, ext, container) {
-  try {
-    // ── Images ──
-    if (/\.(png|jpe?g|gif|bmp|webp|svg)$/i.test(filename)) {
-      container.innerHTML = `<img src="${escHTML(path)}"
-        style="max-width:100%;height:auto;display:block;margin:auto;border-radius:6px;"
-        alt="${escHTML(filename)}" />`;
-      return;
-    }
-
-    // ── Audio ──
-    if (/\.(mp3|wav|ogg|flac|aac)$/i.test(filename)) {
-      container.innerHTML = `<div style="padding:32px;text-align:center;">
-        <i data-lucide="music" style="width:48px;height:48px;opacity:.4;margin-bottom:20px;"></i>
-        <br><audio controls src="${escHTML(path)}" style="width:100%;max-width:480px;"></audio>
-      </div>`;
-      ri(container); return;
-    }
-
-    // ── Video ──
-    if (/\.(mp4|webm|ogg|mov)$/i.test(filename)) {
-      container.innerHTML = `<video controls src="${escHTML(path)}"
-        style="max-width:100%;max-height:100%;display:block;margin:auto;"></video>`;
-      return;
-    }
-
-    // ── PDF — PDF.js ──
-    if (ext === 'pdf') {
-      await renderPDF(path, filename, container);
-      return;
-    }
-
-    // ── Office docs — Office Online viewer ──
-    if (/\.(docx?|xlsx?|pptx?)$/i.test(filename)) {
-      const rawUrl    = `${location.origin}/api/raw?path=${encodeURIComponent(path)}`;
-      const viewerUrl = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(rawUrl)}`;
-      container.style.cssText = 'padding:0;overflow:hidden;display:flex;flex-direction:column;height:100%;';
-      container.innerHTML = `<iframe src="${escHTML(viewerUrl)}"
-        style="flex:1;width:100%;border:none;display:block;" allowfullscreen></iframe>`;
-      return;
-    }
-
-    // ── HTML ──
-    if (/\.(html?|htm)$/i.test(filename)) {
-      container.style.cssText = 'padding:0;overflow:hidden;display:flex;flex-direction:column;height:100%;';
-      container.innerHTML = `<iframe src="${escHTML(path)}"
-        style="flex:1;width:100%;border:none;display:block;"></iframe>`;
-      return;
-    }
-
-    // ── Markdown ──
-    if (['md','markdown'].includes(ext)) {
-      const r = await fetch(path);
-      if (!r.ok) throw new Error(`HTTP ${r.status}`);
-      const text = await r.text();
-      const wrap = document.createElement('div');
-      wrap.className = 'markdown-content';
-      wrap.innerHTML = markdownToHTML(text, path);
-      container.innerHTML = '';
-      container.appendChild(wrap);
-      setTimeout(() => initMarkdownFeatures(wrap), 0);
-      return;
-    }
-
-    // ── Plain text / code ──
-    const r = await fetch(path);
-    if (!r.ok) throw new Error(`HTTP ${r.status}`);
-    const text = await r.text();
-    container.innerHTML = `<pre>${escHTML(text)}</pre>`;
-
-  } catch (e) {
-    container.innerHTML = `<div class="err-block">
-      Could not load file: ${escHTML(e.message)}<br>
-      <a href="${escHTML(path)}" target="_blank"
-         style="color:var(--accent);font-size:13px;">Open directly ↗</a>
-    </div>`;
-  }
-}
-
-// ═══════════════════════════════════════════════════════════════
-// PDF.js RENDERER
-// ═══════════════════════════════════════════════════════════════
-async function renderPDF(path, filename, container) {
-  if (typeof pdfjsLib === 'undefined') {
-    // Fallback: iframe
-    container.style.cssText = 'padding:0;display:flex;flex-direction:column;height:100%;';
-    container.innerHTML = `<iframe src="${escHTML(path)}"
-      style="flex:1;width:100%;border:none;"></iframe>`;
-    return;
-  }
-
-  const uid = 'pdf-' + Math.random().toString(36).slice(2, 8);
-
-  // Outer layout
-  container.style.cssText = 'padding:0;display:flex;flex-direction:column;height:100%;overflow:hidden;';
-  container.innerHTML = `
-    <div class="pdf-toolbar" id="${uid}-tb">
-      <button class="pdf-btn" id="${uid}-prev" disabled title="Previous page">
-        <i data-lucide="chevron-left"  style="width:14px;height:14px;"></i>
-      </button>
-      <span id="${uid}-info" style="min-width:76px;text-align:center;font-size:13px;">Loading…</span>
-      <button class="pdf-btn" id="${uid}-next" disabled title="Next page">
-        <i data-lucide="chevron-right" style="width:14px;height:14px;"></i>
-      </button>
-      <div style="width:1px;height:18px;background:rgba(255,255,255,.2);margin:0 4px;"></div>
-      <button class="pdf-btn" id="${uid}-zout" disabled title="Zoom out">
-        <i data-lucide="zoom-out"      style="width:14px;height:14px;"></i>
-      </button>
-      <span id="${uid}-zoom" style="min-width:42px;text-align:center;font-size:13px;">150%</span>
-      <button class="pdf-btn" id="${uid}-zin"  disabled title="Zoom in">
-        <i data-lucide="zoom-in"       style="width:14px;height:14px;"></i>
-      </button>
-      <div style="flex:1;"></div>
-      <span style="font-size:11px;opacity:.45;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
-        ${escHTML(filename)}
-      </span>
-    </div>
-    <div class="pdf-canvas-wrap" id="${uid}-wrap">
-      <canvas id="${uid}-canvas"></canvas>
-    </div>`;
-
-  ri(document.getElementById(uid + '-tb'));
-
-  const canvas  = document.getElementById(uid + '-canvas');
-  const ctx     = canvas.getContext('2d');
-  let pdf       = null;
-  let curPage   = 1;
-  let curScale  = 1.5;
-  let rendering = false;
-
-  async function renderPage(pageNum, scale) {
-    if (rendering || !pdf) return;
-    rendering = true;
-    try {
-      const page     = await pdf.getPage(pageNum);
-      const viewport = page.getViewport({ scale });
-      canvas.width   = viewport.width;
-      canvas.height  = viewport.height;
-      canvas.style.maxWidth = '100%';
-      await page.render({ canvasContext: ctx, viewport }).promise;
-      document.getElementById(uid + '-info').textContent  = `${pageNum} / ${pdf.numPages}`;
-      document.getElementById(uid + '-zoom').textContent  = Math.round(scale * 100) + '%';
-      document.getElementById(uid + '-prev').disabled     = pageNum <= 1;
-      document.getElementById(uid + '-next').disabled     = pageNum >= pdf.numPages;
-    } catch (_) {}
-    finally { rendering = false; }
-  }
-
-  const btn = id => document.getElementById(uid + '-' + id);
-  btn('prev').onclick = () => { if (curPage > 1)                    { curPage--;  renderPage(curPage, curScale); } };
-  btn('next').onclick = () => { if (pdf && curPage < pdf.numPages)  { curPage++;  renderPage(curPage, curScale); } };
-  btn('zout').onclick = () => { curScale = Math.max(0.5,  +(curScale - 0.25).toFixed(2)); renderPage(curPage, curScale); };
-  btn('zin').onclick  = () => { curScale = Math.min(4.0,  +(curScale + 0.25).toFixed(2)); renderPage(curPage, curScale); };
-
-  try {
-    pdf = await pdfjsLib.getDocument(path).promise;
-    ['prev','next','zout','zin'].forEach(k => btn(k).disabled = false);
-    await renderPage(1, curScale);
-  } catch (e) {
-    container.innerHTML = `<div class="err-block" style="margin:20px;">
-      Could not load PDF: ${escHTML(e.message)}<br><br>
-      <a href="${escHTML(path)}" target="_blank" style="color:var(--accent);">Open in new tab ↗</a>
-    </div>`;
-  }
-}
-
-// ═══════════════════════════════════════════════════════════════
-// TITLE-BAR ACTIONS
-// ═══════════════════════════════════════════════════════════════
-
-// Copy raw markdown
-async function copyRaw(id) {
-  const m = previewMeta[id]; if (!m) return;
-  try {
-    const r = await fetch(m.path);
-    await navigator.clipboard.writeText(await r.text());
-    showToast('Markdown copied!', 'success', 2000);
-  } catch { showToast('Copy failed', 'error'); }
-}
-
-// Copy rendered plain text
-async function copyPlain(id) {
-  const body = document.getElementById(id + '-body');
-  if (!body) return;
-  try {
-    await navigator.clipboard.writeText(body.innerText || body.textContent || '');
-    showToast('Plain text copied!', 'success', 2000);
-  } catch { showToast('Copy failed', 'error'); }
-}
-
-// Print
-function printPreview(id) {
-  const body = document.getElementById(id + '-body');
-  if (!body) return;
-  const w = window.open('', '_blank');
-  w.document.write(`<!DOCTYPE html><html><head><title>Print</title>
-    <style>
-      body { font-family: Georgia, serif; max-width: 720px; margin: 40px auto; line-height: 1.7; color: #202124; }
-      pre  { background: #f6f8fa; padding: 12px; border-radius: 6px; overflow: auto; font-size: 13px; }
-      img  { max-width: 100%; border-radius: 6px; }
-      a    { color: #1a73e8; }
-    </style>
-    </head><body>${body.innerHTML}</body></html>`);
-  w.document.close();
-  w.focus();
-  setTimeout(() => w.print(), 300);
-}
-
-// ═══════════════════════════════════════════════════════════════
-// HISTORY PANEL
-// ═══════════════════════════════════════════════════════════════
-async function toggleHistory(id) {
-  const panel = document.getElementById(id + '-hist');
-  const meta  = previewMeta[id];
-  if (!panel || !meta) return;
-
-  if (panel.classList.contains('open')) { panel.classList.remove('open'); return; }
-
-  panel.classList.add('open');
-  panel.innerHTML = `<div class="hp-header">Version history</div><div class="h-spin">Loading…</div>`;
-
-  const res = await ghProxy('fileHistory', { path: meta.path });
-  if (!res.ok || !Array.isArray(res.data.commits) || !res.data.commits.length) {
-    panel.innerHTML = `<div class="hp-header">Version history</div>
-      <div class="h-spin">No history found.</div>`;
-    return;
-  }
-
-  const commits = res.data.commits;
-  panel.innerHTML = `<div class="hp-header">History (${commits.length})</div>` +
-    commits.map(c => `
-      <div class="h-item" onclick="viewAtCommit('${id}','${escHTML(meta.path)}','${c.sha}')">
-        <div class="h-sha">${c.sha.slice(0, 7)}</div>
-        <div class="h-msg">${escHTML((c.commit.message || '').split('\n')[0])}</div>
-        <div class="h-date">${new Date(c.commit.author.date).toLocaleDateString()}</div>
-      </div>`).join('');
-}
-
-async function viewAtCommit(windowId, path, commitSha) {
-  const body = document.getElementById(windowId + '-body');
-  const meta = previewMeta[windowId];
-  if (!body || !meta) return;
-
-  const t = showToast('Loading historical version…', 'loading');
-  const res = await ghProxy('getFileAtCommit', { path, commitSha });
-  t.remove();
-
-  if (!res.ok || !res.data.content) { showToast('Could not load this version', 'error'); return; }
-
-  const raw = atob(res.data.content);
-  const text = new TextDecoder().decode(Uint8Array.from(raw, ch => ch.charCodeAt(0)));
-
-  const notice = `<div style="background:rgba(255,165,0,.1);border:1px solid rgba(255,165,0,.3);
-    border-radius:8px;padding:8px 14px;font-size:12px;margin-bottom:12px;color:var(--fg);">
-    📜 Historical version — commit <code>${commitSha.slice(0,7)}</code>
-  </div>`;
-
-  const ext = (meta.filename || path).split('.').pop().toLowerCase();
-  if (['md','markdown'].includes(ext)) {
-    const wrap = document.createElement('div');
-    wrap.className = 'markdown-content';
-    wrap.innerHTML = markdownToHTML(text, path);
-    body.innerHTML = notice;
-    body.appendChild(wrap);
-    setTimeout(() => initMarkdownFeatures(wrap), 0);
-  } else {
-    body.innerHTML = notice + `<pre>${escHTML(text)}</pre>`;
-  }
-}
-
-// ═══════════════════════════════════════════════════════════════
-// WINDOW MANAGEMENT
-// ═══════════════════════════════════════════════════════════════
-
-// Drag
-function startDrag(e, id) {
-  if (e.target.tagName === 'BUTTON' || e.target.tagName === 'I') return;
-  const win = windows[id]; if (!win || win.classList.contains('fullscreen')) return;
-  const sx = e.clientX, sy = e.clientY;
-  const sl = parseInt(win.style.left) || 0;
-  const st = parseInt(win.style.top)  || 0;
-  function onMove(ev) {
-    win.style.left = (sl + ev.clientX - sx) + 'px';
-    win.style.top  = (st + ev.clientY - sy) + 'px';
-  }
-  function onUp() {
-    document.removeEventListener('mousemove', onMove);
-    document.removeEventListener('mouseup',   onUp);
-  }
-  document.addEventListener('mousemove', onMove);
-  document.addEventListener('mouseup',   onUp);
-}
-
-// Minimise (desktop)
-function minimizeWindow(id) {
-  const w = windows[id]; if (!w) return;
-  w.style.display = 'none';
-  updateTaskbar();
-}
-
-// Close
-function closeWindow(id) {
-  const w = windows[id]; if (!w) return;
-  w.remove();
-  delete windows[id];
-  delete previewMeta[id];
-  delete mobileMin[id];
-  isMobile ? renderMobMinStack() : updateTaskbar();
-}
-
-// Fullscreen toggle
-function toggleFullscreen(id, forceOn) {
-  const w = windows[id]; if (!w) return;
-  const isFull = w.classList.contains('fullscreen');
-  if (forceOn && !isFull)  { w.classList.add('fullscreen'); return; }
-  if (isFull) {
-    w.classList.remove('fullscreen');
-    w.style.top = '100px'; w.style.left = '100px';
-    w.style.width = '80vw'; w.style.height = '80vh';
-  } else {
-    w.classList.add('fullscreen');
-  }
-}
-
-// ── Desktop taskbar ───────────────────────────────────────────
-function updateTaskbar() {
-  if (isMobile) return;
-  const tb   = document.getElementById('taskbar');
-  const mins = Object.entries(windows).filter(([, el]) => el.style.display === 'none');
-  if (!mins.length) { tb.style.display = 'none'; tb.innerHTML = ''; return; }
-  tb.style.display = 'flex';
-  tb.innerHTML = '';
-  mins.forEach(([id, el]) => {
-    const name = el.querySelector('.title')?.textContent || 'File';
-    const btn  = document.createElement('div');
-    btn.className    = 'task-btn';
-    btn.dataset.name = name;
-    btn.innerHTML    = `<i data-lucide="file-text" style="width:13px;height:13px;"></i> ${escHTML(name)}`;
-    btn.onclick = () => { el.style.display = 'flex'; updateTaskbar(); };
-    btn.oncontextmenu = ev => {
-      ev.preventDefault();
-      showTaskbarCtxMenu(ev.pageX, ev.pageY, id);
-    };
-    tb.appendChild(btn);
-    ri(btn);
-  });
-}
-
-function showTaskbarCtxMenu(x, y, id) {
-  const m = document.getElementById('taskbarCtxMenu');
-  m.innerHTML = `
-    <button onclick="restoreFromTaskbar('${id}')">
-      <i data-lucide="maximize-2" style="width:13px;height:13px;"></i> Restore
-    </button>
-    <button onclick="closeWindow('${id}')">
-      <i data-lucide="x"          style="width:13px;height:13px;"></i> Close
-    </button>`;
-  m.style.top = y + 'px'; m.style.left = x + 'px'; m.style.display = 'flex';
-  ri(m);
-}
-
-function restoreFromTaskbar(id) {
-  const w = windows[id]; if (w) { w.style.display = 'flex'; updateTaskbar(); }
-}
-
-document.addEventListener('click', () => {
-  document.getElementById('taskbarCtxMenu').style.display = 'none';
-});
-
-// ═══════════════════════════════════════════════════════════════
-// MOBILE FULL-SCREEN PREVIEW
-// ═══════════════════════════════════════════════════════════════
-function openMobilePreview(path, filename) {
-  const ext = ((filename || path).split('.').pop() || '').toLowerCase();
-  document.getElementById('mobilePreviewTitle').textContent = filename;
-  const body = document.getElementById('mobilePreviewContent');
-  body.innerHTML = `<div style="display:flex;justify-content:center;padding:40px;opacity:.5;">
-    <i data-lucide="loader" class="spin" style="width:28px;height:28px;"></i>
-  </div>`;
-  ri(body);
-  document.getElementById('mobilePreview').style.display = 'flex';
-  renderFileContent(path, filename, ext, body);
-}
-
-function closeMobilePreview() {
-  document.getElementById('mobilePreview').style.display = 'none';
-  document.getElementById('mobilePreviewContent').innerHTML = '';
-}
-
-// ═══════════════════════════════════════════════════════════════
-// SHARE DIALOG — opens the share overlay for a given preview
-// (crypto logic is in Part F)
-// ═══════════════════════════════════════════════════════════════
-function openShareDialog(windowId, overridePath) {
-  _shareWindowId = windowId;
-  // store path on overlay so Part F can pick it up
-  const overlay = document.getElementById('shareOverlay');
-  overlay.dataset.path = overridePath || (windowId ? (previewMeta[windowId]?.path || '') : '');
-  document.getElementById('sharePassInput').value = '';
-  document.getElementById('shareLinkWrap').style.display = 'none';
-  document.getElementById('shareLinkBox').textContent    = '';
-  showOverlay('shareOverlay');
-}
-
-function hideShareOverlay() { hideOverlay('shareOverlay'); }
-
-function copyShareLink() {
-  const txt = document.getElementById('shareLinkBox').textContent;
-  if (!txt) return;
-  navigator.clipboard.writeText(txt)
-    .then(() => showToast('Link copied!', 'success', 2000))
-    .catch(()  => showToast('Copy failed', 'error'));
-}
-</script>
-
-<script>
-'use strict';
-// ═══════════════════════════════════════════════════════════════
-// EDITOR STATE
-// ═══════════════════════════════════════════════════════════════
-let _editorPath    = null;   // null = new note
-let _editorOrigSha = null;   // sha of existing file on GitHub
-let _editorDirty   = false;  // unsaved changes
-let _previewTimer  = null;   // debounce handle for live preview
-
-// ═══════════════════════════════════════════════════════════════
-// OPEN EDITOR
-// ═══════════════════════════════════════════════════════════════
-async function openEditor(path, filename) {
-  if (!isAdmin()) { showToast('Editor requires admin access', 'error'); return; }
-
-  const isNew     = !path;
-  const canCreate = hasPerm('create');
-  const canModify = hasPerm('modify');
-
-  if ( isNew && !canCreate) { showToast('You need Create permission to create notes', 'error'); return; }
-  if (!isNew && !canModify) { showToast('You need Modify permission to edit notes',   'error'); return; }
-
-  _editorPath    = path || null;
-  _editorOrigSha = null;
-  _editorDirty   = false;
-
-  const fnInput  = document.getElementById('editorFilename');
-  const pane     = document.getElementById('editorPane');
-  const badge    = document.getElementById('editorPermBadge');
-  const tagInput = document.getElementById('editorTagInput');
-
-  // Reset
-  tagInput.value = '';
-  pane.value     = '';
-  document.getElementById('editorPreviewContent').innerHTML = '';
-
-  if (isNew) {
-    fnInput.value       = '';
-    fnInput.readOnly    = false;
-    fnInput.placeholder = 'filename.md';
-    badge.textContent   = '✨ New note';
-    document.getElementById('editorOverlay').classList.add('active');
-    ri(document.getElementById('editorOverlay'));
-    setTimeout(() => fnInput.focus(), 80);
-    return;
-  }
-
-  // Editing existing file
-  fnInput.value    = filename || path.split('/').pop();
-  fnInput.readOnly = true;
-  badge.textContent = '✏️ Editing existing note';
-  pane.disabled     = true;
-  pane.value        = 'Loading…';
-  document.getElementById('editorOverlay').classList.add('active');
-  ri(document.getElementById('editorOverlay'));
-
-  const t   = showToast('Loading note…', 'loading');
-  const res = await ghProxy('getFileContent', { path });
-  t.remove();
-
-  if (!res.ok || !res.data.content) {
-    pane.value    = '';
-    pane.disabled = false;
-    if (res.error) showToast('Load error: ' + res.error, 'error');
-    return;
-  }
-
-  const raw  = atob(res.data.content);
-  const text = new TextDecoder().decode(Uint8Array.from(raw, c => c.charCodeAt(0)));
-
-  _editorOrigSha = res.data.sha;
-  pane.disabled  = false;
-  pane.value     = text;
-
-  // Extract tags from frontmatter
-  try {
-    const fm   = parseFrontmatter(text);
-    let   tags = fm.tags || [];
-    if (typeof tags === 'string') tags = tags.split(',').map(s => s.trim()).filter(Boolean);
-    tagInput.value = Array.isArray(tags) ? tags.join(', ') : String(tags);
-  } catch (_) {}
-
-  _updateEditorPreview();
-  setTimeout(() => pane.focus(), 80);
-}
-
-// ═══════════════════════════════════════════════════════════════
-// LIVE PREVIEW (debounced)
-// ═══════════════════════════════════════════════════════════════
-function _updateEditorPreview() {
-  const pane    = document.getElementById('editorPane');
-  const preview = document.getElementById('editorPreviewContent');
-  if (!pane || !preview) return;
-
-  let text = pane.value;
-
-  // Inject tags so preview shows them rendered
-  const tagRaw = document.getElementById('editorTagInput')?.value.trim();
-  if (tagRaw && !/^---/.test(text)) {
-    const tags = tagRaw.split(',').map(s => s.trim()).filter(Boolean);
-    text = `---\ntags: [${tags.join(', ')}]\n---\n\n` + text;
-  }
-
-  preview.innerHTML = markdownToHTML(text, _editorPath || '');
-  setTimeout(() => initMarkdownFeatures(preview), 0);
-}
-
-// Wire events after DOM ready
-document.addEventListener('DOMContentLoaded', () => {
-  const pane     = document.getElementById('editorPane');
-  const tagInput = document.getElementById('editorTagInput');
-
-  if (pane) {
-    pane.addEventListener('input', () => {
-      _editorDirty = true;
-      clearTimeout(_previewTimer);
-      _previewTimer = setTimeout(_updateEditorPreview, 280);
-    });
-
-    // Tab → two spaces (keeps focus in textarea)
-    pane.addEventListener('keydown', e => {
-      if (e.key !== 'Tab') return;
-      e.preventDefault();
-      const s = pane.selectionStart, en = pane.selectionEnd;
-      pane.value = pane.value.slice(0, s) + '  ' + pane.value.slice(en);
-      pane.selectionStart = pane.selectionEnd = s + 2;
-    });
-  }
-
-  if (tagInput) {
-    tagInput.addEventListener('input', () => {
-      _editorDirty = true;
-      clearTimeout(_previewTimer);
-      _previewTimer = setTimeout(_updateEditorPreview, 280);
-    });
-  }
-});
-
-// ═══════════════════════════════════════════════════════════════
-// CLOSE EDITOR
-// ═══════════════════════════════════════════════════════════════
-function closeEditor(force) {
-  if (!force && _editorDirty) {
-    if (!confirm('You have unsaved changes. Discard and close?')) return;
-  }
-  document.getElementById('editorOverlay').classList.remove('active');
-  _editorPath    = null;
-  _editorOrigSha = null;
-  _editorDirty   = false;
-  document.getElementById('editorPane').value              = '';
-  document.getElementById('editorFilename').value          = '';
-  document.getElementById('editorTagInput').value          = '';
-  document.getElementById('editorPreviewContent').innerHTML = '';
-}
-
-// ═══════════════════════════════════════════════════════════════
-// SAVE NOTE
-// ═══════════════════════════════════════════════════════════════
-async function saveNote() {
-  const isNew   = !_editorPath;
-  const pane    = document.getElementById('editorPane');
-  const fnInput = document.getElementById('editorFilename');
-  const saveBtn = document.getElementById('editorSaveBtn');
-
-  // ── Resolve target path ──
-  let targetPath = _editorPath;
-  if (isNew) {
-    let fn = fnInput.value.trim();
-    if (!fn) { showToast('Please enter a filename', 'error'); fnInput.focus(); return; }
-    if (!fn.includes('.')) fn += '.md';
-    fn = fn.replace(/[\\:*?"<>|]/g, '_');
-    // Prepend current folder if the user has navigated into one
-    const folder = pathHistory.map(n => n.name).join('/');
-    targetPath   = folder ? `${folder}/${fn}` : fn;
-  }
-
-  // ── Build content — clean then re-inject frontmatter ──
-  let body   = pane.value.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, '');
-  const tagRaw = document.getElementById('editorTagInput').value.trim();
-  const tags   = tagRaw ? tagRaw.split(',').map(s => s.trim()).filter(Boolean) : [];
-  if (tags.length) body = `---\ntags: [${tags.join(', ')}]\n---\n\n` + body;
-
-  // ── Base64-encode for GitHub Contents API ──
-  const b64 = btoa(unescape(encodeURIComponent(body)));
-
-  saveBtn.disabled = true;
-  const t = showToast('Saving…', 'loading');
-
-  try {
-    let sha = _editorOrigSha || null;
-
-    // For new notes: check for collision
-    if (isNew) {
-      const chk = await ghProxy('getFile', { path: targetPath });
-      if (chk.ok && chk.data.sha) {
-        if (!confirm(`"${targetPath}" already exists. Overwrite it?`)) {
-          t.remove(); saveBtn.disabled = false; return;
-        }
-        sha = chk.data.sha;
-      }
-    }
-
-    const putRes = await ghProxy('putFile', {
-      path:    targetPath,
-      content: b64,
-      message: `${isNew ? 'Create' : 'Update'}: ${targetPath}`,
-      ...(sha ? { sha } : {})
-    });
-
-    t.remove();
-
-    if (!putRes.ok) {
-      showToast('Save failed: ' + putRes.error, 'error');
-      saveBtn.disabled = false;
-      return;
-    }
-
-    _editorDirty     = false;
-    _editorPath      = targetPath;
-    fnInput.value    = targetPath.split('/').pop();
-    fnInput.readOnly = true;
-
-    // Refresh sha for subsequent saves this session
-    const fresh = await ghProxy('getFile', { path: targetPath });
-    if (fresh.ok && fresh.data.sha) _editorOrigSha = fresh.data.sha;
-
-    // Update local tag cache
-    if (tags.length) tagCache[targetPath] = tags;
-
-    showToast(`"${targetPath.split('/').pop()}" saved ✓`, 'success');
-
-    // Refresh file tree in background
-    fetchTree();
-
-  } catch (e) {
-    t.remove();
-    showToast('Unexpected error: ' + e.message, 'error');
-  } finally {
-    saveBtn.disabled = false;
-  }
-}
-
-// ═══════════════════════════════════════════════════════════════
-// EDITOR KEYBOARD SHORTCUTS
-// ═══════════════════════════════════════════════════════════════
-document.addEventListener('keydown', e => {
-  const overlay = document.getElementById('editorOverlay');
-  if (!overlay || !overlay.classList.contains('active')) return;
-  if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); saveNote(); }
-  if (e.key === 'Escape')                          { closeEditor(false); }
-});
-</script>
-
-<script>
-'use strict';
-// ═══════════════════════════════════════════════════════════════
-// AES-256-GCM ENCRYPTED SHARE LINKS
-// ─────────────────────────────────────────────────────────────
-// Flow (encrypt):
-//   1. Fetch raw markdown from GitHub
-//   2. Derive a 256-bit AES-GCM key from the passphrase via PBKDF2
-//      (random 16-byte salt, 310 000 iterations, SHA-256)
-//   3. Encrypt with a random 12-byte IV
-//   4. Bundle  salt‖iv‖ciphertext  → base64url
-//   5. Put the bundle in the URL fragment (#share=<bundle>)
-//      The fragment is NEVER sent to any server.
-//
-// Flow (decrypt):
-//   1. Detect #share= on load
-//   2. Show passphrase prompt
-//   3. Re-derive key from passphrase + embedded salt
-//   4. Decrypt → render markdown in a floating window
-// ═══════════════════════════════════════════════════════════════
-
-// ── Utility: base64url encode/decode (URL-safe, no padding issues) ──
-function b64uEncode(buf) {
-  return btoa(String.fromCharCode(...new Uint8Array(buf)))
-    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
-}
-
-function b64uDecode(str) {
-  str = str.replace(/-/g, '+').replace(/_/g, '/');
-  while (str.length % 4) str += '=';
-  const bin = atob(str);
-  return Uint8Array.from(bin, c => c.charCodeAt(0));
-}
-
-// ── PBKDF2: passphrase → CryptoKey ──
-async function deriveKey(passphrase, salt) {
-  const enc      = new TextEncoder();
-  const keyMat   = await crypto.subtle.importKey(
-    'raw', enc.encode(passphrase), { name: 'PBKDF2' }, false, ['deriveKey']
-  );
-  return crypto.subtle.deriveKey(
-    { name: 'PBKDF2', salt, iterations: 310_000, hash: 'SHA-256' },
-    keyMat,
-    { name: 'AES-GCM', length: 256 },
-    false,
-    ['encrypt', 'decrypt']
-  );
-}
-
-// ── Encrypt plaintext → bundle string ──
-async function encryptText(plaintext, passphrase) {
-  const enc  = new TextEncoder();
-  const salt = crypto.getRandomValues(new Uint8Array(16));
-  const iv   = crypto.getRandomValues(new Uint8Array(12));
-  const key  = await deriveKey(passphrase, salt);
-
-  const cipher = await crypto.subtle.encrypt(
-    { name: 'AES-GCM', iv },
-    key,
-    enc.encode(plaintext)
-  );
-
-  // Layout: [16 bytes salt][12 bytes iv][N bytes ciphertext]
-  const bundle = new Uint8Array(16 + 12 + cipher.byteLength);
-  bundle.set(salt,                  0);
-  bundle.set(iv,                   16);
-  bundle.set(new Uint8Array(cipher),28);
-  return b64uEncode(bundle.buffer);
-}
-
-// ── Decrypt bundle string → plaintext ──
-async function decryptBundle(bundle, passphrase) {
-  const raw    = b64uDecode(bundle);
-  if (raw.length < 29) throw new Error('Bundle too short');
-  const salt   = raw.slice(0,  16);
-  const iv     = raw.slice(16, 28);
-  const cipher = raw.slice(28);
-  const key    = await deriveKey(passphrase, salt);
-
-  const plain  = await crypto.subtle.decrypt(
-    { name: 'AES-GCM', iv },
-    key,
-    cipher
-  );
-  return new TextDecoder().decode(plain);
-}
-
-// ═══════════════════════════════════════════════════════════════
-// GENERATE SHARE LINK  (called from share overlay button)
-// ═══════════════════════════════════════════════════════════════
-async function generateShareLink() {
-  const pass    = document.getElementById('sharePassInput').value;
-  const overlay = document.getElementById('shareOverlay');
-  const path    = overlay.dataset.path || '';
-  const btn     = document.getElementById('shareGenerateBtn');
-
-  if (!pass) { showToast('Please enter a passphrase', 'error'); return; }
-  if (!path) { showToast('No file path found — try reopening the share dialog', 'error'); return; }
-
-  btn.disabled = true;
-  const t = showToast('Encrypting…', 'loading');
-
-  try {
-    // Fetch raw markdown
-    const r = await fetch(path);
-    if (!r.ok) throw new Error(`Could not fetch file (HTTP ${r.status})`);
-    const text = await r.text();
-
-    // Encrypt
-    const bundle = await encryptText(text, pass);
-
-    // Build share URL — fragment only, never hits server
-    const shareUrl = `${location.origin}${location.pathname}#share=${bundle}`;
-
-    document.getElementById('shareLinkBox').textContent    = shareUrl;
-    document.getElementById('shareLinkWrap').style.display = '';
-
-    showToast('Encrypted link ready ✓', 'success', 3000);
-  } catch (e) {
-    showToast('Encryption failed: ' + e.message, 'error');
-  } finally {
-    btn.disabled = false;
-    t.remove();
-  }
-}
-
-// ═══════════════════════════════════════════════════════════════
-// DECRYPT & OPEN  (called from decrypt overlay button)
-// ═══════════════════════════════════════════════════════════════
-async function decryptAndOpen() {
-  const pass    = document.getElementById('decryptPassInput').value;
-  const msgEl   = document.getElementById('decryptMsg');
-  const bundle  = _pendingShareBundle;
-
-  msgEl.textContent = '';
-
-  if (!pass) { msgEl.textContent = 'Please enter the passphrase.'; return; }
-  if (!bundle) { msgEl.textContent = 'No encrypted data found in link.'; return; }
-
-  const btn = document.querySelector('#decryptOverlay .ov-btn-primary');
-  if (btn) btn.disabled = true;
-  const t = showToast('Decrypting…', 'loading');
-
-  try {
-    const text = await decryptBundle(bundle, pass);
-
-    // Hide decrypt overlay
-    hideOverlay('decryptOverlay');
-    history.replaceState(null, '', location.pathname); // clean the URL
-
-    // Render in a floating window (or mobile preview)
-    if (isMobile) {
-      document.getElementById('mobilePreviewTitle').textContent = '🔒 Shared note';
-      const body = document.getElementById('mobilePreviewContent');
-      const wrap = document.createElement('div');
-      wrap.className = 'markdown-content';
-      wrap.innerHTML = markdownToHTML(text, '');
-      body.innerHTML = '';
-      body.appendChild(wrap);
-      setTimeout(() => initMarkdownFeatures(wrap), 0);
-      document.getElementById('mobilePreview').style.display = 'flex';
-    } else {
-      const id  = 'pw-' + (++previewIdSeq);
-      previewMeta[id] = { path: '', filename: '🔒 Shared note', ext: 'md' };
-
-      const win = document.createElement('div');
-      win.className  = 'floating-window';
-      win.dataset.id = id;
-      win.style.cssText = 'top:80px;left:80px;width:80vw;height:80vh;';
-      win.innerHTML = `
-        <div class="title-bar" onmousedown="startDrag(event,'${id}')">
-          <div class="title">🔒 Shared note (decrypted)</div>
-          <div class="buttons">
-            <button title="Minimise"   onclick="minimizeWindow('${id}')">
-              <i data-lucide="minus"      style="width:14px;height:14px;"></i>
-            </button>
-            <button title="Fullscreen" onclick="toggleFullscreen('${id}')">
-              <i data-lucide="maximize-2" style="width:14px;height:14px;"></i>
-            </button>
-            <button title="Close"      onclick="closeWindow('${id}')">
-              <i data-lucide="x"          style="width:14px;height:14px;"></i>
-            </button>
-          </div>
-        </div>
-        <div class="preview-inner">
-          <div class="preview-body" id="${id}-body"></div>
-        </div>`;
-
-      document.getElementById('previewContainer').appendChild(win);
-      windows[id] = win;
-      ri(win);
-
-      const wrap = document.createElement('div');
-      wrap.className = 'markdown-content';
-      wrap.innerHTML = markdownToHTML(text, '');
-      document.getElementById(id + '-body').appendChild(wrap);
-      setTimeout(() => {
-        initMarkdownFeatures(wrap);
-        toggleFullscreen(id, true);
-      }, 0);
-      updateTaskbar();
-    }
-
-    showToast('Note decrypted ✓', 'success', 3000);
-  } catch (e) {
-    // AES-GCM throws on bad key — surface a friendly message
-    msgEl.textContent = 'Wrong passphrase or corrupted link.';
-    showToast('Decryption failed', 'error');
-  } finally {
-    if (btn) btn.disabled = false;
-    t.remove();
-  }
-}
-
-// ═══════════════════════════════════════════════════════════════
-// DETECT SHARE FRAGMENT ON PAGE LOAD
-// ═══════════════════════════════════════════════════════════════
-let _pendingShareBundle = null;
-
-function checkShareFragment() {
-  const hash = location.hash;
-  if (!hash.startsWith('#share=')) return;
-  _pendingShareBundle = hash.slice(7); // everything after "#share="
-  if (!_pendingShareBundle) return;
-  // Show decrypt overlay after a short delay (let the app finish loading)
-  setTimeout(() => {
-    document.getElementById('decryptPassInput').value = '';
-    document.getElementById('decryptMsg').textContent  = '';
-    showOverlay('decryptOverlay');
-  }, 700);
-}
-</script>
-
-<script>
-'use strict';
-// ═══════════════════════════════════════════════════════════════
-// AUTH STATE
-// ═══════════════════════════════════════════════════════════════
-let _satoken      = null;   // super-admin token (from Vercel env via /api/gh)
-let _currentCode  = null;   // logged-in admin code (uppercase)
-let _currentPerms = {};     // { create, delete, modify, approve }
-let _adminsData   = null;   // parsed .admins.json  { codes: { CODE: { perms:{...} } } }
-let _adminsSha    = null;   // sha of .admins.json for updates
-
-const ADMINS_PATH = '.admins.json';
-
-// ── Permission helpers ──
-function isAdmin()    { return !!_currentCode; }
-function isSuperAdmin() { return _currentCode && _satoken && _currentCode === _satoken; }
-function hasPerm(p)   { return isSuperAdmin() || !!_currentPerms[p]; }
-
-// ── Persist session across page refresh (sessionStorage only — clears on tab close) ──
-function saveSession() {
-  sessionStorage.setItem('wm_session', JSON.stringify({
-    code: _currentCode, perms: _currentPerms
-  }));
-}
-function loadSession() {
-  try {
-    const s = JSON.parse(sessionStorage.getItem('wm_session') || 'null');
-    if (s?.code) { _currentCode = s.code; _currentPerms = s.perms || {}; }
-  } catch (_) {}
-}
-
-// ═══════════════════════════════════════════════════════════════
-// BOOT — fetch config & session
-// ═══════════════════════════════════════════════════════════════
-async function bootAuth() {
-  try {
-    const res = await ghProxy('config');
-    if (res.ok) _satoken = (res.data.satoken || '').toUpperCase();
-  } catch (_) {}
-  loadSession();
-  applyAuthUI();
-}
-
-// ═══════════════════════════════════════════════════════════════
-// APPLY AUTH UI STATE
-// ═══════════════════════════════════════════════════════════════
-function applyAuthUI() {
-  const loggedIn = isAdmin();
-  const sa       = isSuperAdmin();
-
-  // Toolbar login button label
-  const btnText = document.getElementById('loginBtnText');
-  if (loggedIn) {
-    btnText.textContent = sa ? '★ Super Admin' : _currentCode;
-  } else {
-    btnText.textContent = 'Login';
-  }
-
-  // New note button (create permission)
-  const showNew = loggedIn && hasPerm('create');
-  document.getElementById('newNoteBtnToolbar').style.display = showNew ? '' : 'none';
-  document.getElementById('mobOvNewNote').style.display      = showNew ? '' : 'none';
-
-  // Admin panel button (any admin)
-  document.getElementById('adminPanelBtn').style.display    = loggedIn ? '' : 'none';
-  document.getElementById('mobOvAdminBtn').style.display    = loggedIn ? '' : 'none';
-
-  // Re-render file list so action buttons (edit/delete) appear/disappear
-  if (currentNode) renderFolder(currentNode);
-}
-
-// ═══════════════════════════════════════════════════════════════
-// LOGIN SCREEN
-// ═══════════════════════════════════════════════════════════════
+// ===== LOGIN SCREEN =====
 function showLoginScreen() {
-  const loggedIn = isAdmin();
-  document.getElementById('loginViewNormal').style.display   = loggedIn ? 'none' : '';
-  document.getElementById('loginViewLoggedIn').style.display = loggedIn ? ''     : 'none';
-  if (loggedIn) {
-    const sa = isSuperAdmin();
-    document.getElementById('liIcon').textContent = sa ? '⭐' : '✅';
-    document.getElementById('liName').textContent = sa ? 'Super Admin' : `Admin: ${_currentCode}`;
-    document.getElementById('liRole').textContent = buildPermLabel();
-    document.getElementById('liAdminBtn').style.display = '';
+  const o = document.getElementById('loginOverlay');
+  if (isLoggedIn()) {
+    document.getElementById('loginViewNormal').style.display = 'none';
+    document.getElementById('loginViewLoggedIn').style.display = '';
+    document.getElementById('liIcon').textContent = isSuperAdmin() ? '👑' : '✅';
+    document.getElementById('liName').textContent = 'Hi, ' + currentSession.name + '!';
+    document.getElementById('liRole').textContent = 'Role: ' + currentSession.role + ' · Code: ' + currentSession.code;
+    document.getElementById('liAdminBtn').style.display = isAdmin() ? '' : 'none';
   } else {
+    document.getElementById('loginViewNormal').style.display = '';
+    document.getElementById('loginViewLoggedIn').style.display = 'none';
     clearCodeInputs();
   }
-  showOverlay('loginOverlay');
+  o.style.display = 'flex';
+  requestAnimationFrame(() => o.classList.add('active'));
 }
 
-function hideLoginScreen() { hideOverlay('loginOverlay'); }
-
-function buildPermLabel() {
-  if (isSuperAdmin()) return 'Full access — all permissions';
-  const labels = [];
-  if (hasPerm('create'))  labels.push('Create');
-  if (hasPerm('modify'))  labels.push('Modify');
-  if (hasPerm('delete'))  labels.push('Delete');
-  if (hasPerm('approve')) labels.push('Approve');
-  return labels.length ? 'Permissions: ' + labels.join(', ') : 'No permissions';
+function hideLoginScreen() {
+  const o = document.getElementById('loginOverlay');
+  o.classList.remove('active');
+  setTimeout(() => { o.style.display = 'none'; }, 380);
 }
 
-// ── 6-char code input helpers ──
 function clearCodeInputs() {
   for (let i = 0; i < 6; i++) {
     const el = document.getElementById('cc' + i);
     if (el) { el.value = ''; el.classList.remove('filled'); }
   }
-  document.getElementById('loginMsg').textContent = '';
-  document.getElementById('loginMsg').className   = 'login-msg';
-  setTimeout(() => document.getElementById('cc0')?.focus(), 50);
+  setLoginMsg('', '');
 }
 
 function codeCharInput(i) {
-  const el  = document.getElementById('cc' + i);
-  el.value  = el.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+  const el = document.getElementById('cc' + i);
+  el.value = el.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
   el.classList.toggle('filled', el.value.length > 0);
-  if (el.value.length === 1 && i < 5) document.getElementById('cc' + (i + 1))?.focus();
-  // Auto-attempt when all 6 filled
-  const full = Array.from({ length: 6 }, (_, j) => document.getElementById('cc' + j)?.value || '').join('');
-  if (full.length === 6) setTimeout(attemptLogin, 80);
+  if (el.value.length === 1 && i < 5) document.getElementById('cc' + (i+1)).focus();
 }
 
 function codeCharKey(e, i) {
-  if (e.key === 'Backspace' && !document.getElementById('cc' + i).value && i > 0) {
-    document.getElementById('cc' + (i - 1))?.focus();
-  }
+  if (e.key === 'Backspace' && !document.getElementById('cc' + i).value && i > 0)
+    document.getElementById('cc' + (i-1)).focus();
   if (e.key === 'Enter') attemptLogin();
 }
 
 function codePaste(e) {
   e.preventDefault();
-  const val = (e.clipboardData.getData('text') || '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6);
-  for (let i = 0; i < 6; i++) {
+  const p = (e.clipboardData.getData('text') || '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6);
+  for (let i = 0; i < p.length; i++) {
     const el = document.getElementById('cc' + i);
-    if (!el) continue;
-    el.value = val[i] || '';
-    el.classList.toggle('filled', !!el.value);
+    if (el) { el.value = p[i]; el.classList.add('filled'); }
   }
-  if (val.length === 6) setTimeout(attemptLogin, 80);
-  else document.getElementById('cc' + Math.min(val.length, 5))?.focus();
+  document.getElementById('cc' + Math.min(p.length, 5))?.focus();
 }
 
-async function attemptLogin() {
-  const code = Array.from({ length: 6 }, (_, i) => document.getElementById('cc' + i)?.value || '').join('').toUpperCase();
-  if (code.length < 6) return;
+function getEnteredCode() {
+  return [0,1,2,3,4,5].map(i => document.getElementById('cc'+i)?.value || '').join('');
+}
 
-  const msgEl = document.getElementById('loginMsg');
-  msgEl.className   = 'login-msg';
-  msgEl.textContent = 'Checking…';
+function setLoginMsg(text, type) {
+  const el = document.getElementById('loginMsg');
+  el.textContent = text;
+  el.className = 'login-msg' + (type ? ' ' + type : '');
+}
 
-  // Super-admin shortcut
-  if (_satoken && code === _satoken) {
-    loginSuccess(code, { create: true, delete: true, modify: true, approve: true });
-    return;
-  }
-
-  // Fetch .admins.json and validate
-  const res = await ghProxy('getFileContent', { path: ADMINS_PATH });
-  if (!res.ok) {
-    if (res.error?.includes('404') || res.data?.sha === null) {
-      // No admins file yet — only super-admin can log in
-      shakeAndFail(msgEl, 'No admin codes exist yet. Use the Super Admin token.');
-      return;
-    }
-    shakeAndFail(msgEl, 'Could not reach server. Try again.');
-    return;
-  }
-
-  if (!res.data.content) {
-    shakeAndFail(msgEl, 'Admin data is empty.');
-    return;
-  }
-
-  try {
-    const raw   = atob(res.data.content);
-    const text  = new TextDecoder().decode(Uint8Array.from(raw, c => c.charCodeAt(0)));
-    const data  = JSON.parse(text);
-    _adminsData = data;
-    _adminsSha  = res.data.sha;
-
-    const entry = data.codes?.[code];
-    if (!entry) {
-      shakeAndFail(msgEl, 'Invalid code.');
-      return;
-    }
-    loginSuccess(code, entry.perms || {});
-  } catch (e) {
-    shakeAndFail(msgEl, 'Corrupted admin data: ' + e.message);
+function attemptLogin() {
+  const code = getEnteredCode();
+  if (code.length < 6) { setLoginMsg('Please enter all 6 characters.', 'err'); return; }
+  const result = doLogin(code);
+  if (result.ok) {
+    setLoginMsg('✓ Access granted!', 'ok');
+    updateAuthUI();
+    setTimeout(() => { clearCodeInputs(); showLoginScreen(); }, 900);
+  } else {
+    setLoginMsg('✗ Invalid code. Please try again.', 'err');
+    const row = document.getElementById('codeInputRow');
+    row.style.animation = 'none'; row.offsetHeight;
+    row.style.animation = 'shake 0.42s ease';
   }
 }
 
-function shakeAndFail(msgEl, msg) {
-  msgEl.textContent = msg;
-  msgEl.className   = 'login-msg err';
-  const row = document.getElementById('codeInputRow');
-  row.style.animation = 'none';
-  requestAnimationFrame(() => { row.style.animation = 'shake 0.45s ease'; });
-  setTimeout(() => clearCodeInputs(), 1400);
-}
-
-function loginSuccess(code, perms) {
-  _currentCode  = code;
-  _currentPerms = perms;
-  saveSession();
-  applyAuthUI();
-
-  // Switch to logged-in view
-  document.getElementById('loginViewNormal').style.display   = 'none';
-  document.getElementById('loginViewLoggedIn').style.display = '';
-  document.getElementById('liIcon').textContent = isSuperAdmin() ? '⭐' : '✅';
-  document.getElementById('liName').textContent = isSuperAdmin() ? 'Super Admin' : `Admin: ${code}`;
-  document.getElementById('liRole').textContent = buildPermLabel();
-  document.getElementById('liAdminBtn').style.display = '';
-
-  showToast(isSuperAdmin() ? '⭐ Super Admin logged in' : `Logged in as ${code}`, 'success');
-}
-
-function doLogout() {
-  _currentCode  = null;
-  _currentPerms = {};
-  _adminsData   = null;
-  _adminsSha    = null;
-  sessionStorage.removeItem('wm_session');
-  hideLoginScreen();
-  applyAuthUI();
-  showToast('Logged out', 'info', 2000);
-}
-
-// ═══════════════════════════════════════════════════════════════
-// ADMIN PANEL
-// ═══════════════════════════════════════════════════════════════
-async function showAdminPanel() {
-  hideLoginScreen();
+// ===== ADMIN PANEL =====
+function showAdminPanel() {
+  if (!isAdmin()) return;
   document.getElementById('superAdminSection').style.display = isSuperAdmin() ? '' : 'none';
-  if (isSuperAdmin()) await refreshAdminCodes();
-  await refreshPendingUploads();
-  showOverlay('adminOverlay');
+  if (isSuperAdmin()) renderAdminCodesList();
+  loadPendingUploads();
+  const o = document.getElementById('adminOverlay');
+  o.style.display = 'flex';
+  requestAnimationFrame(() => o.classList.add('active'));
 }
 
-function hideAdminPanel() { hideOverlay('adminOverlay'); }
+function hideAdminPanel() {
+  const o = document.getElementById('adminOverlay');
+  o.classList.remove('active');
+  setTimeout(() => { o.style.display = 'none'; }, 380);
+}
 
-// ── Admin code list ──
-async function refreshAdminCodes() {
-  const listEl = document.getElementById('adminCodesList');
-  listEl.innerHTML = '<div style="font-size:13px;opacity:.5;">Loading…</div>';
-
-  const res = await ghProxy('getFileContent', { path: ADMINS_PATH });
-  if (!res.ok || !res.data.content) {
-    listEl.innerHTML = '<div style="font-size:13px;opacity:.5;">No admin codes yet.</div>';
+function renderAdminCodesList() {
+  const list = document.getElementById('adminCodesList');
+  if (!adminsData.length) {
+    list.innerHTML = '<div style="font-size:13px;opacity:.5;padding:6px 0">No admin codes created yet.</div>';
     return;
   }
-  try {
-    const raw  = atob(res.data.content);
-    const text = new TextDecoder().decode(Uint8Array.from(raw, c => c.charCodeAt(0)));
-    const data = JSON.parse(text);
-    _adminsData = data; _adminsSha = res.data.sha;
-
-    const codes = Object.entries(data.codes || {});
-    if (!codes.length) { listEl.innerHTML = '<div style="font-size:13px;opacity:.5;">No admin codes yet.</div>'; return; }
-
-    listEl.innerHTML = codes.map(([code, entry]) => {
-      const p = entry.perms || {};
-      const pills = ['create','modify','delete','approve']
-        .filter(k => p[k])
-        .map(k => `<span class="perm-pill">${k}</span>`)
-        .join('');
-      const isYou = code === _currentCode;
-      return `<div class="code-row-admin">
-        <span class="mono-badge">${escHTML(code)}</span>
-        ${pills}
-        ${isYou ? '<span style="font-size:11px;opacity:.5;">(you)</span>' : ''}
-        <div style="margin-left:auto;display:flex;gap:5px;">
-          ${!isYou ? `<button class="pa-btn rej" onclick="revokeAdmin('${escHTML(code)}')">Revoke</button>` : ''}
-        </div>
-      </div>`;
-    }).join('');
-  } catch (e) {
-    listEl.innerHTML = `<div class="err-block">Parse error: ${escHTML(e.message)}</div>`;
-  }
+  list.innerHTML = adminsData.map(a => `
+    <div class="admin-code-row">
+      <span class="mono-badge">${a.code}</span>
+      <span style="font-size:13px;opacity:.65">${a.name || 'Admin'}</span>
+      <div style="margin-left:auto;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
+        ${(a.permissions||[]).map(p=>`<span class="perm-pill">${p}</span>`).join('')}
+        <button onclick="revokeAdmin('${a.code}')" style="font-size:11px;padding:3px 9px;border-radius:6px;border:none;background:#ffe0e0;color:#c62828;cursor:pointer;font-family:'Roboto',sans-serif">Revoke</button>
+      </div>
+    </div>`).join('');
 }
 
 function toggleCreateAdminForm() {
   const f = document.getElementById('createAdminForm');
   f.style.display = f.style.display === 'none' ? '' : 'none';
-  if (f.style.display !== 'none') document.getElementById('newAdminCodeInput').focus();
 }
 
-function genCode(len = 6) {
-  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-  return Array.from(crypto.getRandomValues(new Uint8Array(len)), b => chars[b % chars.length]).join('');
+function genCode() {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let c = '';
+  while (c.length < 6) c += chars[Math.floor(Math.random() * chars.length)];
+  if (c === window._WM_SATOKEN || adminsData.find(a => a.code === c)) return genCode();
+  return c;
 }
 
 async function createNewAdmin() {
-  const rawCode = document.getElementById('newAdminCodeInput').value.trim().toUpperCase().replace(/[^A-Z0-9]/g,'');
-  const code    = rawCode.length === 6 ? rawCode : genCode();
-  const perms   = {
-    create:  document.getElementById('pc-create').checked,
-    delete:  document.getElementById('pc-delete').checked,
-    modify:  document.getElementById('pc-modify').checked,
-    approve: document.getElementById('pc-approve').checked,
-  };
-
   const msgEl = document.getElementById('createAdminMsg');
-  msgEl.textContent = 'Creating…';
-
-  // Load or init admins data
-  let data = _adminsData || { codes: {} };
-  let sha  = _adminsSha  || null;
-
-  if (!sha) {
-    // first-time: check if file exists
-    const chk = await ghProxy('getFileContent', { path: ADMINS_PATH });
-    if (chk.ok && chk.data.sha) {
-      sha  = chk.data.sha;
-      try {
-        const raw  = atob(chk.data.content);
-        const text = new TextDecoder().decode(Uint8Array.from(raw, c => c.charCodeAt(0)));
-        data = JSON.parse(text);
-      } catch (_) {}
-    }
-  }
-
-  if (data.codes?.[code]) { msgEl.textContent = `Code "${code}" already exists.`; return; }
-
-  data.codes = data.codes || {};
-  data.codes[code] = { perms, createdAt: new Date().toISOString() };
-
-  const b64 = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
-  const putRes = await ghProxy('putFile', {
-    path: ADMINS_PATH, content: b64,
-    message: `Add admin code: ${code}`,
-    ...(sha ? { sha } : {})
-  });
-
-  if (!putRes.ok) { msgEl.textContent = 'Error: ' + putRes.error; return; }
-
-  _adminsData = data;
-  const fresh = await ghProxy('getFile', { path: ADMINS_PATH });
-  if (fresh.ok) _adminsSha = fresh.data.sha;
-
-  msgEl.textContent = `✓ Created: ${code}`;
+  let code = document.getElementById('newAdminCodeInput').value.toUpperCase().trim();
+  if (!code) code = genCode();
+  if (!/^[A-Z0-9]{6}$/.test(code)) { msgEl.textContent = '✗ Must be exactly 6 alphanumeric characters.'; msgEl.style.color = '#e53935'; return; }
+  if (window._WM_SATOKEN && code === window._WM_SATOKEN) { msgEl.textContent = '✗ That code is reserved.'; msgEl.style.color = '#e53935'; return; }
+  const perms = ['create','delete','modify','approve'].filter(p => document.getElementById('pc-'+p)?.checked);
+  adminsData = [...adminsData.filter(a => a.code !== code), { code, permissions: perms, name: 'Admin' }];
+  const ok = await saveAdminsToGitHub();
+  msgEl.style.color = ok ? '#43a047' : '#fb8c00';
+  msgEl.textContent = ok ? `✓ Code ${code} created and saved to repo!` : `⚠ Code ${code} created but could not save to GitHub.`;
+  renderAdminCodesList();
   document.getElementById('newAdminCodeInput').value = '';
-  await refreshAdminCodes();
-  showToast(`Admin code ${code} created`, 'success');
 }
 
 async function revokeAdmin(code) {
-  if (!confirm(`Revoke admin code "${code}"? This cannot be undone.`)) return;
-  if (!_adminsData) return;
-
-  const data = { ..._adminsData, codes: { ..._adminsData.codes } };
-  delete data.codes[code];
-
-  const b64 = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
-  const res = await ghProxy('putFile', {
-    path: ADMINS_PATH, content: b64,
-    message: `Revoke admin code: ${code}`,
-    sha: _adminsSha
-  });
-
-  if (!res.ok) { showToast('Revoke failed: ' + res.error, 'error'); return; }
-
-  _adminsData = data;
-  const fresh = await ghProxy('getFile', { path: ADMINS_PATH });
-  if (fresh.ok) _adminsSha = fresh.data.sha;
-
-  showToast(`Code ${code} revoked`, 'success');
-  await refreshAdminCodes();
+  adminsData = adminsData.filter(a => a.code !== code);
+  const ok = await saveAdminsToGitHub();
+  if (ok) {
+    showStatus(`✓ Admin code ${code} revoked and removed from admins.json.`);
+  } else {
+    await loadAdmins();
+    showStatus('✗ Failed to revoke: could not update admins.json on GitHub.');
+  }
+  renderAdminCodesList();
 }
 
-<<<<<<< HEAD
-// ═══════════════════════════════════════════════════════════════
-// PENDING UPLOADS
-// ═══════════════════════════════════════════════════════════════
-async function refreshPendingUploads() {
-  const listEl   = document.getElementById('pendingUploadsList');
-  const countEl  = document.getElementById('pendingCountLabel');
-  listEl.innerHTML = '<div style="font-size:13px;opacity:.5;">Loading…</div>';
-=======
 // ===== GITHUB PROXY HELPER =====
 // Calls the Vercel /api/gh serverless function.
 // Returns { ok, data } or { ok: false, error }.
 async function ghProxy(action, payload = {}) {
   try {
-    const r = await fetch('https://ada-one-rho.vercel.app/api/gh', {
+    const r = await fetch('/api/gh', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ action, ...payload })
@@ -4509,489 +2670,718 @@ async function ghProxy(action, payload = {}) {
     return { ok: false, error: e.message };
   }
 }
->>>>>>> 792ab1da79b53933b131352125d0aa76ad02a13a
 
+async function saveAdminsToGitHub() {
+  const jsonStr = JSON.stringify({ admins: adminsData }, null, 2);
+  const bytes = new TextEncoder().encode(jsonStr);
+  let binary = '';
+  for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+  const b64 = btoa(binary);
+  const getRes = await ghProxy('getFile', { path: 'admins.json' });
+  if (!getRes.ok) { showStatus(`✗ Could not read admins.json: ${getRes.error}`); return false; }
+  const sha = getRes.data.sha || null;
+  const putRes = await ghProxy('putFile', { path: 'admins.json', content: b64, message: 'Update admin codes', sha });
+  if (!putRes.ok) { showStatus(`✗ Could not save admins.json: ${putRes.error}`); return false; }
+  return true;
+}
+
+
+// ===== WAITING-LIST HELPERS =====
+// All pending uploads are stored as real files in the repo's waiting-list/ folder.
+// waiting-list/index.json  — array of metadata entries (one per pending submission)
+// waiting-list/{id}-{filename} — the actual uploaded file
+
+function sanitizeForPath(name) {
+  // Keep alphanumerics, dots, dashes, underscores — replace everything else with _
+  return name.replace(/[^a-zA-Z0-9._-]/g, '_');
+}
+
+function b64encode(str) {
+  const bytes = new TextEncoder().encode(str);
+  let binary = '';
+  for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+  return btoa(binary);
+}
+
+function b64decode(b64) {
+  return new TextDecoder().decode(
+    Uint8Array.from(atob(b64), c => c.charCodeAt(0))
+  );
+}
+
+async function wlReadIndex() {
   const res = await ghProxy('getFileContent', { path: 'waiting-list/index.json' });
-  if (!res.ok || !res.data.content) {
-    listEl.innerHTML = '<div style="font-size:13px;opacity:.5;">No pending uploads.</div>';
-    countEl.textContent = '';
+  if (!res.ok || !res.data.content) return { sha: null, items: [] };
+  try {
+    return { sha: res.data.sha, items: JSON.parse(b64decode(res.data.content)) };
+  } catch(e) { return { sha: res.data.sha, items: [] }; }
+}
+
+async function wlWriteIndex(items, sha, message) {
+  return ghProxy('putFile', {
+    path: 'waiting-list/index.json',
+    content: b64encode(JSON.stringify(items, null, 2)),
+    message: message || 'Update waiting-list index',
+    sha: sha || null
+  });
+}
+
+async function loadPendingUploads() {
+  const list = document.getElementById('pendingUploadsList');
+  const label = document.getElementById('pendingCountLabel');
+  list.innerHTML = '<div style="font-size:13px;opacity:.5;padding:6px 0">Loading…</div>';
+  const { items } = await wlReadIndex();
+  if (label) label.textContent = items.length ? `(${items.length})` : '';
+
+  if (!items.length) {
+    list.innerHTML = '<div style="font-size:13px;opacity:.5;padding:6px 0">No pending uploads.</div>';
     return;
   }
 
+  list.innerHTML = items.map(u => {
+    const dest = (u.destPath || '').trim();
+    const destLabel = dest || '(repository root)';
+    const editTag = u.reuploadCount > 0
+      ? `<span style="font-size:10px;padding:1px 6px;border-radius:99px;background:#fff3e0;color:#e65100;margin-left:4px">edited ×${u.reuploadCount}</span>`
+      : '';
+    return `
+    <div class="pending-item" id="pi-${u.id}">
+      <span style="font-size:22px">${getIconForFilename(u.originalName)}</span>
+      <div style="min-width:0;flex:1">
+        <div style="font-size:13px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${u.originalName}${editTag}</div>
+        <div style="font-size:11px;opacity:.5">${fmtSize(u.size)} · ${new Date(u.uploadedAt).toLocaleString()}</div>
+        <div style="font-size:11px;color:var(--accent);margin-top:2px">📁 ${destLabel}</div>
+      </div>
+      <div class="pending-item-actions">
+        <button class="pa-btn view" onclick="previewPending('${u.id}')">👁 View</button>
+        <button class="pa-btn dl"   onclick="downloadPending('${u.id}')">📥 Download</button>
+        <button class="pa-btn rev"  onclick="reuploadPending('${u.id}')">🔄 Re-upload</button>
+        <button class="pa-btn ok"   onclick="approvePending('${u.id}')">✓ Approve</button>
+        <button class="pa-btn rej"  onclick="rejectPending('${u.id}')">✗ Deny</button>
+      </div>
+    </div>`;
+  }).join('');
+  updatePendingBadge();
+}
+
+async function previewPending(id) {
+  const { items } = await wlReadIndex();
+  const u = items.find(x => x.id === id); if (!u) return;
+  showStatus('Fetching file…', true);
+  const res = await ghProxy('getFileContent', { path: `waiting-list/${u.storedName}` });
+  if (!res.ok || !res.data.content) { showStatus('✗ Could not fetch file.'); return; }
+  const bytes = Uint8Array.from(atob(res.data.content), c => c.charCodeAt(0));
+  const url = URL.createObjectURL(new Blob([bytes]));
+  if (isMobile) openMobilePreview(url, u.originalName);
+  else openPreview(url, u.originalName);
+}
+
+async function downloadPending(id) {
+  const { items } = await wlReadIndex();
+  const u = items.find(x => x.id === id); if (!u) return;
+  showStatus('Fetching file…', true);
+  const res = await ghProxy('getFileContent', { path: `waiting-list/${u.storedName}` });
+  if (!res.ok || !res.data.content) { showStatus('✗ Could not fetch file.'); return; }
+  const bytes = Uint8Array.from(atob(res.data.content), c => c.charCodeAt(0));
+  const url = URL.createObjectURL(new Blob([bytes]));
+  const a = document.createElement('a'); a.href = url; a.download = u.originalName; a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
+}
+
+function reuploadPending(id) {
+  const inp = document.createElement('input'); inp.type = 'file';
+  inp.onchange = async (e) => {
+    const file = e.target.files[0]; if (!file) return;
+    showStatus('Re-uploading…', true);
+
+    const { sha: idxSha, items } = await wlReadIndex();
+    const u = items.find(x => x.id === id); if (!u) return;
+
+    const count = u.reuploadCount || 0;
+    const countStr = String(count).padStart(3, '0');
+    const dotIdx = file.name.lastIndexOf('.');
+    const newOriginalName = dotIdx > -1
+      ? file.name.slice(0, dotIdx) + '-edited-' + countStr + file.name.slice(dotIdx)
+      : file.name + '-edited-' + countStr;
+    const newStoredName = `${u.id}-${sanitizeForPath(newOriginalName)}`;
+
+    const reader = new FileReader();
+    reader.onload = async () => {
+      const b64 = reader.result.split(',')[1];
+
+      // Commit new file to waiting-list/
+      const putOk = await ghProxy('putFile', {
+        path: `waiting-list/${newStoredName}`, content: b64,
+        message: `Re-upload: ${newOriginalName}`, sha: null
+      });
+      if (!putOk.ok) { showStatus(`✗ Re-upload failed: ${putOk.error}`); return; }
+
+      // Delete old file from waiting-list/
+      const oldFile = await ghProxy('getFile', { path: `waiting-list/${u.storedName}` });
+      if (oldFile.ok && oldFile.data.sha) {
+        await ghProxy('deleteFile', {
+          path: `waiting-list/${u.storedName}`, sha: oldFile.data.sha,
+          message: `Replace with re-upload: ${u.storedName}`
+        });
+      }
+
+      // Update index
+      const newItems = items.map(x => x.id === id
+        ? { ...x, storedName: newStoredName, originalName: newOriginalName, size: file.size, reuploadCount: count + 1 }
+        : x);
+      await wlWriteIndex(newItems, idxSha, `Re-upload: ${newOriginalName}`);
+
+      showStatus(`✓ Re-uploaded as: ${newOriginalName}`);
+      loadPendingUploads();
+    };
+    reader.readAsDataURL(file);
+  };
+  inp.click();
+}
+
+async function approvePending(id) {
+  showStatus('Approving…', true);
+  const { sha: idxSha, items } = await wlReadIndex();
+  const u = items.find(x => x.id === id);
+  if (!u) { showStatus('✗ Item not found in waiting list.'); return; }
+
+  // Fetch the file content from waiting-list/
+  const fileRes = await ghProxy('getFileContent', { path: `waiting-list/${u.storedName}` });
+  if (!fileRes.ok || !fileRes.data.content) {
+    showStatus(`✗ Could not fetch file from waiting-list: ${fileRes.error || 'not found'}`);
+    return;
+  }
+
+  // Check if destination file already exists (need its sha to update)
+  const destPath = (u.destPath || '').trim().replace(/^\/|\/$/g, '');
+  const filePath = destPath ? `${destPath}/${u.originalName}` : u.originalName;
+  const destCheck = await ghProxy('getFile', { path: filePath });
+  const destSha = destCheck.ok ? destCheck.data.sha : null;
+
+  // Commit to destination
+  const approveOk = await ghProxy('putFile', {
+    path: filePath, content: fileRes.data.content,
+    message: `Approve upload: ${u.originalName}`, sha: destSha
+  });
+  if (!approveOk.ok) { showStatus(`✗ Failed to publish: ${approveOk.error}`); return; }
+
+  // Delete from waiting-list/
+  await ghProxy('deleteFile', {
+    path: `waiting-list/${u.storedName}`, sha: fileRes.data.sha,
+    message: `Approved and removed from waiting-list: ${u.storedName}`
+  });
+
+  // Remove from index
+  const newItems = items.filter(x => x.id !== id);
+  await wlWriteIndex(newItems, idxSha, `Approve: ${u.originalName}`);
+
+  showStatus(`✓ "${u.originalName}" approved → published to ${destPath || 'repository root'}!`);
+  loadPendingUploads(); updatePendingBadge(); fetchTree();
+}
+
+async function rejectPending(id) {
+  showStatus('Removing…', true);
+  const { sha: idxSha, items } = await wlReadIndex();
+  const u = items.find(x => x.id === id); if (!u) return;
+
+  // Delete file from waiting-list/
+  const fileRes = await ghProxy('getFile', { path: `waiting-list/${u.storedName}` });
+  if (fileRes.ok && fileRes.data.sha) {
+    await ghProxy('deleteFile', {
+      path: `waiting-list/${u.storedName}`, sha: fileRes.data.sha,
+      message: `Deny and remove: ${u.storedName}`
+    });
+  }
+
+  // Remove from index
+  const newItems = items.filter(x => x.id !== id);
+  await wlWriteIndex(newItems, idxSha, `Deny: ${u.originalName}`);
+
+  loadPendingUploads(); updatePendingBadge();
+  showStatus('Upload denied and removed.');
+}
+
+async function commitFileToGitHub(filePath, base64Content) {
+  const getRes = await ghProxy('getFile', { path: filePath });
+  if (!getRes.ok) { showStatus(`✗ Could not read destination: ${getRes.error}`); return false; }
+  const sha = getRes.data.sha || null;
+  const putRes = await ghProxy('putFile', { path: filePath, content: base64Content, message: `Upload: ${filePath}`, sha });
+  if (!putRes.ok) { showStatus(`✗ Could not publish file: ${putRes.error}`); return false; }
+  return true;
+}
+
+async function updatePendingBadge() {
+  const btn = document.getElementById('adminPanelBtn');
+  if (!btn || !isAdmin()) return;
+  let dot = btn.querySelector('.badge-dot');
   try {
-    const raw   = atob(res.data.content);
-    const text  = new TextDecoder().decode(Uint8Array.from(raw, c => c.charCodeAt(0)));
-    const items = JSON.parse(text);
-
-    if (!items.length) {
-      listEl.innerHTML = '<div style="font-size:13px;opacity:.5;">No pending uploads.</div>';
-      countEl.textContent = '';
-      return;
-    }
-
-    countEl.textContent = `(${items.length})`;
-    listEl.innerHTML = items.map((item, i) => `
-      <div class="pend-item" id="pend-${i}">
-        <div>
-          <div style="font-size:14px;font-weight:500;">${escHTML(item.filename || item.name || 'Unknown')}</div>
-          <div style="font-size:11px;opacity:.5;">${escHTML(item.submittedAt || '')}</div>
-        </div>
-        <div class="pend-item-acts">
-          <button class="pa-btn view" onclick="previewPending(${i})">Preview</button>
-          <button class="pa-btn dl"   onclick="downloadPending(${i})">Download</button>
-          <button class="pa-btn ok"   onclick="approvePending(${i})">Approve</button>
-          <button class="pa-btn rej"  onclick="rejectPending(${i})">Reject</button>
-        </div>
-      </div>`).join('');
-
-    // Store items for action handlers
-    window._pendingItems    = items;
-    window._pendingListSha  = res.data.sha;
-  } catch (e) {
-    listEl.innerHTML = `<div class="err-block">Parse error: ${escHTML(e.message)}</div>`;
-  }
+    const { items } = await wlReadIndex();
+    if (items.length > 0) {
+      if (!dot) { dot = document.createElement('span'); dot.className = 'badge-dot'; btn.appendChild(dot); }
+    } else if (dot) { dot.remove(); }
+  } catch(e) { if (dot) dot.remove(); }
 }
 
-function previewPending(i) {
-  const item = window._pendingItems?.[i]; if (!item) return;
-  const path = item.path || ('waiting-list/' + (item.filename || item.name));
-  isMobile ? openMobilePreview(path, item.filename || item.name) : openPreview(path, item.filename || item.name);
+// ===== UPLOAD SCREEN =====
+let _pendingFiles = [];
+let _reuploadFile = null;
+
+function showUploadScreen() {
+  _pendingFiles = []; _reuploadFile = null;
+  uploadGoStep1();
+  document.getElementById('usResult').style.display = 'none';
+  const o = document.getElementById('uploadOverlay');
+  o.style.display = 'flex';
+  requestAnimationFrame(() => o.classList.add('active'));
 }
 
-function downloadPending(i) {
-  const item = window._pendingItems?.[i]; if (!item) return;
-  const path = item.path || ('waiting-list/' + (item.filename || item.name));
-  triggerDownload(path, item.filename || item.name);
+function hideUploadScreen() {
+  const o = document.getElementById('uploadOverlay');
+  o.classList.remove('active');
+  setTimeout(() => {
+    o.style.display = 'none';
+    _pendingFiles = []; _reuploadFile = null;
+    document.getElementById('filePickerInput').value = '';
+    document.getElementById('us2destPath').value = '';
+    document.getElementById('usResult').style.display = 'none';
+    uploadGoStep1();
+  }, 380);
 }
 
-async function approvePending(i) {
-  const item = window._pendingItems?.[i]; if (!item) return;
-  const srcPath  = item.path || ('waiting-list/' + (item.filename || item.name));
-  const destPath = (item.destPath || item.filename || item.name);
-
-  const t = showToast(`Approving "${item.filename || item.name}"…`, 'loading');
-
-  // Read file content from waiting-list
-  const getRes = await ghProxy('getFileContent', { path: srcPath });
-  if (!getRes.ok || !getRes.data.content) { t.remove(); showToast('Could not read pending file', 'error'); return; }
-
-  // Write to destination
-  const putRes = await ghProxy('putFile', {
-    path:    destPath,
-    content: getRes.data.content,
-    message: `Approve upload: ${destPath}`
-  });
-  if (!putRes.ok) { t.remove(); showToast('Approve failed: ' + putRes.error, 'error'); return; }
-
-  // Delete from waiting-list
-  await ghProxy('deleteFile', { path: srcPath, sha: getRes.data.sha, message: `Remove pending: ${srcPath}` });
-
-  // Remove from index.json
-  await removePendingFromIndex(i);
-
-  t.remove();
-  showToast(`"${item.filename || item.name}" approved and published ✓`, 'success');
-  fetchTree();
-  await refreshPendingUploads();
-}
-
-async function rejectPending(i) {
-  const item = window._pendingItems?.[i]; if (!item) return;
-  if (!confirm(`Reject and delete "${item.filename || item.name}"?`)) return;
-  const srcPath = item.path || ('waiting-list/' + (item.filename || item.name));
-  const t = showToast('Rejecting…', 'loading');
-
-  const getRes = await ghProxy('getFile', { path: srcPath });
-  if (getRes.ok && getRes.data.sha) {
-    await ghProxy('deleteFile', { path: srcPath, sha: getRes.data.sha, message: `Reject upload: ${srcPath}` });
-  }
-  await removePendingFromIndex(i);
-  t.remove();
-  showToast('Rejected and deleted', 'info');
-  await refreshPendingUploads();
-}
-
-async function removePendingFromIndex(i) {
-  const items   = [...(window._pendingItems || [])];
-  const sha     = window._pendingListSha;
-  items.splice(i, 1);
-  const b64 = btoa(unescape(encodeURIComponent(JSON.stringify(items, null, 2))));
-  const res = await ghProxy('putFile', {
-    path: 'waiting-list/index.json', content: b64,
-    message: 'Update pending index',
-    ...(sha ? { sha } : {})
-  });
-  if (res.ok) {
-    window._pendingItems = items;
-    const fresh = await ghProxy('getFile', { path: 'waiting-list/index.json' });
-    if (fresh.ok) window._pendingListSha = fresh.data.sha;
-  }
-}
-
-// ═══════════════════════════════════════════════════════════════
-// UPLOAD FLOW
-// ═══════════════════════════════════════════════════════════════
-let _uploadFiles      = [];   // File[] selected by user
-let _reuploadFile     = null; // optional replacement file
-
-function showUploadScreen()  { uploadGoStep1(); showOverlay('uploadOverlay'); }
-function hideUploadScreen()  { hideOverlay('uploadOverlay'); _uploadFiles = []; _reuploadFile = null; }
 function closeUploadScreen() {
-  if (_uploadFiles.length) {
-    document.getElementById('discardConfirm').style.display = 'flex'; return;
-  }
-  hideUploadScreen();
+  if (_pendingFiles.length) { document.getElementById('discardConfirm').style.display = 'flex'; }
+  else hideUploadScreen();
 }
-function confirmDiscard() { document.getElementById('discardConfirm').style.display = 'none'; hideUploadScreen(); }
 
-// Dot progress
-function setUploadDot(step) {
-  [0,1,2].forEach(i => document.getElementById('ud' + i)?.classList.toggle('on', i === step));
+function confirmDiscard() {
+  document.getElementById('discardConfirm').style.display = 'none';
+  _pendingFiles = []; hideUploadScreen();
+}
+
+function setUploadDots(active) {
+  for (let i = 0; i < 3; i++) {
+    const d = document.getElementById('ud' + i);
+    if (d) d.classList.toggle('on', i < active);
+  }
 }
 
 function uploadGoStep1() {
-  setUploadDot(0); _uploadFiles = []; _reuploadFile = null;
-  document.getElementById('us1').style.display       = '';
-  document.getElementById('us2').style.display       = 'none';
-  document.getElementById('us3').style.display       = 'none';
-  document.getElementById('usResult').style.display  = 'none';
-  document.getElementById('filePickerInput').value   = '';
+  ['us1','us2','us3'].forEach((id, i) => {
+    const el = document.getElementById(id); if (el) el.style.display = i === 0 ? '' : 'none';
+  });
+  setUploadDots(1);
 }
 
 function uploadGoStep2() {
-  setUploadDot(1);
-  document.getElementById('us1').style.display       = 'none';
-  document.getElementById('us2').style.display       = '';
-  document.getElementById('us3').style.display       = 'none';
-  document.getElementById('usResult').style.display  = 'none';
-
-  const admin = isAdmin();
-  document.getElementById('us2pendingNotice').style.display = admin ? 'none' : '';
-  document.getElementById('us2adminNotice').style.display   = admin ? ''     : 'none';
-
-  // Build file queue list
-  const queueEl = document.getElementById('us2fileQueue');
-  queueEl.innerHTML = _uploadFiles.map((f, i) => `
-    <div class="fpc">
-      <div class="fpc-icon">${fileEmoji(f.name)}</div>
-      <div style="flex:1;min-width:0;">
-        <div class="fpc-name">${escHTML(f.name)}</div>
-        <div class="fpc-size">${formatBytes(f.size)}</div>
-      </div>
-      <button onclick="removeUploadFile(${i})"
-        style="background:none;border:none;cursor:pointer;opacity:.45;padding:4px;">
-        <i data-lucide="x" style="width:14px;height:14px;"></i>
-      </button>
-    </div>`).join('');
-  ri(queueEl);
-
-  document.getElementById('us2reuploadSection').style.display =
-    (_uploadFiles.length === 1 && !isAdmin()) ? '' : 'none';
+  ['us1','us2','us3'].forEach((id, i) => {
+    const el = document.getElementById(id); if (el) el.style.display = i === 1 ? '' : 'none';
+  });
+  setUploadDots(2);
 }
 
 function uploadGoStep3() {
-  if (!_uploadFiles.length) { showToast('No files selected', 'error'); return; }
-  setUploadDot(2);
-  document.getElementById('us2').style.display = 'none';
-  document.getElementById('us3').style.display = '';
-
-  const multi   = _uploadFiles.length > 1;
-  const name    = multi ? `${_uploadFiles.length} files` : _uploadFiles[0].name;
-  const size    = multi ? _uploadFiles.reduce((acc, f) => acc + f.size, 0) : _uploadFiles[0].size;
-  const dest    = document.getElementById('us2destPath').value.trim();
-
-  document.getElementById('us3icon').textContent      = multi ? '📦' : fileEmoji(_uploadFiles[0].name);
-  document.getElementById('us3name').textContent      = name;
-  document.getElementById('us3size').textContent      = formatBytes(size);
-  document.getElementById('us3destPath').textContent  = dest || 'repository root';
+  if (!_pendingFiles.length) return;
+  const count = _pendingFiles.length;
+  const totalSize = _pendingFiles.reduce((s, f) => s + f.size, 0);
+  document.getElementById('us3icon').textContent = count === 1 ? getIconForFilename(_pendingFiles[0].name) : '📦';
+  document.getElementById('us3name').textContent = count === 1 ? _pendingFiles[0].name : `${count} files selected`;
+  document.getElementById('us3size').textContent = fmtSize(totalSize);
+  const dest = (document.getElementById('us2destPath').value || '').trim().replace(/^\/|\/$/g, '');
+  document.getElementById('us3destPath').textContent = dest || 'repository root';
+  document.getElementById('us3sub').textContent = isAdmin()
+    ? `${count} file${count > 1 ? 's' : ''} will be published directly to the repository.`
+    : `${count} file${count > 1 ? 's' : ''} will be held for admin review and approval.`;
   document.getElementById('us3adminNote').style.display = isAdmin() ? '' : 'none';
+  document.getElementById('us3approveBtn').textContent = isAdmin() ? '✓ Publish to Repository' : '✓ Submit for Review';
+  document.getElementById('us3progressWrap').style.display = 'none';
+  document.getElementById('us3progressBar').style.width = '0%';
+  ['us1','us2','us3'].forEach((id, i) => {
+    const el = document.getElementById(id); if (el) el.style.display = i === 2 ? '' : 'none';
+  });
+  setUploadDots(3);
 }
 
-function fileEmoji(name) {
-  const ext = (name || '').split('.').pop().toLowerCase();
-  const map  = { pdf:'📄', md:'📝', markdown:'📝', jpg:'🖼️', jpeg:'🖼️', png:'🖼️', gif:'🖼️', mp3:'🎵', mp4:'🎬', zip:'📦', doc:'📃', docx:'📃', xls:'📊', xlsx:'📊', ppt:'📊', pptx:'📊' };
-  return map[ext] || '📄';
-}
-
-function formatBytes(bytes) {
-  if (bytes < 1024)       return bytes + ' B';
-  if (bytes < 1024*1024)  return (bytes/1024).toFixed(1) + ' KB';
-  return (bytes/(1024*1024)).toFixed(1) + ' MB';
+function uploadDragOver(e) { e.preventDefault(); document.getElementById('dropZone').classList.add('drag-over'); }
+function uploadDragLeave() { document.getElementById('dropZone').classList.remove('drag-over'); }
+function uploadFileDrop(e) {
+  e.preventDefault(); document.getElementById('dropZone').classList.remove('drag-over');
+  const files = Array.from(e.dataTransfer.files);
+  if (files.length) { _pendingFiles = files; populateStep2UI(); uploadGoStep2(); }
 }
 
 function onFilePicked(e) {
-  _uploadFiles = [...e.target.files];
-  if (_uploadFiles.length) uploadGoStep2();
-}
-
-function removeUploadFile(i) {
-  _uploadFiles.splice(i, 1);
-  if (!_uploadFiles.length) uploadGoStep1(); else uploadGoStep2();
+  const files = Array.from(e.target.files); if (!files.length) return;
+  _pendingFiles = files; populateStep2UI(); uploadGoStep2();
 }
 
 function onReuploadPicked(e) {
-  _reuploadFile = e.target.files[0] || null;
-  document.getElementById('reuploadInfo').textContent = _reuploadFile ? `Replacement: ${_reuploadFile.name}` : '';
+  const file = e.target.files[0]; if (!file) return;
+  _reuploadFile = file;
+  document.getElementById('reuploadInfo').textContent = `✓ Modified file selected: ${file.name} (${fmtSize(file.size)})`;
 }
 
-function uploadDragOver(e)  { e.preventDefault(); document.getElementById('dropZone').classList.add('drag-over'); }
-function uploadDragLeave(e) { document.getElementById('dropZone').classList.remove('drag-over'); }
-function uploadFileDrop(e)  {
-  e.preventDefault();
-  document.getElementById('dropZone').classList.remove('drag-over');
-  _uploadFiles = [...e.dataTransfer.files];
-  if (_uploadFiles.length) uploadGoStep2();
+function removeQueuedFile(index) {
+  _pendingFiles.splice(index, 1);
+  if (!_pendingFiles.length) { uploadGoStep1(); return; }
+  populateStep2UI();
+}
+
+function populateStep2UI() {
+  const files = _pendingFiles;
+  const count = files.length;
+  const queue = document.getElementById('us2fileQueue');
+  queue.innerHTML = files.map((f, i) => `
+    <div class="fpc" style="margin:0;padding:10px 12px">
+      <div class="fpc-icon" style="font-size:22px">${getIconForFilename(f.name)}</div>
+      <div style="flex:1;min-width:0">
+        <div class="fpc-name" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${f.name}</div>
+        <div class="fpc-size">${fmtSize(f.size)}</div>
+      </div>
+      <span style="font-size:16px;cursor:pointer;padding:4px 8px;border-radius:6px;opacity:0.45;flex-shrink:0;transition:opacity 0.15s,background 0.15s"
+        title="Remove"
+        onclick="removeQueuedFile(${i})"
+        onmouseover="this.style.opacity='1';this.style.background='rgba(229,57,53,0.12)'"
+        onmouseout="this.style.opacity='0.45';this.style.background='none'">✕</span>
+    </div>
+  `).join('');
+  document.getElementById('us2pendingNotice').style.display = isAdmin() ? 'none' : 'flex';
+  document.getElementById('us2adminNotice').style.display   = isAdmin() ? '' : 'none';
+  // Reupload (replace) only meaningful for single-file admin uploads
+  document.getElementById('us2reuploadSection').style.display = (isAdmin() && count === 1) ? '' : 'none';
+  document.getElementById('us2title').textContent = isAdmin() ? 'Ready to Publish' : `${count} File${count > 1 ? 's' : ''} Selected`;
+  document.getElementById('us2sub').textContent   = isAdmin()
+    ? `${count} file${count > 1 ? 's' : ''} will be published directly.`
+    : `${count} file${count > 1 ? 's' : ''} will be held for admin review before being published.`;
+  document.getElementById('reuploadInfo').textContent = '';
+  // Don't wipe destPath — user may have pre-filled it before picking files
+}
+
+function _setUploadProgress(done, total) {
+  const pct = total ? Math.round((done / total) * 100) : 0;
+  document.getElementById('us3progressBar').style.width = pct + '%';
+  document.getElementById('us3progressLabel').textContent = `Uploading ${done} of ${total}… (${pct}%)`;
 }
 
 async function finalizeUpload() {
-  const dest     = document.getElementById('us2destPath').value.trim();
-  const approveBtn = document.getElementById('us3approveBtn');
-  const backBtn    = document.getElementById('us3backBtn');
-  approveBtn.disabled = true;
-  backBtn.disabled    = true;
+  // If single-file admin reupload, use the replacement file; otherwise use the full queue
+  const files = (_reuploadFile && _pendingFiles.length === 1) ? [_reuploadFile] : _pendingFiles;
+  if (!files.length) return;
+  const btn     = document.getElementById('us3approveBtn');
+  const backBtn = document.getElementById('us3backBtn');
+  btn.disabled = true; backBtn.disabled = true;
+  btn.textContent = 'Uploading…';
+  const dest  = (document.getElementById('us2destPath').value || '').trim().replace(/^\/|\/$/g, '');
+  const total = files.length;
+  const results = [];
 
-  document.getElementById('us3progressWrap').style.display = '';
-  const bar   = document.getElementById('us3progressBar');
-  const label = document.getElementById('us3progressLabel');
+  if (isAdmin()) {
+    document.getElementById('us3progressWrap').style.display = '';
+    for (let i = 0; i < total; i++) {
+      const file = files[i];
+      _setUploadProgress(i, total);
+      const b64 = await new Promise((res, rej) => {
+        const r = new FileReader();
+        r.onload = () => res(r.result.split(',')[1]);
+        r.onerror = () => rej(new Error('Read failed'));
+        r.readAsDataURL(file);
+      });
+      const filePath = dest ? `${dest}/${file.name}` : file.name;
+      const ok = await commitFileToGitHub(filePath, b64);
+      results.push({ name: file.name, ok });
+    }
+    _setUploadProgress(total, total);
+    fetchTree();
 
-  let successCount = 0;
-  let failCount    = 0;
+    const successes = results.filter(r => r.ok);
+    const failures  = results.filter(r => !r.ok);
+    let msg = '';
+    if (successes.length) msg += `✓ ${successes.length} file${successes.length > 1 ? 's' : ''} published to "${dest || 'repository root'}".`;
+    if (failures.length)  msg += `${msg ? '\n' : ''}✗ ${failures.length} failed: ${failures.map(r => r.name).join(', ')}`;
+    showUploadResultUI(failures.length === 0, msg.trim());
 
-  for (let i = 0; i < _uploadFiles.length; i++) {
-    const file = _reuploadFile && i === 0 ? _reuploadFile : _uploadFiles[i];
-    const pct  = Math.round(((i) / _uploadFiles.length) * 100);
-    bar.style.width       = pct + '%';
-    label.textContent     = `Uploading ${i+1} of ${_uploadFiles.length}: ${file.name}`;
+  } else {
+    // Anonymous — commit each file to waiting-list/ sequentially, then write index once
+    btn.textContent = 'Submitting…';
+    document.getElementById('us3progressWrap').style.display = '';
+    const { sha: idxSha, items } = await wlReadIndex();
 
-    try {
-      const b64 = await fileToBase64(file);
-      const filename = _uploadFiles[i].name; // always use original filename
-      const path = dest ? `${dest.replace(/\/$/, '')}/${filename}` : filename;
-
-      if (isAdmin() && hasPerm('create')) {
-        // Direct commit
-        const chk = await ghProxy('getFile', { path });
-        const res = await ghProxy('putFile', {
-          path, content: b64,
-          message: `Upload: ${path}`,
-          ...(chk.ok && chk.data.sha ? { sha: chk.data.sha } : {})
+    for (let i = 0; i < total; i++) {
+      const file = files[i];
+      _setUploadProgress(i, total);
+      const b64 = await new Promise((res, rej) => {
+        const r = new FileReader();
+        r.onload = () => res(r.result.split(',')[1]);
+        r.onerror = () => rej(new Error('Read failed'));
+        r.readAsDataURL(file);
+      });
+      const id = Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 7);
+      const storedName = `${id}-${sanitizeForPath(file.name)}`;
+      const fileOk = await ghProxy('putFile', {
+        path: `waiting-list/${storedName}`, content: b64,
+        message: `Pending upload: ${file.name}`, sha: null
+      });
+      results.push({ name: file.name, ok: fileOk.ok });
+      if (fileOk.ok) {
+        items.push({
+          id, storedName,
+          originalName: file.name,
+          destPath: dest,
+          uploadedAt: new Date().toISOString(),
+          size: file.size,
+          reuploadCount: 0
         });
-        if (res.ok) successCount++; else failCount++;
-      } else {
-        // Pending — write to waiting-list
-        const pendPath = `waiting-list/${filename}`;
-        const putRes   = await ghProxy('putFile', {
-          path: pendPath, content: b64,
-          message: `Pending upload: ${filename}`
-        });
-        if (putRes.ok) {
-          // Append to index.json
-          await appendToPendingIndex({ filename, path: pendPath, destPath: path, submittedAt: new Date().toISOString() });
-          successCount++;
-        } else { failCount++; }
       }
-    } catch (e) { failCount++; console.error(e); }
+    }
+    _setUploadProgress(total, total);
+
+    // Write all new index entries in a single commit
+    const successes = results.filter(r => r.ok);
+    const failures  = results.filter(r => !r.ok);
+    if (successes.length) {
+      const idxOk = await wlWriteIndex(items, idxSha, `Add pending: ${successes.length} file(s)`);
+      if (!idxOk.ok) console.warn('Index update failed — admin may need to re-sync.');
+    }
+
+    let msg = '';
+    if (successes.length) msg += `✓ ${successes.length} file${successes.length > 1 ? 's' : ''} submitted for review.${dest ? ` Destination: ${dest}.` : ''}`;
+    if (failures.length)  msg += `${msg ? '\n' : ''}✗ ${failures.length} failed: ${failures.map(r => r.name).join(', ')}`;
+    showUploadResultUI(failures.length === 0, msg.trim());
+
+    updatePendingBadge();
+    _pendingFiles = []; btn.disabled = false; backBtn.disabled = false;
   }
-
-  bar.style.width = '100%';
-
-  const icon  = failCount === 0 ? '✅' : (successCount === 0 ? '❌' : '⚠️');
-  const title = failCount === 0 ? (isAdmin() ? 'Published!' : 'Submitted for review!') : `${failCount} file(s) failed`;
-  const msg   = isAdmin()
-    ? `${successCount} file(s) committed to repository.`
-    : `${successCount} file(s) submitted for admin review.`;
-
-  document.getElementById('us3progressWrap').style.display = 'none';
-  document.getElementById('us3').style.display             = 'none';
-  document.getElementById('usResult').style.display        = '';
-  document.getElementById('usResultIcon').textContent      = icon;
-  document.getElementById('usResultTitle').textContent     = title;
-  document.getElementById('usResultMsg').textContent       = msg;
-
-  if (successCount) fetchTree();
-  _uploadFiles = []; _reuploadFile = null;
 }
 
-async function fileToBase64(file) {
-  return new Promise((res, rej) => {
-    const reader = new FileReader();
-    reader.onload  = () => res(reader.result.split(',')[1]);
-    reader.onerror = () => rej(new Error('File read failed'));
-    reader.readAsDataURL(file);
-  });
+function showUploadResultUI(ok, msg) {
+  ['us1','us2','us3'].forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
+  document.getElementById('usResult').style.display = '';
+  document.getElementById('usResultIcon').textContent  = ok ? '✅' : '⚠️';
+  document.getElementById('usResultTitle').textContent = ok ? 'Done!' : 'Some uploads failed';
+  document.getElementById('usResultMsg').style.whiteSpace = 'pre-line';
+  document.getElementById('usResultMsg').textContent   = msg;
+  _pendingFiles = [];
 }
 
-async function appendToPendingIndex(entry) {
-  const res = await ghProxy('getFileContent', { path: 'waiting-list/index.json' });
-  let items = [], sha = null;
-  if (res.ok && res.data.content) {
-    sha = res.data.sha;
-    try {
-      const raw  = atob(res.data.content);
-      const text = new TextDecoder().decode(Uint8Array.from(raw, c => c.charCodeAt(0)));
-      items = JSON.parse(text);
-    } catch (_) {}
-  }
-  items.push(entry);
-  const b64 = btoa(unescape(encodeURIComponent(JSON.stringify(items, null, 2))));
-  await ghProxy('putFile', {
-    path: 'waiting-list/index.json', content: b64,
-    message: 'Update pending index',
-    ...(sha ? { sha } : {})
-  });
+// ===== HELPERS =====
+function fmtSize(b) {
+  if (b < 1024) return b + ' B';
+  if (b < 1048576) return (b/1024).toFixed(1) + ' KB';
+  return (b/1048576).toFixed(1) + ' MB';
 }
-</script>
 
-<script>
-'use strict';
-// ═══════════════════════════════════════════════════════════════
-// GLOBAL KEYBOARD SHORTCUTS
-// ═══════════════════════════════════════════════════════════════
-document.addEventListener('keydown', e => {
-  // Don't fire shortcuts when typing in an input / textarea
-  const tag = document.activeElement?.tagName;
-  const inInput = tag === 'INPUT' || tag === 'TEXTAREA' || document.activeElement?.isContentEditable;
+function getIconForFilename(name) {
+  const ext = (name || '').split('.').pop().toLowerCase();
+  return FILE_ICONS[ext] || FILE_ICONS.default;
+}
 
-  // Editor shortcuts handled separately in Part E — skip here if editor open
-  if (document.getElementById('editorOverlay')?.classList.contains('active')) return;
-
-  const mod = e.ctrlKey || e.metaKey;
-
-  // Escape — close topmost overlay
-  if (e.key === 'Escape') {
-    if (document.getElementById('searchOverlay')?.classList.contains('open')) {
-      closeSearch(); return;
-    }
-    // Close any active full-overlay in reverse stack order
-    const overlays = [
-      'shortcutsOverlay','shareOverlay','decryptOverlay',
-      'deleteMobileOverlay','adminOverlay','uploadOverlay','loginOverlay','guidanceOverlay'
-    ];
-    for (const id of overlays) {
-      const el = document.getElementById(id);
-      if (el?.classList.contains('active')) { hideOverlay(id); return; }
-    }
-    // Close desktop confirm dialogs
-    if (document.getElementById('deleteConfirm')?.style.display !== 'none') {
-      cancelDeleteFile(); return;
-    }
-    if (document.getElementById('discardConfirm')?.style.display !== 'none') {
-      document.getElementById('discardConfirm').style.display = 'none'; return;
-    }
-    // Close mobile file sheet
-    if (document.getElementById('mobFileSheet')?.classList.contains('open')) {
-      _closeMobSheet(); return;
-    }
-    return;
-  }
-
-  // Don't fire remaining shortcuts inside inputs
-  if (inInput) return;
-
-  // ⌘K / Ctrl+K — search
-  if (mod && e.key === 'k') { e.preventDefault(); openSearch(); return; }
-
-  // ⌘E / Ctrl+E — new note (admin only)
-  if (mod && e.key === 'e') { e.preventDefault(); if (isAdmin() && hasPerm('create')) openEditor(null, null); return; }
-
-  // ⌘U / Ctrl+U — upload
-  if (mod && e.key === 'u') { e.preventDefault(); showUploadScreen(); return; }
-
-  // ⌘R / Ctrl+R — refresh
-  if (mod && e.key === 'r') { e.preventDefault(); refreshFiles(); return; }
-
-  // ⌘↑ / Ctrl+↑ — go up
-  if (mod && e.key === 'ArrowUp') { e.preventDefault(); goUp(); return; }
-
-  // ⌘/ / Ctrl+/ — shortcuts panel
-  if (mod && e.key === '/') { e.preventDefault(); showOverlay('shortcutsOverlay'); return; }
-
-  // ? — shortcuts panel (bare key)
-  if (e.key === '?') { showOverlay('shortcutsOverlay'); return; }
-});
-
-// ═══════════════════════════════════════════════════════════════
-// MOBILE OVERFLOW MENU
-// ═══════════════════════════════════════════════════════════════
+// ===== MOBILE OVERFLOW MENU =====
 function toggleMobOverflow() {
   document.getElementById('mobOverflowMenu').classList.toggle('open');
 }
 function closeMobOverflow() {
   document.getElementById('mobOverflowMenu').classList.remove('open');
 }
-
-// ═══════════════════════════════════════════════════════════════
-// GUIDANCE OVERLAY — detect mobile/desktop tab on open
-// ═══════════════════════════════════════════════════════════════
-function initGuidanceTabs() {
-  const tab = isMobile ? 'mobile' : 'desktop';
-  switchGuideTab(tab);
-}
-
-// ═══════════════════════════════════════════════════════════════
-// VERCEL POPUP
-// ═══════════════════════════════════════════════════════════════
-function checkVercelPopup() {
-  // Only show on GitHub Pages (not on Vercel itself)
-  const host     = location.hostname;
-  const isGHPages = host.endsWith('github.io');
-  if (!isGHPages) return;
-  if (localStorage.getItem('wm_vercel_dismissed')) return;
-
-  const vercelUrl = localStorage.getItem('wm_vercel_url');
-  if (!vercelUrl) return;   // no Vercel URL configured — skip
-
-  setTimeout(() => {
-    document.getElementById('vercelPopup').classList.add('visible');
-  }, 3500);
-}
-
-function goToVercel() {
-  const url = localStorage.getItem('wm_vercel_url');
-  if (url) window.location.href = url;
-}
-
-function dismissVercelPopup() {
-  document.getElementById('vercelPopup').classList.remove('visible');
-  localStorage.setItem('wm_vercel_dismissed', '1');
-}
-
-// ═══════════════════════════════════════════════════════════════
-// DOMContentLoaded — single initialisation entry point
-// ═══════════════════════════════════════════════════════════════
-document.addEventListener('DOMContentLoaded', async () => {
-
-  // 1. Render Lucide icons for static HTML (overlays, toolbar, etc.)
-  ri();
-
-  // 2. Auth: fetch SA token + restore session
-  await bootAuth();
-
-  // 3. Check for incoming encrypted share link in URL fragment
-  checkShareFragment();
-
-  // 4. Load file tree (also dismisses splash)
-  await fetchTree();
-
-  // 5. Guidance overlay — show first-time visitors
-  if (!localStorage.getItem('wm_guidance_seen')) {
-    initGuidanceTabs();
-    showOverlay('guidanceOverlay');
+// Close overflow menu on outside tap
+document.addEventListener('click', e => {
+  if (!e.target.closest('#mobOverflowBtn') && !e.target.closest('#mobOverflowMenu')) {
+    closeMobOverflow();
   }
+});
 
-  // 6. Vercel redirect popup
-  checkVercelPopup();
+// ===== MOBILE FILE ACTION BOTTOM SHEET =====
+let _mobSheetIndex = -1;
 
-  // 7. Mobile: show/hide overflow button
+function openMobFileSheet(e, index) {
+  e.stopPropagation();
+  const items = document.querySelectorAll('.file-item');
+  if (index < 0 || index >= items.length) return;
+  const child = items[index]._childData;
+  // Set selection
+  document.querySelectorAll('.file-item.selected').forEach(el => el.classList.remove('selected'));
+  items[index].classList.add('selected');
+  selected = child;
+  _mobSheetIndex = index;
+
+  document.getElementById('mobFileSheetTitle').textContent = child.name;
+  document.getElementById('mobSheetDelete').style.display = isAdmin() ? '' : 'none';
+
+  const sheet = document.getElementById('mobFileSheet');
+  sheet.classList.add('open');
+}
+
+function closeMobFileSheet(e) {
+  // Close only if tapping the backdrop (not the card itself)
+  if (e && e.target !== document.getElementById('mobFileSheet')) return;
+  _closeMobFileSheet();
+}
+
+function _closeMobFileSheet() {
+  document.getElementById('mobFileSheet').classList.remove('open');
+  _mobSheetIndex = -1;
+}
+
+function mobSheetAction(action) {
+  _closeMobFileSheet();
+  if (_mobSheetIndex === -1) {
+    // index was cleared — reconstruct from selected
+    if (!selected) return;
+    if (action === 'preview') { openMobilePreview(selected.path, selected.name); return; }
+    if (action === 'download') { handleDownload(); return; }
+    if (action === 'delete') { deleteFile({ stopPropagation: () => {} }, -1); return; }
+    return;
+  }
+  // Use stored index
+  const fakeEvent = { stopPropagation: () => {} };
+  if (action === 'preview')  previewFile(fakeEvent, _mobSheetIndex);
+  if (action === 'download') downloadFile(fakeEvent, _mobSheetIndex);
+  if (action === 'delete')   deleteFile(fakeEvent, _mobSheetIndex);
+}
+const mobileMin = {}; // id -> { name }
+
+function minimizeWindowMobile(id) {
+  const w = windows[id]; if (!w) return;
+  w.style.display = 'none';
+  mobileMin[id] = { name: w.querySelector('.title')?.textContent || 'File' };
+  renderMobileMinStack();
+}
+
+function restoreWindowMobile(id) {
+  // Minimise anything currently visible
+  for (const [wid, w] of Object.entries(windows)) {
+    if (w.style.display !== 'none') {
+      w.style.display = 'none';
+      mobileMin[wid] = { name: w.querySelector('.title')?.textContent || 'File' };
+    }
+  }
+  const w = windows[id];
+  if (w) { w.style.display = 'flex'; delete mobileMin[id]; }
+  renderMobileMinStack();
+}
+
+function renderMobileMinStack() {
+  const stack = document.getElementById('mobileMinStack');
+  const dropdown = document.getElementById('mobHamburgerDropdown');
+  if (!isMobile) { stack.style.display = 'none'; return; }
+  const entries = Object.entries(mobileMin);
+  if (!entries.length) {
+    stack.style.display = 'none';
+    dropdown.classList.remove('open');
+    return;
+  }
+  stack.style.display = 'flex';
+  // Update badge count on hamburger button
+  const btn = document.getElementById('mobHamburgerBtn');
+  btn.textContent = entries.length > 0 ? `☰ ${entries.length}` : '☰';
+  // Rebuild dropdown items
+  dropdown.innerHTML = entries.map(([id, info]) =>
+    `<button class="mob-min-btn" onclick="restoreWindowMobile('${id}')">📄 <span>${info.name}</span></button>`
+  ).join('');
+}
+
+function toggleMobHamburger() {
+  const dropdown = document.getElementById('mobHamburgerDropdown');
+  dropdown.classList.toggle('open');
+}
+
+// Close the hamburger dropdown when tapping outside it
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('#mobileMinStack')) {
+    document.getElementById('mobHamburgerDropdown')?.classList.remove('open');
+  }
+});
+
+// ===== OVERRIDE openPreview FOR MOBILE MINIMIZE SUPPORT =====
+function openPreview(path, filename) {
+  const id = 'preview-' + (++previewId);
+  const win = document.createElement('div');
+  win.className = 'floating-window';
+
   if (isMobile) {
-    document.getElementById('mobOverflowBtn').style.display = 'flex';
-    // Hide desktop-only toolbar buttons
-    document.querySelectorAll('.mob-hide').forEach(el => el.style.display = 'none');
+    win.style.cssText = 'top:0;left:0;width:100vw;height:100vh;border-radius:0;';
+  } else {
+    win.style.top  = `${100 + previewId * 10}px`;
+    win.style.left = `${100 + previewId * 10}px`;
   }
 
-  // 8. Admin-specific UI wired after auth
-  applyAuthUI();
+  win.dataset.id = id;
+  const ext = filename.split('.').pop().toLowerCase();
+
+  const minBtn = isMobile
+    ? `<button onclick="minimizeWindowMobile('${id}')">🗕</button>`
+    : `<button onclick="minimizeWindow('${id}')">🗕</button>`;
+  const fsBtn  = isMobile ? '' : `<button onclick="toggleFullscreen('${id}')">🗖</button>`;
+
+  win.innerHTML = `
+    <div class="title-bar" onmousedown="${isMobile ? '' : `startDrag(event,'${id}')`}">
+      <div class="title">${filename}</div>
+      <div class="buttons">${minBtn}${fsBtn}<button onclick="closeWindow('${id}')">✖</button></div>
+    </div>
+    <div class="preview-body" id="${id}-body">Loading...</div>`;
+
+  previewContainer.appendChild(win);
+  windows[id] = win;
+  fetchFileContent(path, filename, document.getElementById(id + '-body'));
+
+  if (!isMobile) {
+    updateTaskbar();
+    if (['md','markdown','pdf','html','htm','doc','docx','xls','xlsx','ppt','pptx'].includes(ext)) setTimeout(() => toggleFullscreen(id, true), 100);
+  }
+}
+
+// ===== OVERRIDE handlePreview — always use openPreview (handles mobile internally) =====
+function handlePreview() {
+  if (selected && selected.type === 'file') openPreview(selected.path, selected.name);
+  contextMenu.style.display = 'none';
+}
+
+// ===== OVERRIDE closeWindow — handle mobile min stack =====
+function closeWindow(id) {
+  const w = windows[id];
+  if (w) { w.remove(); delete windows[id]; delete mobileMin[id]; }
+  isMobile ? renderMobileMinStack() : updateTaskbar();
+}
+
+// ===== OVERRIDE minimizeWindow — handle mobile fallthrough =====
+function minimizeWindow(id) {
+  const w = windows[id]; if (!w) return;
+  if (isMobile) { minimizeWindowMobile(id); return; }
+  w.style.display = 'none';
+  updateTaskbar();
+}
+
+// ===== OVERRIDE updateTaskbar — fix names + scrollable =====
+function updateTaskbar() {
+  if (isMobile) return;
+  const minimised = Object.entries(windows).filter(([,el]) => el.style.display === 'none');
+  if (!minimised.length) { taskbar.style.display = 'none'; taskbar.innerHTML = ''; return; }
+
+  taskbar.style.display = 'flex';
+  taskbar.style.overflowX = 'auto';
+  taskbar.style.flexWrap = 'nowrap';
+  taskbar.innerHTML = '';
+
+  for (const [id, el] of Object.entries(windows)) {
+    if (el.style.display !== 'none') continue;
+    const name = el.querySelector('.title')?.textContent || 'File';
+    const icon = document.createElement('div');
+    icon.className = 'task-icon';
+    icon.dataset.name = name;
+    icon.style.cssText = 'width:auto;padding:0 10px;gap:5px;font-size:12px;white-space:nowrap;display:flex;align-items:center;min-width:auto;';
+    icon.innerHTML = `<span>📄</span><span>${name}</span>`;
+    icon.onclick = () => { el.style.display = 'block'; updateTaskbar(); };
+    icon.oncontextmenu = e => { e.preventDefault(); showTaskbarContextMenu(e.pageX, e.pageY, id); };
+    taskbar.appendChild(icon);
+  }
+}
+
+// ===== INIT =====
+window.addEventListener('DOMContentLoaded', async () => {
+  await loadWmConfig();   // fetch SAToken from Vercel env vars via /api/gh
+  restoreSession();
+  await loadAdmins();
+  updateAuthUI();
+  await updatePendingBadge();
+  showGuidanceIfNeeded();
 });
 </script>
 </body>
-</html>
