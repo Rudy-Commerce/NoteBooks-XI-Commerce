@@ -2,7 +2,6 @@ import os
 import json
 
 EXCLUDED_ROOT_FILES = {
-    "LICENSE",
     "installer.html",
     "files.json",
     "fmtree.py",
@@ -17,7 +16,8 @@ EXCLUDED_ROOT_FILES = {
     "obsidian-markdown-it.js",
     "fallback.html",
     "autopush.sh",
-    "conf.txt"
+    "conf.txt",
+    "vercel.json"
 }
 
 EXCLUDED_ROOT_DIRS = {
