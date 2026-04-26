@@ -852,11 +852,35 @@
   };
   global.obsidianInitMath           = initMath;
   global.obsidianInitTikz           = function (root) {
-    /* The local bin/tikzjax.js (obsidian-tikzjax) observes document.body with
+    /* The local bin/tikzjax/output/tikzjax.js observes document.body with
        { childList: true, subtree: true }, so <script type="text/tikz"> elements
        inserted anywhere in the DOM are picked up automatically.
        Strategy: replace each .tikz-source div directly with the script element;
        tikzjax handles the spinner -> SVG replacement in-place.
+
+       Preamble injection (required by this tikzjax build):
+       ─────────────────────────────────────────────────────
+       The tikzjax engine uses a frozen LaTeX core dump that has already passed
+       the preamble stage. This means \usepackage and \usetikzlibrary cannot
+       appear inside the script body — they must be injected via the
+       data-add-to-preamble attribute BEFORE \begin{document}.
+
+       This function automatically:
+         1. Scans the tikz block for \usepackage / \usetikzlibrary lines and
+            any setup macros (e.g. \tdplotsetmaincoords) that precede
+            \begin{tikzpicture}.
+         2. Moves them into data-add-to-preamble (appending \begin{document}).
+         3. Appends \end{document} after \end{tikzpicture} in the body.
+
+       Users write natural LaTeX in ```tikz blocks — no special syntax needed:
+
+         ```tikz
+         \usepackage{tikz-3dplot}
+         \tdplotsetmaincoords{70}{110}
+         \begin{tikzpicture}[tdplot_main_coords, scale=1.5]
+             ...
+         \end{tikzpicture}
+         ```
 
        Error handling: when TeX compilation fails tikzjax sets
          spinner.outerHTML = "<img src='//invalid.site/img-not-found.png'/>"
@@ -864,13 +888,69 @@
        parent catches that IMG insertion and replaces it with a styled error
        block.  On success, tikzjax dispatches "tikzjax-load-finished" (bubbles)
        on the rendered SVG; we use that to disconnect the observer cleanly.      */
+
+    /* ── Preamble extractor ──────────────────────────────────────────────── */
+    function extractPreamble(raw) {
+      var lines      = raw.split('\n');
+      var preamble   = [];
+      var bodyLines  = [];
+      var inBody     = false;
+
+      for (var i = 0; i < lines.length; i++) {
+        var line = lines[i];
+        var trimmed = line.trim();
+
+        if (inBody) {
+          bodyLines.push(line);
+          continue;
+        }
+
+        /* Lines before \begin{tikzpicture} that are preamble commands */
+        if (
+          /^\\usepackage\b/.test(trimmed)   ||
+          /^\\usetikzlibrary\b/.test(trimmed)
+        ) {
+          preamble.push(trimmed);
+          continue;
+        }
+
+        /* Any other command before \begin{tikzpicture} is a setup macro
+           e.g. \tdplotsetmaincoords{70}{110} */
+        if (/^\\[a-zA-Z]/.test(trimmed) && !/^\\begin\b/.test(trimmed)) {
+          preamble.push(trimmed);
+          continue;
+        }
+
+        /* Once we hit \begin{tikzpicture} (or any \begin), enter body mode */
+        inBody = true;
+        bodyLines.push(line);
+      }
+
+      /* Build the data-add-to-preamble value:
+         all extracted commands + \begin{document} */
+      var preambleAttr = preamble.join('') + (preamble.length ? '\\begin{document}' : '\\begin{document}');
+
+      /* Body: the tikzpicture content + \end{document} */
+      var body = bodyLines.join('\n').trimRight();
+      /* Append \end{document} if not already present */
+      if (body.indexOf('\\end{document}') === -1) {
+        body = body + '\n\\end{document}';
+      }
+
+      return { preamble: preambleAttr, body: body };
+    }
+
     var el = root || document;
     el.querySelectorAll('.tikz-source:not([data-tikz-rendered])').forEach(function (div) {
       div.setAttribute('data-tikz-rendered', 'true');
 
-      var s         = document.createElement('script');
-      s.type        = 'text/tikz';
-      s.textContent = div.textContent;
+      /* Extract preamble commands and clean body */
+      var parsed = extractPreamble(div.textContent);
+
+      var s  = document.createElement('script');
+      s.type = 'text/tikz';
+      s.setAttribute('data-add-to-preamble', parsed.preamble);
+      s.textContent = parsed.body;
 
       var parent = div.parentNode;
 
@@ -900,7 +980,7 @@
         obs.disconnect();
       });
 
-      /* Insert directly -- tikzjax finds it via its subtree:true observer. */
+      /* Insert directly — tikzjax finds it via its subtree:true observer. */
       parent.replaceChild(s, div);
     });
   };
