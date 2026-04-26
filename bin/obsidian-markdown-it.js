@@ -848,40 +848,20 @@
   };
   global.obsidianInitMath           = initMath;
   global.obsidianInitTikz           = function (root) {
-    /* TikZJax's MutationObserver observes document.body direct children only
-       (no subtree), so elements inserted deep inside preview divs are missed.
-       Strategy: put each script in document.body, watch for TikZJax to swap it
-       with an SVG, then move that SVG back to the placeholder position.        */
+    /* The local bin/tikzjax.js (obsidian-tikzjax) observes document.body with
+       { childList: true, subtree: true }, so <script type="text/tikz"> elements
+       inserted anywhere in the DOM are picked up automatically.
+       Strategy: replace each .tikz-source div directly with the script element;
+       tikzjax handles the spinner → SVG replacement in-place.                  */
     var el = root || document;
     el.querySelectorAll('.tikz-source:not([data-tikz-rendered])').forEach(function (div) {
       div.setAttribute('data-tikz-rendered', 'true');
-
-      /* Leave a placeholder span where the diagram should appear */
-      var placeholder = document.createElement('span');
-      placeholder.className = 'tikz-output';
-      div.parentNode.replaceChild(placeholder, div);
-
       var s = document.createElement('script');
       s.type = 'text/tikz';
       s.textContent = div.textContent;
-
-      /* Watch document.body for TikZJax removing the script and inserting SVG */
-      var obs = new MutationObserver(function (mutations) {
-        for (var i = 0; i < mutations.length; i++) {
-          var removed = Array.prototype.indexOf.call(mutations[i].removedNodes, s);
-          if (removed === -1) continue;
-          obs.disconnect();
-          var svg = mutations[i].addedNodes[0];
-          if (svg && placeholder.parentNode) {
-            placeholder.parentNode.replaceChild(svg, placeholder);
-          } else if (svg) {
-            document.body.appendChild(svg);
-          }
-          return;
-        }
-      });
-      obs.observe(document.body, { childList: true });
-      document.body.appendChild(s);
+      /* Insert directly at the correct DOM position — tikzjax will replace the
+         script node with a loading SVG, then the rendered SVG, in-place.        */
+      div.parentNode.replaceChild(s, div);
     });
   };
   global.obsidianInitMermaid        = initMermaid;
