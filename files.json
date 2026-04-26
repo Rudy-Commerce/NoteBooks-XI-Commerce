@@ -16,6 +16,11 @@
       "type": "file",
       "name": "_index.html",
       "path": "_index.html"
+    },
+    {
+      "type": "file",
+      "name": "tikz-sample.md",
+      "path": "tikz-sample.md"
     }
   ]
 }
