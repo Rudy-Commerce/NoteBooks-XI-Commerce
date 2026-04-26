@@ -581,8 +581,10 @@
       if (lang !== 'tikz') {
         return orig ? orig(tokens, idx, options, env, self) : self.renderToken(tokens, idx, options);
       }
-      /* TikZJax processes <script type="text/tikz"> elements automatically */
-      return '<script type="text/tikz">' + token.content.trim() + '<\/script>\n';
+      /* Emit a placeholder div — script tags injected via innerHTML are inert.
+         obsidianInitTikz() will swap these for real <script type="text/tikz">
+         elements created via document.createElement, which TikZJax picks up. */
+      return '<div class="tikz-source" style="display:none">' + esc(token.content.trim()) + '</div>\n';
     };
   }
 
@@ -846,13 +848,16 @@
   };
   global.obsidianInitMath           = initMath;
   global.obsidianInitTikz           = function (root) {
-    /* TikZJax auto-processes <script type="text/tikz"> on load, but call this  */
-    /* after dynamic insertion to trigger rendering of newly added TikZ blocks.  */
-    if (typeof TikZJax === 'undefined') return;
+    /* Replace each .tikz-source placeholder with a real <script type="text/tikz">
+       created via document.createElement — only live script elements are picked
+       up by TikZJax's MutationObserver; innerHTML-injected ones are inert.     */
     var el = root || document;
-    el.querySelectorAll('script[type="text/tikz"]:not([data-tikz-rendered])').forEach(function (s) {
-      s.setAttribute('data-tikz-rendered', 'true');
-      TikZJax.process(s);
+    el.querySelectorAll('.tikz-source:not([data-tikz-rendered])').forEach(function (div) {
+      div.setAttribute('data-tikz-rendered', 'true');
+      var s = document.createElement('script');
+      s.type = 'text/tikz';
+      s.textContent = div.textContent;
+      div.parentNode.replaceChild(s, div);
     });
   };
   global.obsidianInitMermaid        = initMermaid;
