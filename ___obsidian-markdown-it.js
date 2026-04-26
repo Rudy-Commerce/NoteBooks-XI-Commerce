@@ -745,10 +745,6 @@
     '.obsidian-block-id{display:none}',
     /* ── Mermaid ─────────────────────────────────────────────────────────────── */
     '.obsidian-mermaid{overflow-x:auto;text-align:center;margin:1em 0;background:transparent}',
-    /* -- TikZ error block -- */
-    '.tikz-error{display:flex;align-items:center;gap:.5em;margin:1em 0;padding:.6em .9em;border-left:4px solid #ef5350;border-radius:4px;background:rgba(239,83,80,.07);color:#ef5350;font-size:.9em;font-family:monospace}',
-    '.tikz-error-icon{font-size:1.1em;flex-shrink:0}',
-    '.tikz-error-msg{opacity:.9}',
     /* ── Task lists ──────────────────────────────────────────────────────────── */
     'ul.task-list{list-style:none;padding-left:1.2em}',
     'li.task-list-item{display:flex;align-items:baseline;gap:.45em;padding:.1em 0}',
@@ -856,52 +852,16 @@
        { childList: true, subtree: true }, so <script type="text/tikz"> elements
        inserted anywhere in the DOM are picked up automatically.
        Strategy: replace each .tikz-source div directly with the script element;
-       tikzjax handles the spinner -> SVG replacement in-place.
-
-       Error handling: when TeX compilation fails tikzjax sets
-         spinner.outerHTML = "<img src='//invalid.site/img-not-found.png'/>"
-       leaving a broken-image icon in the document.  A MutationObserver on the
-       parent catches that IMG insertion and replaces it with a styled error
-       block.  On success, tikzjax dispatches "tikzjax-load-finished" (bubbles)
-       on the rendered SVG; we use that to disconnect the observer cleanly.      */
+       tikzjax handles the spinner → SVG replacement in-place.                  */
     var el = root || document;
     el.querySelectorAll('.tikz-source:not([data-tikz-rendered])').forEach(function (div) {
       div.setAttribute('data-tikz-rendered', 'true');
-
-      var s         = document.createElement('script');
-      s.type        = 'text/tikz';
+      var s = document.createElement('script');
+      s.type = 'text/tikz';
       s.textContent = div.textContent;
-
-      var parent = div.parentNode;
-
-      /* Watch for tikzjax inserting <img src="//invalid.site/..."> on error. */
-      var obs = new MutationObserver(function (mutations) {
-        for (var m = 0; m < mutations.length; m++) {
-          var added = mutations[m].addedNodes;
-          for (var n = 0; n < added.length; n++) {
-            if (added[n].nodeName === 'IMG') {
-              obs.disconnect();
-              var err = document.createElement('div');
-              err.className = 'tikz-error';
-              err.innerHTML =
-                '<span class="tikz-error-icon">⚠️</span>' +
-                '<span class="tikz-error-msg">TikZ render failed — see console for details.</span>';
-              if (added[n].parentNode) added[n].parentNode.replaceChild(err, added[n]);
-              return;
-            }
-          }
-        }
-      });
-      obs.observe(parent, { childList: true });
-
-      /* Disconnect cleanly on success. */
-      parent.addEventListener('tikzjax-load-finished', function cleanup() {
-        parent.removeEventListener('tikzjax-load-finished', cleanup);
-        obs.disconnect();
-      });
-
-      /* Insert directly -- tikzjax finds it via its subtree:true observer. */
-      parent.replaceChild(s, div);
+      /* Insert directly at the correct DOM position — tikzjax will replace the
+         script node with a loading SVG, then the rendered SVG, in-place.        */
+      div.parentNode.replaceChild(s, div);
     });
   };
   global.obsidianInitMermaid        = initMermaid;
