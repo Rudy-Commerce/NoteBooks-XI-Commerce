@@ -23,16 +23,11 @@
     if (typeof window.obsidianInitCalloutFolds === 'function') {
       window.obsidianInitCalloutFolds(container);
     }
-    /* TikZ MUST run before MathJax — obsidianInitMath processes the entire
-       container including hidden .tikz-source divs. MathJax corrupts their
-       textContent by replacing egin{tikzpicture} with error messages.
-       Running TikZ first moves the source into <script> elements that
-       MathJax skips entirely.                                               */
-    if (typeof window.obsidianInitTikz === 'function') {
-      window.obsidianInitTikz(container);
-    }
     if (typeof window.obsidianInitMath === 'function') {
       await window.obsidianInitMath(container);
+    }
+    if (typeof window.obsidianInitTikz === 'function') {
+      window.obsidianInitTikz(container);
     }
     if (typeof window.obsidianInitMermaid === 'function') {
       window.obsidianInitMermaid(container);

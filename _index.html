@@ -28,7 +28,9 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
   <!-- TikZJax — TikZ/PGF diagram rendering (```tikz blocks) -->
-  <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+  <!-- Engine lives in bin/tikzjax/output/; fonts in bin/tikzjax/css/ -->
+  <link rel="stylesheet" href="bin/tikzjax/css/fonts.css">
+  <script src="bin/tikzjax/output/tikzjax.js"></script>
   <!-- highlight.js — syntax highlighting for code blocks -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/github.min.css"
         media="(prefers-color-scheme: light)">

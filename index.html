@@ -23,7 +23,10 @@
       packages: {'[+]': ['ams', 'boldsymbol']}
     },
     svg: { fontCache: 'global' },
-    startup: { typeset: false }
+    startup: { typeset: false },
+    options: {
+      ignoreHtmlClass: 'tikz-source'  /* never process .tikz-source divs */
+    }
   };
   </script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
