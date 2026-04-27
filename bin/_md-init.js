@@ -15,8 +15,6 @@
       /* Obsidian-specific syntax (wikilinks, callouts, embeds, tags, math,
          task lists, strikethrough, mermaid, code highlighting …)            */
       md.use(window.obsidianPlugin, {
-        enableTikz   : true,   /* enable ```tikz fenced block → .tikz-source div */
-        enableMermaid: true,   /* enable ```mermaid fenced block rendering        */
         resolveWikilink: function (target, alias, anchor) {
           return '#' + encodeURIComponent(target) + (anchor ? '%23' + encodeURIComponent(anchor) : '');
         },
