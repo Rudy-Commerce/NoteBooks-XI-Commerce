@@ -19,23 +19,8 @@
     },
     {
       "type": "file",
-      "name": "___obsidian-markdown-it.js",
-      "path": "___obsidian-markdown-it.js"
-    },
-    {
-      "type": "file",
-      "name": "__index.html",
-      "path": "__index.html"
-    },
-    {
-      "type": "file",
       "name": "_index.html",
       "path": "_index.html"
-    },
-    {
-      "type": "file",
-      "name": "_service-worker.js",
-      "path": "_service-worker.js"
     },
     {
       "type": "file",
