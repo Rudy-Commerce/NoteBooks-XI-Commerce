@@ -1,7 +1,768 @@
 {
   "type": "folder",
-  "name": "ada",
+  "name": "NoteBooks-XI-Commerce",
   "children": [
+    {
+      "type": "folder",
+      "name": "Commerce",
+      "children": [
+        {
+          "type": "folder",
+          "name": "AI Notes",
+          "children": [
+            {
+              "type": "folder",
+              "name": "English (Core)",
+              "children": [
+                {
+                  "type": "folder",
+                  "name": "Hornbill",
+                  "children": [
+                    {
+                      "type": "folder",
+                      "name": "Chapter 1",
+                      "children": [
+                        {
+                          "type": "folder",
+                          "name": "A Photograph by Shirley Toulson",
+                          "children": [
+                            {
+                              "type": "file",
+                              "name": "A Photograph by Shirley Toulson (Glossary).md",
+                              "path": "Commerce/AI Notes/English (Core)/Hornbill/Chapter 1/A Photograph by Shirley Toulson/A Photograph by Shirley Toulson (Glossary).md"
+                            },
+                            {
+                              "type": "file",
+                              "name": "A Photograph by Shirley Toulson (Notes).md",
+                              "path": "Commerce/AI Notes/English (Core)/Hornbill/Chapter 1/A Photograph by Shirley Toulson/A Photograph by Shirley Toulson (Notes).md"
+                            },
+                            {
+                              "type": "file",
+                              "name": "A Photograph by Shirley Toulson (Practice Questions).md",
+                              "path": "Commerce/AI Notes/English (Core)/Hornbill/Chapter 1/A Photograph by Shirley Toulson/A Photograph by Shirley Toulson (Practice Questions).md"
+                            },
+                            {
+                              "type": "file",
+                              "name": "A Photograph by Shirley Toulson (Revision Mindmaps).md",
+                              "path": "Commerce/AI Notes/English (Core)/Hornbill/Chapter 1/A Photograph by Shirley Toulson/A Photograph by Shirley Toulson (Revision Mindmaps).md"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "folder",
+                          "name": "Portrait of A Lady by Khushwant Singh",
+                          "children": [
+                            {
+                              "type": "file",
+                              "name": "Portrait of A Lady by Khushwant Singh (Glossary).md",
+                              "path": "Commerce/AI Notes/English (Core)/Hornbill/Chapter 1/Portrait of A Lady by Khushwant Singh/Portrait of A Lady by Khushwant Singh (Glossary).md"
+                            },
+                            {
+                              "type": "file",
+                              "name": "Portrait of A Lady by Khushwant Singh (Notes).md",
+                              "path": "Commerce/AI Notes/English (Core)/Hornbill/Chapter 1/Portrait of A Lady by Khushwant Singh/Portrait of A Lady by Khushwant Singh (Notes).md"
+                            },
+                            {
+                              "type": "file",
+                              "name": "Portrait of A Lady by Khushwant Singh (Practice Questions).md",
+                              "path": "Commerce/AI Notes/English (Core)/Hornbill/Chapter 1/Portrait of A Lady by Khushwant Singh/Portrait of A Lady by Khushwant Singh (Practice Questions).md"
+                            },
+                            {
+                              "type": "file",
+                              "name": "Portrait of A Lady by Khushwant Singh (Revision Mindmaps).md",
+                              "path": "Commerce/AI Notes/English (Core)/Hornbill/Chapter 1/Portrait of A Lady by Khushwant Singh/Portrait of A Lady by Khushwant Singh (Revision Mindmaps).md"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "folder",
+                      "name": "Chapter 2",
+                      "children": [
+                        {
+                          "type": "folder",
+                          "name": "We're Not Afraid to Die... If We Can All Be Together by Gordon Cook and Alan East",
+                          "children": [
+                            {
+                              "type": "file",
+                              "name": "We're Not Afraid to Die... If We Can All Be Together by Gordon Cook and Alan East (Glossary).md",
+                              "path": "Commerce/AI Notes/English (Core)/Hornbill/Chapter 2/We're Not Afraid to Die... If We Can All Be Together by Gordon Cook and Alan East/We're Not Afraid to Die... If We Can All Be Together by Gordon Cook and Alan East (Glossary).md"
+                            },
+                            {
+                              "type": "file",
+                              "name": "We're Not Afraid to Die... If We Can All Be Together by Gordon Cook and Alan East (Notes).md",
+                              "path": "Commerce/AI Notes/English (Core)/Hornbill/Chapter 2/We're Not Afraid to Die... If We Can All Be Together by Gordon Cook and Alan East/We're Not Afraid to Die... If We Can All Be Together by Gordon Cook and Alan East (Notes).md"
+                            },
+                            {
+                              "type": "file",
+                              "name": "We're Not Afraid to Die... If We Can All Be Together by Gordon Cook and Alan East (Practice Questions).md",
+                              "path": "Commerce/AI Notes/English (Core)/Hornbill/Chapter 2/We're Not Afraid to Die... If We Can All Be Together by Gordon Cook and Alan East/We're Not Afraid to Die... If We Can All Be Together by Gordon Cook and Alan East (Practice Questions).md"
+                            },
+                            {
+                              "type": "file",
+                              "name": "We're Not Afraid to Die... If We Can All Be Together by Gordon Cook and Alan East (Revision Mindmaps).md",
+                              "path": "Commerce/AI Notes/English (Core)/Hornbill/Chapter 2/We're Not Afraid to Die... If We Can All Be Together by Gordon Cook and Alan East/We're Not Afraid to Die... If We Can All Be Together by Gordon Cook and Alan East (Revision Mindmaps).md"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "folder",
+              "name": "Mathematics",
+              "children": [
+                {
+                  "type": "folder",
+                  "name": "Chapter 1 (Sets)",
+                  "children": [
+                    {
+                      "type": "file",
+                      "name": "Maths Chapter 1 (Sets) (Glossary).md",
+                      "path": "Commerce/AI Notes/Mathematics/Chapter 1 (Sets)/Maths Chapter 1 (Sets) (Glossary).md"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Maths Chapter 1 (Sets) (Notes).md",
+                      "path": "Commerce/AI Notes/Mathematics/Chapter 1 (Sets)/Maths Chapter 1 (Sets) (Notes).md"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Maths Chapter 1 (Sets) (Practice Questions).md",
+                      "path": "Commerce/AI Notes/Mathematics/Chapter 1 (Sets)/Maths Chapter 1 (Sets) (Practice Questions).md"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Maths Chapter 1 (Sets) (Revision Mindmaps).md",
+                      "path": "Commerce/AI Notes/Mathematics/Chapter 1 (Sets)/Maths Chapter 1 (Sets) (Revision Mindmaps).md"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "folder",
+          "name": "Contributions",
+          "children": [
+            {
+              "type": "file",
+              "name": "Basic Accouting Term (1).jpeg",
+              "path": "Commerce/Contributions/Basic Accouting Term (1).jpeg"
+            },
+            {
+              "type": "file",
+              "name": "Basic Accouting Term (10).jpeg",
+              "path": "Commerce/Contributions/Basic Accouting Term (10).jpeg"
+            },
+            {
+              "type": "file",
+              "name": "Basic Accouting Term (2).jpeg",
+              "path": "Commerce/Contributions/Basic Accouting Term (2).jpeg"
+            },
+            {
+              "type": "file",
+              "name": "Basic Accouting Term (3).jpeg",
+              "path": "Commerce/Contributions/Basic Accouting Term (3).jpeg"
+            },
+            {
+              "type": "file",
+              "name": "Basic Accouting Term (4).jpeg",
+              "path": "Commerce/Contributions/Basic Accouting Term (4).jpeg"
+            },
+            {
+              "type": "file",
+              "name": "Basic Accouting Term (5).jpeg",
+              "path": "Commerce/Contributions/Basic Accouting Term (5).jpeg"
+            },
+            {
+              "type": "file",
+              "name": "Basic Accouting Term (6).jpeg",
+              "path": "Commerce/Contributions/Basic Accouting Term (6).jpeg"
+            },
+            {
+              "type": "file",
+              "name": "Basic Accouting Term (7).jpeg",
+              "path": "Commerce/Contributions/Basic Accouting Term (7).jpeg"
+            },
+            {
+              "type": "file",
+              "name": "Basic Accouting Term (8).jpeg",
+              "path": "Commerce/Contributions/Basic Accouting Term (8).jpeg"
+            },
+            {
+              "type": "file",
+              "name": "Basic Accouting Term (9).jpeg",
+              "path": "Commerce/Contributions/Basic Accouting Term (9).jpeg"
+            }
+          ]
+        },
+        {
+          "type": "folder",
+          "name": "NCERT Exemplar",
+          "children": [
+            {
+              "type": "folder",
+              "name": "Mathematics",
+              "children": [
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 1 (Sets).pdf",
+                  "path": "Commerce/NCERT Exemplar/Mathematics/Maths Chapter 1 (Sets).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 10 (Straight Lines).pdf",
+                  "path": "Commerce/NCERT Exemplar/Mathematics/Maths Chapter 10 (Straight Lines).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 11 (Conic Sections).pdf",
+                  "path": "Commerce/NCERT Exemplar/Mathematics/Maths Chapter 11 (Conic Sections).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 12 (Introduction to Three Dimensional Geometry).pdf",
+                  "path": "Commerce/NCERT Exemplar/Mathematics/Maths Chapter 12 (Introduction to Three Dimensional Geometry).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 13 (Limits and Derivatives).pdf",
+                  "path": "Commerce/NCERT Exemplar/Mathematics/Maths Chapter 13 (Limits and Derivatives).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 14 (Mathematical Reasoning).pdf",
+                  "path": "Commerce/NCERT Exemplar/Mathematics/Maths Chapter 14 (Mathematical Reasoning).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 15 (Statistics).pdf",
+                  "path": "Commerce/NCERT Exemplar/Mathematics/Maths Chapter 15 (Statistics).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 16 (Probability).pdf",
+                  "path": "Commerce/NCERT Exemplar/Mathematics/Maths Chapter 16 (Probability).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 2 (Relations and Funcations).pdf",
+                  "path": "Commerce/NCERT Exemplar/Mathematics/Maths Chapter 2 (Relations and Funcations).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 3 (Trigonometric Functions).pdf",
+                  "path": "Commerce/NCERT Exemplar/Mathematics/Maths Chapter 3 (Trigonometric Functions).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 4 (Principle of Mathematical Induction).pdf",
+                  "path": "Commerce/NCERT Exemplar/Mathematics/Maths Chapter 4 (Principle of Mathematical Induction).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 5 (Complex Numbers and Quadratic Equations).pdf",
+                  "path": "Commerce/NCERT Exemplar/Mathematics/Maths Chapter 5 (Complex Numbers and Quadratic Equations).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 6 (Linear Inequalities).pdf",
+                  "path": "Commerce/NCERT Exemplar/Mathematics/Maths Chapter 6 (Linear Inequalities).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 7 (Permutations and Combinations).pdf",
+                  "path": "Commerce/NCERT Exemplar/Mathematics/Maths Chapter 7 (Permutations and Combinations).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 8 (Binomial Theorem).pdf",
+                  "path": "Commerce/NCERT Exemplar/Mathematics/Maths Chapter 8 (Binomial Theorem).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 9 (Sequence and Series).pdf",
+                  "path": "Commerce/NCERT Exemplar/Mathematics/Maths Chapter 9 (Sequence and Series).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths_Answers.pdf",
+                  "path": "Commerce/NCERT Exemplar/Mathematics/Maths_Answers.pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths_DesignOfThePaper.pdf",
+                  "path": "Commerce/NCERT Exemplar/Mathematics/Maths_DesignOfThePaper.pdf"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "folder",
+          "name": "NCERT Textbook",
+          "children": [
+            {
+              "type": "folder",
+              "name": "Accountancy",
+              "children": [
+                {
+                  "type": "folder",
+                  "name": "Financial Accounting-I",
+                  "children": [
+                    {
+                      "type": "file",
+                      "name": "Contents (Finanial Accounting-I).pdf",
+                      "path": "Commerce/NCERT Textbook/Accountancy/Financial Accounting-I/Contents (Finanial Accounting-I).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Financial Accounting-I Chapter 1 (Introduction to Accounting).pdf",
+                      "path": "Commerce/NCERT Textbook/Accountancy/Financial Accounting-I/Financial Accounting-I Chapter 1 (Introduction to Accounting).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Financial Accounting-I Chapter 2 (Theory Base of Accounting).pdf",
+                      "path": "Commerce/NCERT Textbook/Accountancy/Financial Accounting-I/Financial Accounting-I Chapter 2 (Theory Base of Accounting).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Financial Accounting-I Chapter 3 (Recording of Transactions-I).pdf",
+                      "path": "Commerce/NCERT Textbook/Accountancy/Financial Accounting-I/Financial Accounting-I Chapter 3 (Recording of Transactions-I).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Financial Accounting-I Chapter 4 (Recording of Transactions-II).pdf",
+                      "path": "Commerce/NCERT Textbook/Accountancy/Financial Accounting-I/Financial Accounting-I Chapter 4 (Recording of Transactions-II).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Financial Accounting-I Chapter 5 (Bank Reconciliation Statement).pdf",
+                      "path": "Commerce/NCERT Textbook/Accountancy/Financial Accounting-I/Financial Accounting-I Chapter 5 (Bank Reconciliation Statement).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Financial Accounting-I Chapter 6 (Trial Balance and Rectification of Errors).pdf",
+                      "path": "Commerce/NCERT Textbook/Accountancy/Financial Accounting-I/Financial Accounting-I Chapter 6 (Trial Balance and Rectification of Errors).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Financial Accounting-I Chapter 7 (Depreciation, Provisions and Reserves).pdf",
+                      "path": "Commerce/NCERT Textbook/Accountancy/Financial Accounting-I/Financial Accounting-I Chapter 7 (Depreciation, Provisions and Reserves).pdf"
+                    }
+                  ]
+                },
+                {
+                  "type": "folder",
+                  "name": "Financial Accounting-II",
+                  "children": [
+                    {
+                      "type": "file",
+                      "name": "Contents (Financial Accounting-II).pdf",
+                      "path": "Commerce/NCERT Textbook/Accountancy/Financial Accounting-II/Contents (Financial Accounting-II).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Financial Accounting-II Chapter 8 (Financial Statements-I).pdf",
+                      "path": "Commerce/NCERT Textbook/Accountancy/Financial Accounting-II/Financial Accounting-II Chapter 8 (Financial Statements-I).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Financial Accounting-II Chapter 9 (Financial Statements-II).pdf",
+                      "path": "Commerce/NCERT Textbook/Accountancy/Financial Accounting-II/Financial Accounting-II Chapter 9 (Financial Statements-II).pdf"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "folder",
+              "name": "Business Studies",
+              "children": [
+                {
+                  "type": "file",
+                  "name": " Contents (Business Studies).pdf",
+                  "path": "Commerce/NCERT Textbook/Business Studies/ Contents (Business Studies).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Business Studies Chapter 1 (Business, Trade and Commerce).pdf",
+                  "path": "Commerce/NCERT Textbook/Business Studies/Business Studies Chapter 1 (Business, Trade and Commerce).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Business Studies Chapter 10 (Internal Trade).pdf",
+                  "path": "Commerce/NCERT Textbook/Business Studies/Business Studies Chapter 10 (Internal Trade).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Business Studies Chapter 11 (International Business).pdf",
+                  "path": "Commerce/NCERT Textbook/Business Studies/Business Studies Chapter 11 (International Business).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Business Studies Chapter 2 (Forms of Business Organisations).pdf",
+                  "path": "Commerce/NCERT Textbook/Business Studies/Business Studies Chapter 2 (Forms of Business Organisations).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Business Studies Chapter 3 (Private, Public and Global Enterprises).pdf",
+                  "path": "Commerce/NCERT Textbook/Business Studies/Business Studies Chapter 3 (Private, Public and Global Enterprises).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Business Studies Chapter 4 (Business Services).pdf",
+                  "path": "Commerce/NCERT Textbook/Business Studies/Business Studies Chapter 4 (Business Services).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Business Studies Chapter 5 (Emerging Modes of Business).pdf",
+                  "path": "Commerce/NCERT Textbook/Business Studies/Business Studies Chapter 5 (Emerging Modes of Business).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Business Studies Chapter 6 (Social Responsibilies of Business and Business Ethics).pdf",
+                  "path": "Commerce/NCERT Textbook/Business Studies/Business Studies Chapter 6 (Social Responsibilies of Business and Business Ethics).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Business Studies Chapter 7 (Formation of a Company).pdf",
+                  "path": "Commerce/NCERT Textbook/Business Studies/Business Studies Chapter 7 (Formation of a Company).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Business Studies Chapter 8 (Sources of Business Finance).pdf",
+                  "path": "Commerce/NCERT Textbook/Business Studies/Business Studies Chapter 8 (Sources of Business Finance).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Business Studies Chapter 9 (MSME and Business Entrepreneurship).pdf",
+                  "path": "Commerce/NCERT Textbook/Business Studies/Business Studies Chapter 9 (MSME and Business Entrepreneurship).pdf"
+                }
+              ]
+            },
+            {
+              "type": "folder",
+              "name": "Economics",
+              "children": [
+                {
+                  "type": "folder",
+                  "name": "Introductory Microeconomics",
+                  "children": [
+                    {
+                      "type": "file",
+                      "name": "Contents (Introductory Microeconomics).pdf",
+                      "path": "Commerce/NCERT Textbook/Economics/Introductory Microeconomics/Contents (Introductory Microeconomics).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Introductory Microeconomics Chapter 1 (Introduction).pdf",
+                      "path": "Commerce/NCERT Textbook/Economics/Introductory Microeconomics/Introductory Microeconomics Chapter 1 (Introduction).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Introductory Microeconomics Chapter 2 (Theory of Consumer Behaviour).pdf",
+                      "path": "Commerce/NCERT Textbook/Economics/Introductory Microeconomics/Introductory Microeconomics Chapter 2 (Theory of Consumer Behaviour).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Introductory Microeconomics Chapter 3 (Production and Costs).pdf",
+                      "path": "Commerce/NCERT Textbook/Economics/Introductory Microeconomics/Introductory Microeconomics Chapter 3 (Production and Costs).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Introductory Microeconomics Chapter 4 (The Theory of the Firm under Perfect Competition).pdf",
+                      "path": "Commerce/NCERT Textbook/Economics/Introductory Microeconomics/Introductory Microeconomics Chapter 4 (The Theory of the Firm under Perfect Competition).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Introductory Microeconomics Chapter 5 (Market Equilibrium).pdf",
+                      "path": "Commerce/NCERT Textbook/Economics/Introductory Microeconomics/Introductory Microeconomics Chapter 5 (Market Equilibrium).pdf"
+                    }
+                  ]
+                },
+                {
+                  "type": "folder",
+                  "name": "Statistics for Economics",
+                  "children": [
+                    {
+                      "type": "file",
+                      "name": "Contents (Statistics for Economics).pdf",
+                      "path": "Commerce/NCERT Textbook/Economics/Statistics for Economics/Contents (Statistics for Economics).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Statistics for Economics Chapter 1 (Introduction).pdf",
+                      "path": "Commerce/NCERT Textbook/Economics/Statistics for Economics/Statistics for Economics Chapter 1 (Introduction).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Statistics for Economics Chapter 2 (Collection of Data).pdf",
+                      "path": "Commerce/NCERT Textbook/Economics/Statistics for Economics/Statistics for Economics Chapter 2 (Collection of Data).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Statistics for Economics Chapter 3 (Organisation of Data).pdf",
+                      "path": "Commerce/NCERT Textbook/Economics/Statistics for Economics/Statistics for Economics Chapter 3 (Organisation of Data).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Statistics for Economics Chapter 4 (Presentation of Data).pdf",
+                      "path": "Commerce/NCERT Textbook/Economics/Statistics for Economics/Statistics for Economics Chapter 4 (Presentation of Data).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Statistics for Economics Chapter 5 (Measures of Central Tendency).pdf",
+                      "path": "Commerce/NCERT Textbook/Economics/Statistics for Economics/Statistics for Economics Chapter 5 (Measures of Central Tendency).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Statistics for Economics Chapter 6 (Correlation).pdf",
+                      "path": "Commerce/NCERT Textbook/Economics/Statistics for Economics/Statistics for Economics Chapter 6 (Correlation).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Statistics for Economics Chapter 7 (Index Numbers).pdf",
+                      "path": "Commerce/NCERT Textbook/Economics/Statistics for Economics/Statistics for Economics Chapter 7 (Index Numbers).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Statistics for Economics Chapter 8 (Use of Statistical Tools).pdf",
+                      "path": "Commerce/NCERT Textbook/Economics/Statistics for Economics/Statistics for Economics Chapter 8 (Use of Statistical Tools).pdf"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "folder",
+              "name": "English (Core)",
+              "children": [
+                {
+                  "type": "folder",
+                  "name": "Hornbill",
+                  "children": [
+                    {
+                      "type": "file",
+                      "name": "Contents (Hornbill).pdf",
+                      "path": "Commerce/NCERT Textbook/English (Core)/Hornbill/Contents (Hornbill).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Hornbill Reading Skills Chapter 1 (The Portrait of a Lady by Khushwant Singh, A Photograph by Shirley  Toulson).pdf",
+                      "path": "Commerce/NCERT Textbook/English (Core)/Hornbill/Hornbill Reading Skills Chapter 1 (The Portrait of a Lady by Khushwant Singh, A Photograph by Shirley  Toulson).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Hornbill Reading Skills Chapter 2 (We're Not Afraid To Die... if We Can All Be Together by Gordon Cook and Alan East).pdf",
+                      "path": "Commerce/NCERT Textbook/English (Core)/Hornbill/Hornbill Reading Skills Chapter 2 (We're Not Afraid To Die... if We Can All Be Together by Gordon Cook and Alan East).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Hornbill Reading Skills Chapter 3 (Discovering Tut: the Saga Continues by A. R. Williams, The Laburnum Top by Ted Hughes, The Voice of the Rain by Walt Whitman).pdf",
+                      "path": "Commerce/NCERT Textbook/English (Core)/Hornbill/Hornbill Reading Skills Chapter 3 (Discovering Tut: the Saga Continues by A. R. Williams, The Laburnum Top by Ted Hughes, The Voice of the Rain by Walt Whitman).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Hornbill Reading Skills Chapter 4 (The Ailing Planet: the Green Movement's Role by Nani Palkhivala, Childhood by Markus Natten).pdf",
+                      "path": "Commerce/NCERT Textbook/English (Core)/Hornbill/Hornbill Reading Skills Chapter 4 (The Ailing Planet: the Green Movement's Role by Nani Palkhivala, Childhood by Markus Natten).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Hornbill Reading Skills Chapter 5 (The Adventure by Jayant Narlikar).pdf",
+                      "path": "Commerce/NCERT Textbook/English (Core)/Hornbill/Hornbill Reading Skills Chapter 5 (The Adventure by Jayant Narlikar).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Hornbill Reading Skills Chapter 6 (Silk Road by Nick Middleton, Father to Son by Elizabeth Jennings).pdf",
+                      "path": "Commerce/NCERT Textbook/English (Core)/Hornbill/Hornbill Reading Skills Chapter 6 (Silk Road by Nick Middleton, Father to Son by Elizabeth Jennings).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Hornbill Writing Skills Chapter 1 (Note-making).pdf",
+                      "path": "Commerce/NCERT Textbook/English (Core)/Hornbill/Hornbill Writing Skills Chapter 1 (Note-making).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Hornbill Writing Skills Chapter 2 (Summarising).pdf",
+                      "path": "Commerce/NCERT Textbook/English (Core)/Hornbill/Hornbill Writing Skills Chapter 2 (Summarising).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Hornbill Writing Skills Chapter 3 (Sub-titling).pdf",
+                      "path": "Commerce/NCERT Textbook/English (Core)/Hornbill/Hornbill Writing Skills Chapter 3 (Sub-titling).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Hornbill Writing Skills Chapter 4 (Essay Writing).pdf",
+                      "path": "Commerce/NCERT Textbook/English (Core)/Hornbill/Hornbill Writing Skills Chapter 4 (Essay Writing).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Hornbill Writing Skills Chapter 5 (Letter Writing).pdf",
+                      "path": "Commerce/NCERT Textbook/English (Core)/Hornbill/Hornbill Writing Skills Chapter 5 (Letter Writing).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Hornbill Writing Skills Chapter 6 (Creative Writing).pdf",
+                      "path": "Commerce/NCERT Textbook/English (Core)/Hornbill/Hornbill Writing Skills Chapter 6 (Creative Writing).pdf"
+                    }
+                  ]
+                },
+                {
+                  "type": "folder",
+                  "name": "Snapshots",
+                  "children": [
+                    {
+                      "type": "file",
+                      "name": "Contents (Snapshots).pdf",
+                      "path": "Commerce/NCERT Textbook/English (Core)/Snapshots/Contents (Snapshots).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Snapshots Chapter 1 (The Summer of the Beautiful White House by William Saroyan).pdf",
+                      "path": "Commerce/NCERT Textbook/English (Core)/Snapshots/Snapshots Chapter 1 (The Summer of the Beautiful White House by William Saroyan).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Snapshots Chapter 2 (The Address by Marga Minco).pdf",
+                      "path": "Commerce/NCERT Textbook/English (Core)/Snapshots/Snapshots Chapter 2 (The Address by Marga Minco).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Snapshots Chapter 3 (Mother's Day by J. B. Priestley).pdf",
+                      "path": "Commerce/NCERT Textbook/English (Core)/Snapshots/Snapshots Chapter 3 (Mother's Day by J. B. Priestley).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Snapshots Chapter 4 (Birth by A. J. Cronin).pdf",
+                      "path": "Commerce/NCERT Textbook/English (Core)/Snapshots/Snapshots Chapter 4 (Birth by A. J. Cronin).pdf"
+                    },
+                    {
+                      "type": "file",
+                      "name": "Snapshots Chapter 5 (The Tale of Melon City by Vikram Seth).pdf",
+                      "path": "Commerce/NCERT Textbook/English (Core)/Snapshots/Snapshots Chapter 5 (The Tale of Melon City by Vikram Seth).pdf"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "folder",
+              "name": "Mathematics",
+              "children": [
+                {
+                  "type": "file",
+                  "name": "Contents (Mathematics).pdf",
+                  "path": "Commerce/NCERT Textbook/Mathematics/Contents (Mathematics).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 1 (Sets).pdf",
+                  "path": "Commerce/NCERT Textbook/Mathematics/Maths Chapter 1 (Sets).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 10 (Conic Sections).pdf",
+                  "path": "Commerce/NCERT Textbook/Mathematics/Maths Chapter 10 (Conic Sections).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 11 (Introduction to Three Dimensional Geometry).pdf",
+                  "path": "Commerce/NCERT Textbook/Mathematics/Maths Chapter 11 (Introduction to Three Dimensional Geometry).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 12 (Limits and Derivatives).pdf",
+                  "path": "Commerce/NCERT Textbook/Mathematics/Maths Chapter 12 (Limits and Derivatives).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 13 (Statistics).pdf",
+                  "path": "Commerce/NCERT Textbook/Mathematics/Maths Chapter 13 (Statistics).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 14 (Probability).pdf",
+                  "path": "Commerce/NCERT Textbook/Mathematics/Maths Chapter 14 (Probability).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 2 (Relations and Funcations).pdf",
+                  "path": "Commerce/NCERT Textbook/Mathematics/Maths Chapter 2 (Relations and Funcations).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 3 (Trigonometric Functions).pdf",
+                  "path": "Commerce/NCERT Textbook/Mathematics/Maths Chapter 3 (Trigonometric Functions).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 4 (Complex Numbers and Quadratic Equations).pdf",
+                  "path": "Commerce/NCERT Textbook/Mathematics/Maths Chapter 4 (Complex Numbers and Quadratic Equations).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 5 (Linear Inequalities).pdf",
+                  "path": "Commerce/NCERT Textbook/Mathematics/Maths Chapter 5 (Linear Inequalities).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 6 (Permutations and Combinations).pdf",
+                  "path": "Commerce/NCERT Textbook/Mathematics/Maths Chapter 6 (Permutations and Combinations).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 7 (Binomial Theorem).pdf",
+                  "path": "Commerce/NCERT Textbook/Mathematics/Maths Chapter 7 (Binomial Theorem).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 8 (Sequences and Series).pdf",
+                  "path": "Commerce/NCERT Textbook/Mathematics/Maths Chapter 8 (Sequences and Series).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths Chapter 9 (Straight Lines).pdf",
+                  "path": "Commerce/NCERT Textbook/Mathematics/Maths Chapter 9 (Straight Lines).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths-Appendix 1 (Infinite Series).pdf",
+                  "path": "Commerce/NCERT Textbook/Mathematics/Maths-Appendix 1 (Infinite Series).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths-Appendix 2 (Mathematical Modelling).pdf",
+                  "path": "Commerce/NCERT Textbook/Mathematics/Maths-Appendix 2 (Mathematical Modelling).pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths_Answers.pdf",
+                  "path": "Commerce/NCERT Textbook/Mathematics/Maths_Answers.pdf"
+                },
+                {
+                  "type": "file",
+                  "name": "Maths_Suplementary Material.pdf",
+                  "path": "Commerce/NCERT Textbook/Mathematics/Maths_Suplementary Material.pdf"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "folder",
+          "name": "Reference Study Documents",
+          "children": []
+        }
+      ]
+    },
     {
       "type": "file",
       "name": "LICENSE",
