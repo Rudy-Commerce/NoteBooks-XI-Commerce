@@ -762,11 +762,6 @@
           "children": []
         }
       ]
-    },
-    {
-      "type": "file",
-      "name": "LICENSE",
-      "path": "LICENSE"
     }
   ]
 }
