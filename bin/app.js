@@ -742,7 +742,7 @@ function dismissVercelPopup() {
 
 function maybeShowVercelPopup() {
   if (hasVercelDismissCookie()) return;
-  if (window.location.hostname === 'pratyushchanda.github.io') {
+  if (window.location.hostname === 'rudy-commerce.github.io') {
     setTimeout(() => {
       document.getElementById('vercelPopup').classList.add('visible');
     }, 1800);
